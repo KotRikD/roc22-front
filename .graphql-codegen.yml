@@ -1,0 +1,37 @@
+config: &config
+    avoidOptionals: true
+    dedupeFragments: true
+    enumsAsTypes: true
+    inputMaybeValue: T | null | undefined
+    useTypeImports: true
+    documentMode: documentNode
+
+schema: https://roc22-admin.kotworks.cyou/gql
+documents: './src/**/*.graphql'
+generates:
+    ./src/graphql/__generated__/types.ts:
+        plugins:
+            - add:
+                  content:
+                      - '/* DO NOT EDIT -- This is auto-generated file */'
+                      - '/* eslint-disable */'
+                      - '// @ts-nocheck'
+                      - '// prettier-ignore'
+            - typescript
+        config: &config
+
+    ./src/:
+        preset: near-operation-file
+        presetConfig:
+            extension: .sdk.ts
+            baseTypesPath: graphql/__generated__/types.ts
+        plugins:
+            - add:
+                  content:
+                      - '/* DO NOT EDIT -- This is auto-generated file */'
+                      - '/* eslint-disable */'
+                      - '// @ts-nocheck'
+                      - '// prettier-ignore'
+            - typescript-operations
+            - typescript-graphql-request
+        config: &config

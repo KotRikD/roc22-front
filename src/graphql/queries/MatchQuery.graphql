@@ -1,0 +1,27 @@
+query MatchQuery {
+  matches {
+    data {
+      id
+      attributes {
+        stage
+        matchType
+        matchState
+        date_start
+        match_pool {
+          data {
+            attributes {
+              name
+              pool {
+                map_id
+                mode_combination
+              }
+            }
+          }
+        }
+        createdAt
+        updatedAt
+        publishedAt
+      }
+    }
+  }
+}
