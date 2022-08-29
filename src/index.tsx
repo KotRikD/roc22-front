@@ -1,5 +1,4 @@
 import { GraphQLClient } from 'graphql-request';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import {
@@ -7,12 +6,18 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { prepareGOSU } from './gosu';
 import { Screens } from './pages/screens';
 import { CurrentPlay } from './pages/screens/currentPlay';
 import { TestGQLMatches } from './pages/screens/testGQLMatches';
 
 const queryClient = new QueryClient();
 export const graphqlClient = new GraphQLClient("https://roc22-admin.kotworks.cyou/gql")
+
+// я не специально...
+// правда...
+prepareGOSU();
+window.GOSU.start();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
