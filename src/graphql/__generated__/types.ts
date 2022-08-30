@@ -44,22 +44,102 @@ export type BooleanFilterInput = {
   startsWith: InputMaybe<Scalars['Boolean']>;
 };
 
-export type ComponentStructuresMatchFields = {
-  __typename?: 'ComponentStructuresMatchFields';
+export type ComponentNoizyStuffPicks = {
+  __typename?: 'ComponentNoizyStuffPicks';
+  id: Scalars['ID'];
+  map_id: Maybe<Scalars['Long']>;
+};
+
+export type ComponentNoizyStuffPicksFiltersInput = {
+  and: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksFiltersInput>>>;
+  map_id: InputMaybe<LongFilterInput>;
+  not: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
+  or: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksFiltersInput>>>;
+};
+
+export type ComponentNoizyStuffPicksInput = {
+  id: InputMaybe<Scalars['ID']>;
+  map_id: InputMaybe<Scalars['Long']>;
+};
+
+export type ComponentNoizyStuffPlaces = {
+  __typename?: 'ComponentNoizyStuffPlaces';
+  id: Scalars['ID'];
+  place: Maybe<Scalars['Int']>;
+};
+
+export type ComponentNoizyStuffPlacesFiltersInput = {
+  and: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPlacesFiltersInput>>>;
+  not: InputMaybe<ComponentNoizyStuffPlacesFiltersInput>;
+  or: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPlacesFiltersInput>>>;
+  place: InputMaybe<IntFilterInput>;
+};
+
+export type ComponentNoizyStuffPlacesInput = {
+  id: InputMaybe<Scalars['ID']>;
+  place: InputMaybe<Scalars['Int']>;
+};
+
+export type ComponentStructuresPlayerFields = {
+  __typename?: 'ComponentStructuresPlayerFields';
+  bans: Maybe<Array<Maybe<ComponentNoizyStuffPicks>>>;
+  id: Scalars['ID'];
+  osu_id: Maybe<Scalars['Long']>;
+  osu_name: Maybe<Scalars['String']>;
+  places: Maybe<Array<Maybe<ComponentNoizyStuffPlaces>>>;
+  protected_map: Maybe<Scalars['Long']>;
+};
+
+
+export type ComponentStructuresPlayerFieldsBansArgs = {
+  filters: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type ComponentStructuresPlayerFieldsPlacesArgs = {
+  filters: InputMaybe<ComponentNoizyStuffPlacesFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentStructuresPlayerFieldsFiltersInput = {
+  and: InputMaybe<Array<InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>>>;
+  bans: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
+  not: InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>;
+  or: InputMaybe<Array<InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>>>;
+  osu_id: InputMaybe<LongFilterInput>;
+  osu_name: InputMaybe<StringFilterInput>;
+  places: InputMaybe<ComponentNoizyStuffPlacesFiltersInput>;
+  protected_map: InputMaybe<LongFilterInput>;
+};
+
+export type ComponentStructuresPlayerFieldsInput = {
+  bans: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksInput>>>;
+  id: InputMaybe<Scalars['ID']>;
+  osu_id: InputMaybe<Scalars['Long']>;
+  osu_name: InputMaybe<Scalars['String']>;
+  places: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPlacesInput>>>;
+  protected_map: InputMaybe<Scalars['Long']>;
+};
+
+export type ComponentTestPickedMap = {
+  __typename?: 'ComponentTestPickedMap';
   id: Scalars['ID'];
   map_id: Maybe<Scalars['Long']>;
   mode_combination: Maybe<Scalars['String']>;
 };
 
-export type ComponentStructuresMatchFieldsFiltersInput = {
-  and: InputMaybe<Array<InputMaybe<ComponentStructuresMatchFieldsFiltersInput>>>;
+export type ComponentTestPickedMapFiltersInput = {
+  and: InputMaybe<Array<InputMaybe<ComponentTestPickedMapFiltersInput>>>;
   map_id: InputMaybe<LongFilterInput>;
   mode_combination: InputMaybe<StringFilterInput>;
-  not: InputMaybe<ComponentStructuresMatchFieldsFiltersInput>;
-  or: InputMaybe<Array<InputMaybe<ComponentStructuresMatchFieldsFiltersInput>>>;
+  not: InputMaybe<ComponentTestPickedMapFiltersInput>;
+  or: InputMaybe<Array<InputMaybe<ComponentTestPickedMapFiltersInput>>>;
 };
 
-export type ComponentStructuresMatchFieldsInput = {
+export type ComponentTestPickedMapInput = {
   id: InputMaybe<Scalars['ID']>;
   map_id: InputMaybe<Scalars['Long']>;
   mode_combination: InputMaybe<Scalars['String']>;
@@ -129,7 +209,7 @@ export type FloatFilterInput = {
   startsWith: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentStructuresMatchFields | I18NLocale | Match | MatchPool | Test | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentNoizyStuffPicks | ComponentNoizyStuffPlaces | ComponentStructuresPlayerFields | ComponentTestPickedMap | I18NLocale | Match | MatchPool | Tournament | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -270,9 +350,24 @@ export type Match = {
   matchState: Maybe<Enum_Match_Matchstate>;
   matchType: Maybe<Enum_Match_Matchtype>;
   match_pool: Maybe<MatchPoolEntityResponse>;
-  publishedAt: Maybe<Scalars['DateTime']>;
+  picks: Maybe<Array<Maybe<ComponentNoizyStuffPicks>>>;
+  players: Maybe<Array<Maybe<ComponentStructuresPlayerFields>>>;
   stage: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
+};
+
+
+export type MatchPicksArgs = {
+  filters: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type MatchPlayersArgs = {
+  filters: InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type MatchEntity = {
@@ -302,7 +397,8 @@ export type MatchFiltersInput = {
   match_pool: InputMaybe<MatchPoolFiltersInput>;
   not: InputMaybe<MatchFiltersInput>;
   or: InputMaybe<Array<InputMaybe<MatchFiltersInput>>>;
-  publishedAt: InputMaybe<DateTimeFilterInput>;
+  picks: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
+  players: InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>;
   stage: InputMaybe<StringFilterInput>;
   updatedAt: InputMaybe<DateTimeFilterInput>;
 };
@@ -312,21 +408,22 @@ export type MatchInput = {
   matchState: InputMaybe<Enum_Match_Matchstate>;
   matchType: InputMaybe<Enum_Match_Matchtype>;
   match_pool: InputMaybe<Scalars['ID']>;
-  publishedAt: InputMaybe<Scalars['DateTime']>;
+  picks: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksInput>>>;
+  players: InputMaybe<Array<InputMaybe<ComponentStructuresPlayerFieldsInput>>>;
   stage: InputMaybe<Scalars['String']>;
 };
 
 export type MatchPool = {
   __typename?: 'MatchPool';
   createdAt: Maybe<Scalars['DateTime']>;
+  maps: Maybe<Array<Maybe<ComponentTestPickedMap>>>;
   name: Maybe<Scalars['String']>;
-  pool: Maybe<Array<Maybe<ComponentStructuresMatchFields>>>;
   updatedAt: Maybe<Scalars['DateTime']>;
 };
 
 
-export type MatchPoolPoolArgs = {
-  filters: InputMaybe<ComponentStructuresMatchFieldsFiltersInput>;
+export type MatchPoolMapsArgs = {
+  filters: InputMaybe<ComponentTestPickedMapFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -352,16 +449,16 @@ export type MatchPoolFiltersInput = {
   and: InputMaybe<Array<InputMaybe<MatchPoolFiltersInput>>>;
   createdAt: InputMaybe<DateTimeFilterInput>;
   id: InputMaybe<IdFilterInput>;
+  maps: InputMaybe<ComponentTestPickedMapFiltersInput>;
   name: InputMaybe<StringFilterInput>;
   not: InputMaybe<MatchPoolFiltersInput>;
   or: InputMaybe<Array<InputMaybe<MatchPoolFiltersInput>>>;
-  pool: InputMaybe<ComponentStructuresMatchFieldsFiltersInput>;
   updatedAt: InputMaybe<DateTimeFilterInput>;
 };
 
 export type MatchPoolInput = {
+  maps: InputMaybe<Array<InputMaybe<ComponentTestPickedMapInput>>>;
   name: InputMaybe<Scalars['String']>;
-  pool: InputMaybe<Array<InputMaybe<ComponentStructuresMatchFieldsInput>>>;
 };
 
 export type Mutation = {
@@ -370,7 +467,7 @@ export type Mutation = {
   changePassword: Maybe<UsersPermissionsLoginPayload>;
   createMatch: Maybe<MatchEntityResponse>;
   createMatchPool: Maybe<MatchPoolEntityResponse>;
-  createTest: Maybe<TestEntityResponse>;
+  createTournament: Maybe<TournamentEntityResponse>;
   createUploadFile: Maybe<UploadFileEntityResponse>;
   createUploadFolder: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
@@ -379,7 +476,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteMatch: Maybe<MatchEntityResponse>;
   deleteMatchPool: Maybe<MatchPoolEntityResponse>;
-  deleteTest: Maybe<TestEntityResponse>;
+  deleteTournament: Maybe<TournamentEntityResponse>;
   deleteUploadFile: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -400,7 +497,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateMatch: Maybe<MatchEntityResponse>;
   updateMatchPool: Maybe<MatchPoolEntityResponse>;
-  updateTest: Maybe<TestEntityResponse>;
+  updateTournament: Maybe<TournamentEntityResponse>;
   updateUploadFile: Maybe<UploadFileEntityResponse>;
   updateUploadFolder: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -428,8 +525,8 @@ export type MutationCreateMatchPoolArgs = {
 };
 
 
-export type MutationCreateTestArgs = {
-  data: TestInput;
+export type MutationCreateTournamentArgs = {
+  data: TournamentInput;
 };
 
 
@@ -463,7 +560,7 @@ export type MutationDeleteMatchPoolArgs = {
 };
 
 
-export type MutationDeleteTestArgs = {
+export type MutationDeleteTournamentArgs = {
   id: Scalars['ID'];
 };
 
@@ -546,8 +643,8 @@ export type MutationUpdateMatchPoolArgs = {
 };
 
 
-export type MutationUpdateTestArgs = {
-  data: TestInput;
+export type MutationUpdateTournamentArgs = {
+  data: TournamentInput;
   id: Scalars['ID'];
 };
 
@@ -599,10 +696,6 @@ export type PaginationArg = {
   start: InputMaybe<Scalars['Int']>;
 };
 
-export type PublicationState =
-  | 'LIVE'
-  | 'PREVIEW';
-
 export type Query = {
   __typename?: 'Query';
   i18NLocale: Maybe<I18NLocaleEntityResponse>;
@@ -612,8 +705,8 @@ export type Query = {
   matchPools: Maybe<MatchPoolEntityResponseCollection>;
   matches: Maybe<MatchEntityResponseCollection>;
   me: Maybe<UsersPermissionsMe>;
-  test: Maybe<TestEntityResponse>;
-  tests: Maybe<TestEntityResponseCollection>;
+  tournament: Maybe<TournamentEntityResponse>;
+  tournaments: Maybe<TournamentEntityResponseCollection>;
   uploadFile: Maybe<UploadFileEntityResponse>;
   uploadFiles: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder: Maybe<UploadFolderEntityResponse>;
@@ -657,20 +750,18 @@ export type QueryMatchPoolsArgs = {
 export type QueryMatchesArgs = {
   filters: InputMaybe<MatchFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type QueryTestArgs = {
+export type QueryTournamentArgs = {
   id: InputMaybe<Scalars['ID']>;
 };
 
 
-export type QueryTestsArgs = {
-  filters: InputMaybe<TestFiltersInput>;
+export type QueryTournamentsArgs = {
+  filters: InputMaybe<TournamentFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -751,45 +842,51 @@ export type StringFilterInput = {
   startsWith: InputMaybe<Scalars['String']>;
 };
 
-export type Test = {
-  __typename?: 'Test';
+export type Tournament = {
+  __typename?: 'Tournament';
   createdAt: Maybe<Scalars['DateTime']>;
-  publishedAt: Maybe<Scalars['DateTime']>;
-  text_field: Maybe<Scalars['String']>;
+  date_end: Maybe<Scalars['DateTime']>;
+  date_start: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
 };
 
-export type TestEntity = {
-  __typename?: 'TestEntity';
-  attributes: Maybe<Test>;
+export type TournamentEntity = {
+  __typename?: 'TournamentEntity';
+  attributes: Maybe<Tournament>;
   id: Maybe<Scalars['ID']>;
 };
 
-export type TestEntityResponse = {
-  __typename?: 'TestEntityResponse';
-  data: Maybe<TestEntity>;
+export type TournamentEntityResponse = {
+  __typename?: 'TournamentEntityResponse';
+  data: Maybe<TournamentEntity>;
 };
 
-export type TestEntityResponseCollection = {
-  __typename?: 'TestEntityResponseCollection';
-  data: Array<TestEntity>;
+export type TournamentEntityResponseCollection = {
+  __typename?: 'TournamentEntityResponseCollection';
+  data: Array<TournamentEntity>;
   meta: ResponseCollectionMeta;
 };
 
-export type TestFiltersInput = {
-  and: InputMaybe<Array<InputMaybe<TestFiltersInput>>>;
+export type TournamentFiltersInput = {
+  and: InputMaybe<Array<InputMaybe<TournamentFiltersInput>>>;
   createdAt: InputMaybe<DateTimeFilterInput>;
+  date_end: InputMaybe<DateTimeFilterInput>;
+  date_start: InputMaybe<DateTimeFilterInput>;
+  description: InputMaybe<StringFilterInput>;
   id: InputMaybe<IdFilterInput>;
-  not: InputMaybe<TestFiltersInput>;
-  or: InputMaybe<Array<InputMaybe<TestFiltersInput>>>;
-  publishedAt: InputMaybe<DateTimeFilterInput>;
-  text_field: InputMaybe<StringFilterInput>;
+  name: InputMaybe<StringFilterInput>;
+  not: InputMaybe<TournamentFiltersInput>;
+  or: InputMaybe<Array<InputMaybe<TournamentFiltersInput>>>;
   updatedAt: InputMaybe<DateTimeFilterInput>;
 };
 
-export type TestInput = {
-  publishedAt: InputMaybe<Scalars['DateTime']>;
-  text_field: InputMaybe<Scalars['String']>;
+export type TournamentInput = {
+  date_end: InputMaybe<Scalars['DateTime']>;
+  date_start: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  name: InputMaybe<Scalars['String']>;
 };
 
 export type UploadFile = {

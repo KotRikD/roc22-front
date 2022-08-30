@@ -11,16 +11,29 @@ query MatchQuery {
           data {
             attributes {
               name
-              pool {
+              maps {
                 map_id
                 mode_combination
               }
             }
           }
         }
+        players {
+          osu_name
+          osu_id
+          protected_map
+          places {
+            place
+          }
+          bans {
+            map_id
+          }
+        }
+        picks {
+          map_id
+        }
         createdAt
         updatedAt
-        publishedAt
       }
     }
   }
