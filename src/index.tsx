@@ -5,6 +5,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  HashRouter,
 } from "react-router-dom";
 import { prepareGOSU } from './gosu';
 import { Screens } from './pages/screens';
@@ -25,7 +26,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* <Route index element={<Home />} /> */}
         <Route path="screens">
@@ -35,6 +36,6 @@ root.render(
         <Route path="testGQL" element={<TestGQLMatches />} />
         <Route path="testGQLPoller" element={<TestGQLMatchesPoller />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </QueryClientProvider>
 );

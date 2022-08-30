@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://roc22-app.kotworks.cyou",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -21,6 +22,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,6 +54,7 @@
     "@graphql-codegen/near-operation-file-preset": "^2.4.1",
     "@graphql-codegen/typescript": "^2.7.3",
     "@graphql-codegen/typescript-graphql-request": "^4.5.3",
-    "@graphql-codegen/typescript-operations": "^2.5.3"
+    "@graphql-codegen/typescript-operations": "^2.5.3",
+    "gh-pages": "^4.0.0"
   }
 }
