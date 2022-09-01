@@ -1,9 +1,15 @@
 {
   "files": {
-    "main.js": "/static/js/main.f4f26738.js",
+    "main.css": "/static/css/main.65d539fb.css",
+    "main.js": "/static/js/main.111f6d5c.js",
+    "static/media/xppen.png": "/static/media/xppen.8a07ce87cb0b547596cf.png",
+    "static/media/GOTHICB.TTF": "/static/media/GOTHICB.861d22617fdfce5fc922.TTF",
+    "static/media/Nexa-Bold.otf": "/static/media/Nexa-Bold.e3be178bd2c85a8dd6a2.otf",
+    "static/media/Nexa-Light.otf": "/static/media/Nexa-Light.88edf271fb68f3e84d66.otf",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/js/main.f4f26738.js"
+    "static/css/main.65d539fb.css",
+    "static/js/main.111f6d5c.js"
   ]
 }
