@@ -12,6 +12,8 @@ import { CurrentPlay } from './pages/screens/currentPlay';
 import { TestGQLMatches } from './pages/screens/testGQLMatches';
 import { TestGQLMatchesPoller } from './pages/screens/testGQLMatches-polling';
 
+import './index.css';
+
 const queryClient = new QueryClient();
 export const graphqlClient = new GraphQLClient("https://roc22-admin.kotworks.cyou/gql")
 

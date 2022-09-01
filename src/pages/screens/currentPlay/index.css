@@ -1,0 +1,372 @@
+@font-face {
+    font-family: "Nexa Bold";
+    src: url("../../../fonts/Nexa-Bold.otf");
+}
+@font-face {
+    font-family: "Nexa Light";
+    src: url("../../../fonts/Nexa-Light.otf");
+}
+@font-face {
+    font-family: "Gothic-b";
+    src: url("../../../fonts/GOTHICB.TTF");
+}
+
+#main{
+    font-size: 30px;
+    font-family: Nexa Bold, Helvetica, sans-serif;
+    font-weight: normal;
+	background-color: #FC9CC0;
+    color: white;
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+	text-shadow: 0px 0px 8px black;
+}
+.odometer.odometer-auto-theme{
+    font-size: 24px !important;
+    font-family: "Nexa Bold", Helvetica, sans-serif !important;
+    font-weight: normal !important;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    margin-left: -5px !important;
+    margin-right: -5px !important;
+}
+#top {
+	position: absolute;
+    width: 1920px;
+    height: 85px;
+	background-color: #EAEFFF ;
+  top: 0px;
+/* border: 1px solid red; */
+}
+
+#StageName {
+	position: inherit;
+	left: 40px;
+	color:black;
+	top: 15px;
+	font-size: 48px;
+}
+
+#ROC22 {
+	position: inherit;
+	right: 200px;
+	color: black;
+	top: 12px;
+	font-size: 48px;
+}
+
+#XP-Logo {
+	position: absolute;
+	right: 40px;
+	height: 80px;
+	width: 90px;
+	top: 2px;
+	background-image: url('./assets/xppen.png');
+	background-size: cover;
+}
+
+#bottom {
+	position: absolute;
+	bottom: 14px;
+    width: 940px;
+    height: 244px;
+	background-image: none;
+	background-repeat: no-repeat;
+    transition: ease-in-out 200ms;
+	z-index: 0;
+	background-size: cover;
+}
+
+
+#playScoreBlue {
+	position: absolute;
+	padding: 5px 30px 5px 30px;
+	text-align: center;
+	border-radius: 25px;
+	left: 50px;
+	bottom: 110px;
+	height: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 400px;
+
+	background-color: #007E93;
+	color: white;
+    font-family: Nexa Bold;
+	font-size: 40px;
+	line-height: 60px;
+	display: block;
+
+    transition: ease-in-out 500ms;
+}
+#playScoreRed {
+	position: absolute;
+	padding: 5px 30px 5px 30px;
+	text-align: center;
+	border-radius: 25px;
+	right: 1200px;
+	bottom: 110px;
+	height: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 400px;
+
+	background-color: #8E0029;
+	color: white;
+    font-family: Nexa Bold;
+	font-size: 40px;
+	line-height: 60px;
+	display: block;
+
+    transition: ease-in-out 500ms;
+}
+
+#ScoreBetween {
+	position: absolute;
+	padding: 5px 30px 5px 30px;
+	text-align: center;
+	border-radius: 25px;
+	left: 350px;
+	bottom: 30px;
+	height: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 400px;
+
+	background-color: transparent;
+	color: white;
+    font-family: Nexa Bold;
+	font-size: 40px;
+	line-height: 60px;
+	display: block;
+
+    transition: ease-in-out 500ms;
+}
+
+#mapContainer {
+	position: absolute;
+  	bottom: 15px;
+	right: 15px;
+	height: 245px;
+	width: 940px;
+	background-color: black;
+    background-size: cover;
+	border-radius: 5px;
+	z-index: 0;
+	box-shadow: 0px 0px 20px -3px black;
+}
+#overlay {
+  position: relative;
+	height: 245px;
+	width: 940px;
+	z-index: 1;
+    background-color: rgba(0,0,0,0.75);
+	border-radius: 5px;
+}
+#mapTitle, #mapDifficulty {
+  position: relative;
+	padding-left:10%;
+	width: 80%;
+	top: 55px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 24px;
+	text-overflow: ellipsis;
+	text-align: center;
+	align-content: center;
+	z-index: 0;
+}
+#chats {
+	background: #22202A;
+	position: absolute;
+	left: 15px;
+	width: 913px;
+	height: 235px;
+	border-radius: 5px;
+	bottom: 15px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 5px 15px;
+	font-size: 18px;
+    font-family: Gothic-b, monospace;
+    transition: ease-in-out 500ms;
+}
+
+.chat {
+	display: flex;
+	text-align: left;
+}
+
+.chatTime {
+	width: 5%;
+	color: silver;
+	padding-right: 10px;
+}
+.wholeChat {
+	width: 95%;
+	display: flex;
+}
+.chatName {
+	color: white;
+	white-space: nowrap;
+	width: max-content;
+}
+.chatText {
+	white-space: normal;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+.unknown {
+	color: yellow;
+}
+.bot {
+	color: #FF66AA;
+}
+.left {
+	color: #ed1855;
+}
+.right {
+	color: #1fd0ed;
+}
+
+.inline {
+	display: inline-block;
+	align-content: middle;
+	/* border: 1px solid red; */
+	vertical-align: middle;
+	text-align: center;
+	margin: 0px;
+	padding-left: 15px;
+	justify-content: center;
+	line-height:  55px;
+	}
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    margin-top: 25px;
+    margin-bottom: 25px;
+	visibility: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: grey;
+	border-radius: 10px;
+}
+.text{
+    display: flex;
+    justify-content: center;
+}
+
+
+#SlotP1, #SlotP2, #SlotP3, #SlotP4 {
+	width: 800px;
+	height: 60px;	
+	background-color: #2c2c2c;
+}
+
+#SlotP1 {
+	position: absolute;
+	bottom: 184px;
+}
+
+#SlotP2 {
+	position: absolute;
+	bottom: 124px;
+}
+
+#SlotP3 {
+	position: absolute;
+	bottom: 64px;
+}
+
+#SlotP4 {
+	position: absolute;
+	bottom: 4px;
+}
+
+#playerNameOne {
+	background-color: #FF6C6C;
+	height: 60px;
+	width: 300px;
+	text-align: left;
+	border-radius: 0px 25px 25px 0px;
+}
+
+#playerNameTwo {
+	background-color: #6C84FF;
+	height: 60px;
+	width: 300px;
+	text-align: left;
+	border-radius: 0px 25px 25px 0px;
+}
+
+#playerNameThree {
+	background-color: #FF9933;
+	height: 60px;
+	width: 300px;
+	text-align: left;
+	border-radius: 0px 25px 25px 0px;
+}
+
+#playerNameFour {
+	background-color:violet;
+	height: 60px;
+	width: 300px;
+	text-align: left;
+	border-radius: 0px 25px 25px 0px;
+}
+
+
+#avatarOne, #avatarTwo, #avatarThree, #avatarFour {
+	height: 60px;
+	width: 60px;
+	background-image: url("https://a.ppy.sh/4571241");
+	background-size: cover;
+}
+
+#playScoreOne, #playScoreTwo, #playScoreThree, #playScoreFour {
+	height: 60px;
+	width: 150px;
+	text-align: left;
+	margin-left: 1px;
+	border-radius: 0px 25px 25px 0px;
+}
+
+#ScoreBetweenOne, #ScoreBetweenTwo, #ScoreBetweenThree, #ScoreBetweenFour {
+	height: 60px;
+	width: 219px;
+	background-color: #FC9CC0;
+	color: black;
+	text-align: left;
+	margin-left: 10px;
+}
+
+
+.setOrder4 {
+	transform: translateY(-180px);
+	transition-duration: 1s;
+}
+
+.setOrder3 {
+	transform: translateY(-120px);
+	transition-duration: 1s;
+}
+
+.setOrder2 {
+	transform: translateY(-60px);
+	transition-duration: 1s;
+}
+
+.setOrder1 {
+	transform: translateY(0px);
+	transition-duration: 1s;
+}
