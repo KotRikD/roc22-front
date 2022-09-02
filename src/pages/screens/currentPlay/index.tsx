@@ -96,10 +96,10 @@ export const CurrentPlay: React.FC = () => {
     ];
 
     let testScoreMassive = [
-        [Number(state.tourney.ipcClients['0'].gameplay.score)],
-        [Number(state.tourney.ipcClients['1'].gameplay.score)],
-        [Number(state.tourney.ipcClients['2'].gameplay.score)],
-        [Number(state.tourney.ipcClients['3'].gameplay.score)]    
+        Number(state.tourney.ipcClients['0'].gameplay.score),
+        Number(state.tourney.ipcClients['1'].gameplay.score),
+        Number(state.tourney.ipcClients['2'].gameplay.score),
+        Number(state.tourney.ipcClients['3'].gameplay.score)    
     ];
 
     testScoreMassive.sort();
