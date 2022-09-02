@@ -95,6 +95,38 @@ export const CurrentPlay: React.FC = () => {
         state.tourney.ipcClients['3'].gameplay.score
     ];
 
+    var testScoreMassive = [
+        [state.tourney.ipcClients['0'].gameplay.score],
+        [state.tourney.ipcClients['1'].gameplay.score],
+        [state.tourney.ipcClients['2'].gameplay.score],
+        [state.tourney.ipcClients['3'].gameplay.score]    
+    ];
+    console.log(testScoreMassive);
+    
+    var Or1, Or2, Or3, Or4, Sb1, Sb2, Sb3, Sb4;
+
+    if (testScoreMassive[0] == state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder4"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (testScoreMassive[0] == state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder4"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (testScoreMassive[0] == state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder4"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (testScoreMassive[0] == state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder4"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+
+    if (testScoreMassive[1] == state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder3"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
+    if (testScoreMassive[1] == state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder3"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
+    if (testScoreMassive[1] == state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder3"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
+    if (testScoreMassive[1] == state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder3"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
+
+    if (testScoreMassive[2] == state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder2"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
+    if (testScoreMassive[2] == state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder2"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
+    if (testScoreMassive[2] == state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder2"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
+    if (testScoreMassive[2] == state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder2"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
+
+    if (testScoreMassive[3] == state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder1"; Sb1 = ""}
+    if (testScoreMassive[3] == state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder1"; Sb2 = ""}
+    if (testScoreMassive[3] == state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder1"; Sb3 = ""}
+    if (testScoreMassive[3] == state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder1"; Sb4 = ""}
+    
+
+
     /*
         Теперь всё состояние у нас доступно в переменной state, с которой мы вольны творить что угодно
     */
@@ -104,8 +136,9 @@ export const CurrentPlay: React.FC = () => {
             <div id="main">
                 <div id="mapContainer" style={backgroundStyle}>
                     <div id="overlay">
+                        <div id="NowPlaying">NOW PLAYING</div>
                         <div id="mapTitle">{mapTitle}</div>
-                        <div id="mapDifficulty">{mapDifficulty}</div>
+                        <div id="mapDifficulty">[{mapDifficulty}]</div>
                     </div>
                 </div>
                 <div id="top">
@@ -118,29 +151,29 @@ export const CurrentPlay: React.FC = () => {
                     {!scoreVisible ? <div id="chats"></div> : null}
                     {scoreVisible ? 
                         <>
-                            <div id="SlotP1" className="setOrder1">
+                            <div id="SlotP1" className={Or1}>
                                 <div id="avatarOne" className="inline" style={{ backgroundImage: playerDataOne[1] }}></div>
                                 <div id="playerNameOne" className="inline">{playerDataOne[0]}</div>
                                 <div id="playScoreOne" className="inline">{playerDataOne[2]}</div>
-                                <div id="ScoreBetweenOne" className="inline ScoreBetween"></div>
+                                <div id="ScoreBetweenOne" className="inline ScoreBetween">{Sb1}</div>
                             </div>
-                            <div id="SlotP2" className="setOrder2">
+                            <div id="SlotP2" className={Or2}>
                                 <div id="avatarTwo" className="inline" style={{ backgroundImage: playerDataTwo[1] }}></div>
                                 <div id="playerNameTwo" className="inline">{playerDataTwo[0]}</div>
                                 <div id="playScoreTwo" className="inline">{playerDataTwo[2]}</div>
-                                <div id="ScoreBetweenTwo" className="inline ScoreBetween"></div>
+                                <div id="ScoreBetweenTwo" className="inline ScoreBetween">{Sb2}</div>
                             </div>
-                            <div id="SlotP3" className="setOrder3">
+                            <div id="SlotP3" className={Or3}>
                                 <div id="avatarThree" className="inline" style={{ backgroundImage: playerDataThree[1] }}></div>
                                 <div id="playerNameThree" className="inline">{playerDataThree[0]}</div>
                                 <div id="playScoreThree" className="inline">{playerDataThree[2]}</div>
-                                <div id="ScoreBetweenThree" className="inline ScoreBetween"></div>
+                                <div id="ScoreBetweenThree" className="inline ScoreBetween">{Sb3}</div>
                             </div>
-                            <div id="SlotP4" className="setOrder4">
+                            <div id="SlotP4" className={Or4}>
                                 <div id="avatarFour" className="inline" style={{ backgroundImage: playerDataFour[1] }}></div>
                                 <div id="playerNameFour" className="inline">{playerDataFour[0]}</div>
                                 <div id="playScoreFour" className="inline">{playerDataFour[2]}</div>
-                                <div id="ScoreBetweenFour" className='inline ScoreBetween'></div>
+                                <div id="ScoreBetweenFour" className='inline ScoreBetween'>{Sb4}</div>
                             </div> 
                         </> : null
                     }
