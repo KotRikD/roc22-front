@@ -275,22 +275,18 @@
 
 #SlotP1 {
 	position: absolute;
-	bottom: 184px;
 }
 
 #SlotP2 {
 	position: absolute;
-	bottom: 124px;
 }
 
 #SlotP3 {
 	position: absolute;
-	bottom: 64px;
 }
 
 #SlotP4 {
 	position: absolute;
-	bottom: 4px;
 }
 
 #playerNameOne {
@@ -352,17 +348,17 @@
 
 
 .setOrder4 {
-	transform: translateY(-180px);
+	transform: translateY(180px);
 	transition-duration: 1s;
 }
 
 .setOrder3 {
-	transform: translateY(-120px);
+	transform: translateY(120px);
 	transition-duration: 1s;
 }
 
 .setOrder2 {
-	transform: translateY(-60px);
+	transform: translateY(60px);
 	transition-duration: 1s;
 }
 

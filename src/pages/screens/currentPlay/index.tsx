@@ -118,25 +118,25 @@ export const CurrentPlay: React.FC = () => {
                     {!scoreVisible ? <div id="chats"></div> : null}
                     {scoreVisible ? 
                         <>
-                            <div id="SlotP1">
+                            <div id="SlotP1" className="setOrder1">
                                 <div id="avatarOne" className="inline" style={{ backgroundImage: playerDataOne[1] }}></div>
                                 <div id="playerNameOne" className="inline">{playerDataOne[0]}</div>
                                 <div id="playScoreOne" className="inline">{playerDataOne[2]}</div>
                                 <div id="ScoreBetweenOne" className="inline ScoreBetween"></div>
                             </div>
-                            <div id="SlotP2">
+                            <div id="SlotP2" className="setOrder2">
                                 <div id="avatarTwo" className="inline" style={{ backgroundImage: playerDataTwo[1] }}></div>
                                 <div id="playerNameTwo" className="inline">{playerDataTwo[0]}</div>
                                 <div id="playScoreTwo" className="inline">{playerDataTwo[2]}</div>
                                 <div id="ScoreBetweenTwo" className="inline ScoreBetween"></div>
                             </div>
-                            <div id="SlotP3">
+                            <div id="SlotP3" className="setOrder3">
                                 <div id="avatarThree" className="inline" style={{ backgroundImage: playerDataThree[1] }}></div>
                                 <div id="playerNameThree" className="inline">{playerDataThree[0]}</div>
                                 <div id="playScoreThree" className="inline">{playerDataThree[2]}</div>
                                 <div id="ScoreBetweenThree" className="inline ScoreBetween"></div>
                             </div>
-                            <div id="SlotP4">
+                            <div id="SlotP4" className="setOrder4">
                                 <div id="avatarFour" className="inline" style={{ backgroundImage: playerDataFour[1] }}></div>
                                 <div id="playerNameFour" className="inline">{playerDataFour[0]}</div>
                                 <div id="playScoreFour" className="inline">{playerDataFour[2]}</div>
