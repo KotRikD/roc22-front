@@ -82,7 +82,7 @@ export const CurrentPlay: React.FC = () => {
     const playerDataTwo = [
         state.tourney.ipcClients['1'].spectating.name, 
         `url('https://a.ppy.sh/${state.tourney.ipcClients['1'].spectating.userID}')`,
-        state.tourney.ipcClients['1'].gameplay.score,
+        state.tourney.ipcClients['1'].gameplay.score
     ];
     const playerDataThree = [
         state.tourney.ipcClients['2'].spectating.name, 
@@ -95,35 +95,37 @@ export const CurrentPlay: React.FC = () => {
         state.tourney.ipcClients['3'].gameplay.score
     ];
 
-    var testScoreMassive = [
-        [state.tourney.ipcClients['0'].gameplay.score],
-        [state.tourney.ipcClients['1'].gameplay.score],
-        [state.tourney.ipcClients['2'].gameplay.score],
-        [state.tourney.ipcClients['3'].gameplay.score]    
+    let testScoreMassive = [
+        [Number(state.tourney.ipcClients['0'].gameplay.score)],
+        [Number(state.tourney.ipcClients['1'].gameplay.score)],
+        [Number(state.tourney.ipcClients['2'].gameplay.score)],
+        [Number(state.tourney.ipcClients['3'].gameplay.score)]    
     ];
+
+    testScoreMassive.sort();
     console.log(testScoreMassive);
     
-    var Or1, Or2, Or3, Or4, Sb1, Sb2, Sb3, Sb4;
+    let Or1, Or2, Or3, Or4, Sb1, Sb2, Sb3, Sb4 = null;
 
-    if (testScoreMassive[0] === state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder4"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
-    if (testScoreMassive[0] === state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder4"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
-    if (testScoreMassive[0] === state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder4"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
-    if (testScoreMassive[0] === state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder4"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[0]) === playerDataOne[2]) { Or1 = "setOrder4"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[0]) === playerDataTwo[2]) { Or2 = "setOrder4"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[0]) === playerDataThree[2]) { Or3 = "setOrder4"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[0]) === playerDataFour[2]) { Or4 = "setOrder4"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[3])}
 
-    if (testScoreMassive[1] === state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder3"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
-    if (testScoreMassive[1] === state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder3"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
-    if (testScoreMassive[1] === state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder3"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
-    if (testScoreMassive[1] === state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder3"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[2])}
+    if (Number(testScoreMassive[1]) === playerDataOne[2]) { Or1 = "setOrder3"; Sb1 = Number(testScoreMassive[1])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[1]) === playerDataTwo[2]) { Or2 = "setOrder3"; Sb2 = Number(testScoreMassive[1])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[1]) === playerDataThree[2]) { Or3 = "setOrder3"; Sb3 = Number(testScoreMassive[1])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[1]) === playerDataFour[2]) { Or4 = "setOrder3"; Sb4 = Number(testScoreMassive[1])-Number(testScoreMassive[3])}
 
-    if (testScoreMassive[2] === state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder2"; Sb1 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
-    if (testScoreMassive[2] === state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder2"; Sb2 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
-    if (testScoreMassive[2] === state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder2"; Sb3 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
-    if (testScoreMassive[2] === state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder2"; Sb4 = Number(testScoreMassive[0])-Number(testScoreMassive[1])}
+    if (Number(testScoreMassive[2]) === playerDataOne[2]) { Or1 = "setOrder2"; Sb1 = Number(testScoreMassive[2])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[2]) === playerDataTwo[2]) { Or2 = "setOrder2"; Sb2 = Number(testScoreMassive[2])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[2]) === playerDataThree[2]) { Or3 = "setOrder2"; Sb3 = Number(testScoreMassive[2])-Number(testScoreMassive[3])}
+    if (Number(testScoreMassive[2]) === playerDataFour[2]) { Or4 = "setOrder2"; Sb4 = Number(testScoreMassive[2])-Number(testScoreMassive[3])}
 
-    if (testScoreMassive[3] === state.tourney.ipcClients['0'].gameplay.score) { Or1 = "setOrder1"; Sb1 = ""}
-    if (testScoreMassive[3] === state.tourney.ipcClients['1'].gameplay.score) { Or2 = "setOrder1"; Sb2 = ""}
-    if (testScoreMassive[3] === state.tourney.ipcClients['2'].gameplay.score) { Or3 = "setOrder1"; Sb3 = ""}
-    if (testScoreMassive[3] === state.tourney.ipcClients['3'].gameplay.score) { Or4 = "setOrder1"; Sb4 = ""}
+    if (Number(testScoreMassive[3]) === playerDataOne[2]) { Or1 = "setOrder1"; Sb1 = ""}
+    if (Number(testScoreMassive[3]) === playerDataTwo[2]) { Or2 = "setOrder1"; Sb2 = ""}
+    if (Number(testScoreMassive[3]) === playerDataThree[2]) { Or3 = "setOrder1"; Sb3 = ""}
+    if (Number(testScoreMassive[3]) === playerDataFour[2]) { Or4 = "setOrder1"; Sb4 = ""}
     
 
 
