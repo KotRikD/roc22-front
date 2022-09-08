@@ -1,13 +1,13 @@
 :root {
-    --bg-color: #d94f79;
+	--bg-color: #d94f79;
 }
 
 .Screen {
-    position: relative;
-    width: 1920px;
-    height: 1080px;
-    background-color: var(--bg-color);
-    //background-image: url("../../assets/images/bg_pattern.png");
-    background-repeat: no-repeat;
-    background-position: center;
+	position: relative;
+	width: 1920px;
+	height: 1080px;
+	background-color: var(--bg-color);
+	//background-image: url("../../assets/images/bg_pattern.png");
+	background-repeat: no-repeat;
+	background-position: center;
 }

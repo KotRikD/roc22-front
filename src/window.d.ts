@@ -1,3 +1,3 @@
 interface Window {
-    GOSU: any;
+	GOSU: any;
 }

@@ -1,12 +1,12 @@
-const {CracoAliasPlugin} = require('react-app-alias')
+const { CracoAliasPlugin } = require('react-app-alias');
 
-const options = {} // default is empty for most cases
+const options = {}; // default is empty for most cases
 
 module.exports = {
-    plugins: [
-        {
-            plugin: CracoAliasPlugin,
-            options: {}
-        }
-    ]
-}
+	plugins: [
+		{
+			plugin: CracoAliasPlugin,
+			options: {}
+		}
+	]
+};
