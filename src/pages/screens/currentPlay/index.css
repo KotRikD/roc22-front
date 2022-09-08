@@ -1,16 +1,3 @@
-@font-face {
-    font-family: "Nexa Bold";
-    src: url("../../../fonts/Nexa-Bold.otf");
-}
-@font-face {
-    font-family: "Nexa Light";
-    src: url("../../../fonts/Nexa-Light.otf");
-}
-@font-face {
-    font-family: "Gothic-b";
-    src: url("../../../fonts/GOTHICB.TTF");
-}
-
 #main{
     font-size: 30px;
     font-family: Nexa Bold, Helvetica, sans-serif;

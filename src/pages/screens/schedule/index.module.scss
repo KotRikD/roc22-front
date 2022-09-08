@@ -1,0 +1,115 @@
+:root {
+    --card-bg-color: rgba(25, 25, 25, 0.9);
+    --card-font-color: #D94F79;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+
+    margin-top: 27px;
+    margin-bottom: 27px;
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+
+    text-transform: uppercase;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    margin: 26px;
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    height: 154px;
+
+    padding: 26px;
+    border-radius: 10px;
+
+    background-color: var(--card-bg-color);
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &_name {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 48px;
+
+        line-height: 50px;
+        color: var(--card-font-color);
+        text-transform: uppercase;
+    }
+
+    &_lightName {
+        color: white;
+    }
+}
+
+.avatars {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+    gap: 30px;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    &_img {
+        width: 100px;
+        background-position: center;
+        background-size: cover;
+        min-height: 100px;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    &_name {
+        color: white;
+        font-family: 'Nexa Bold', sans-serif;
+        font-style: normal;
+        font-weight: 650;
+        font-size: 24px;
+    }
+}
+
+.xpPenHolder {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scheduleXpPenWithROC {
+    width: 1859px;
+    height: 105px;
+    background-image: url("./assets/schedule_xp_pen.png");
+    background-size: cover;
+}

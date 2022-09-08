@@ -1,4 +1,3 @@
-import { GraphQLClient } from 'graphql-request';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import {
@@ -11,11 +10,11 @@ import { Screens } from './pages/screens';
 import { CurrentPlay } from './pages/screens/currentPlay';
 import { TestGQLMatches } from './pages/screens/testGQLMatches';
 import { TestGQLMatchesPoller } from './pages/screens/testGQLMatches-polling';
+import { Schedule } from "./pages/screens/schedule";
 
 import './index.css';
 
 const queryClient = new QueryClient();
-export const graphqlClient = new GraphQLClient("https://roc22-admin.kotworks.cyou/gql")
 
 // я не специально...
 // правда...
@@ -31,6 +30,7 @@ root.render(
       <Routes>
         {/* <Route index element={<Home />} /> */}
         <Route path="screens">
+          <Route path="schedule" element={<Schedule />} />
           <Route path="currentPlay" element={<CurrentPlay />} />
           <Route index element={<Screens />} />
         </Route>

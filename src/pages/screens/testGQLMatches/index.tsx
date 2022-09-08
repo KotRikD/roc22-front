@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { graphqlClient } from "../../.."
-import { getSdk } from "../../../graphql/queries/MatchQuery.sdk"
+import { getSdk } from "@graphql-int/queries/MatchQuery.sdk"
+import { graphqlClient } from "@graphql-int/client";
 
 export const TestGQLMatches: React.FC = () => {
     const sdk = getSdk(graphqlClient);

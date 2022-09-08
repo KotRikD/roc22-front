@@ -1,5 +1,5 @@
-query MatchQuery {
-  matches {
+query MatchQuery($filter: MatchFiltersInput, $pagination: PaginationArg) {
+  matches(filters: $filter, pagination: $pagination) {
     data {
       id
       attributes {

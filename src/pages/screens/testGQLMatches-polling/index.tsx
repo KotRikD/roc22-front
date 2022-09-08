@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
-import { graphqlClient } from "../../.."
-import { getSdk, MatchQueryQuery } from "../../../graphql/queries/MatchQuery.sdk"
+import { graphqlClient } from "@graphql-int/client"
+import { getSdk, MatchQueryQuery } from "@graphql-int/queries/MatchQuery.sdk"
 
 export const TestGQLMatchesPoller: React.FC = () => {
     const [state, setState] = useState<MatchQueryQuery | null>(null);
