@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1ed5278c.css",
-    "main.js": "/static/js/main.31235cdd.js",
+    "main.js": "/static/js/main.595951dc.js",
     "static/media/xppen.png": "/static/media/xppen.8a07ce87cb0b547596cf.png",
     "static/media/GOTHICB.TTF": "/static/media/GOTHICB.861d22617fdfce5fc922.TTF",
     "static/media/Nexa-Bold.otf": "/static/media/Nexa-Bold.e3be178bd2c85a8dd6a2.otf",
@@ -10,6 +10,6 @@
   },
   "entrypoints": [
     "static/css/main.1ed5278c.css",
-    "static/js/main.31235cdd.js"
+    "static/js/main.595951dc.js"
   ]
 }
