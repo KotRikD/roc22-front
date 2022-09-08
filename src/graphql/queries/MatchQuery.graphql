@@ -3,6 +3,7 @@ query MatchQuery {
     data {
       id
       attributes {
+        lobby_id
         stage
         matchType
         matchState

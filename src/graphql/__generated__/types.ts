@@ -347,6 +347,7 @@ export type Match = {
   __typename?: 'Match';
   createdAt: Maybe<Scalars['DateTime']>;
   date_start: Maybe<Scalars['DateTime']>;
+  lobby_id: Maybe<Scalars['String']>;
   matchState: Maybe<Enum_Match_Matchstate>;
   matchType: Maybe<Enum_Match_Matchtype>;
   match_pool: Maybe<MatchPoolEntityResponse>;
@@ -392,6 +393,7 @@ export type MatchFiltersInput = {
   createdAt: InputMaybe<DateTimeFilterInput>;
   date_start: InputMaybe<DateTimeFilterInput>;
   id: InputMaybe<IdFilterInput>;
+  lobby_id: InputMaybe<StringFilterInput>;
   matchState: InputMaybe<StringFilterInput>;
   matchType: InputMaybe<StringFilterInput>;
   match_pool: InputMaybe<MatchPoolFiltersInput>;
@@ -405,6 +407,7 @@ export type MatchFiltersInput = {
 
 export type MatchInput = {
   date_start: InputMaybe<Scalars['DateTime']>;
+  lobby_id: InputMaybe<Scalars['String']>;
   matchState: InputMaybe<Enum_Match_Matchstate>;
   matchType: InputMaybe<Enum_Match_Matchtype>;
   match_pool: InputMaybe<Scalars['ID']>;
