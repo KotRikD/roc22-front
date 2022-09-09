@@ -5,10 +5,17 @@ import { getQueryVariable } from '../../../utils/getQueryVariable';
 import './index.css';
 
 import { Screen } from '@/components/Screen';
+import { formatNumber } from '@/utils/formatNumber';
 
 // interface AppState {
 //     scoreVisibleTemp?: boolean;
 // }
+export function getBPM(bpmStruct: any): string {
+    if (bpmStruct.min === bpmStruct.max) return bpmStruct.max
+
+    return `${bpmStruct.min}~${bpmStruct.max}`
+}
+
 
 export const CurrentPlay: React.FC = () => {
 	const [state, setState] = useState<any>(null);
@@ -75,8 +82,16 @@ export const CurrentPlay: React.FC = () => {
 		backgroundImage: `url('http://${hostBackend}/Songs/${pathToImage}')`
 	};
 
-	const mapTitle = `${state.menu.bm.metadata.artist} - ${state.menu.bm.metadata.title}`;
+	const mapTitle = `${state.menu.bm.metadata.title}`;
+	const mapArtist = `${state.menu.bm.metadata.artist}`;
 	const mapDifficulty = `${state.menu.bm.metadata.difficulty}`;
+	const mapMapper = `${state.menu.bm.metadata.mapper}`;
+	const mapCS = `${state.menu.bm.stats.CS.toFixed(1)}`;
+	const mapAR = `${state.menu.bm.stats.AR.toFixed(1)}`;
+	const mapOD = `${state.menu.bm.stats.OD.toFixed(1)}`;
+	const mapBPM = getBPM(state.menu.bm.stats.BPM);
+	const mapSR = `${state.menu.bm.stats.SR}*`;
+	const mapID = `${state.menu.bm.id}`;
 
 	const playerDataOne = [
 		state.tourney.ipcClients['0'].spectating.name,
@@ -206,6 +221,7 @@ export const CurrentPlay: React.FC = () => {
         SG4 = '';
 	}
 
+	
 	/*
         Теперь всё состояние у нас доступно в переменной state, с которой мы вольны творить что угодно
     */
@@ -216,11 +232,38 @@ export const CurrentPlay: React.FC = () => {
             <div id="main">
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
+					<div id="mapCurrent">
+						<div id="MapSection">NM</div>
+						<div id="mapPicked">1</div>
+					</div>	
 						<div id="mapTitle">{mapTitle}</div>
-						<div id="mapDifficulty">[{mapDifficulty}]</div>
+						<div id="mapArtist">{mapArtist}</div>
+						<div id="diffText">Difficulty</div>
+						<div id="mapDifficulty">{mapDifficulty}</div>
+					<div id="mapStats">
+						<div id="csText">CS</div>
+						<div id="mapCS">{mapCS}</div>
+						<div id="arText">AR</div>
+						<div id="mapAR">{mapAR}</div>
+						<div id="odText">OD</div>
+						<div id="mapOD">{mapOD}</div>
+						<div id="bpmText">BPM</div>
+						<div id="mapBPM">{mapBPM}</div>
+						<div id="srText">SR</div>		
+						<div id="mapSR">{mapSR}</div>
+					</div>
+					<div id="mapperBlock">
+						<div id="mapperName">{mapMapper}</div>
+						<div id="mapperText">Mapper</div>						
+					</div>
+					<div id="mapIDblock">
+						<div id="mapID">{mapID}</div>
+						<div id="mapIDtext">Beatmap ID</div>						
+					</div>
 					</div>
 				</div>
                 <div id="scoreWall"></div>
+				<div id="xp-logo"></div>
 				<div id="bottom">
 					{/* <chat><players> | <chat><--players--> | <---chat--->{не будет задержки}<players>    */}
 					{!scoreVisible ? <div id="chats"></div> : null}
@@ -235,11 +278,11 @@ export const CurrentPlay: React.FC = () => {
 								</div>
                                 <div id="gapOne"className="inline">{SG1}</div>
 								<div id="ScoreBetweenOne" className="inline ScoreBetween">
-									{Sb1}
+									{formatNumber(Sb1 as number)}
 								</div>
                                 <div id="ScoreText" className="inline">score</div>
                                 <div id="playScoreOne" className="inline">
-									{playerDataOne[2]}
+									{formatNumber(playerDataOne[2] as number)}
 								</div>	
 							</div>
 							<div id="SlotP2" className={Or2}>
@@ -251,11 +294,11 @@ export const CurrentPlay: React.FC = () => {
 								</div>
                                 <div id="gapTwo" className="inline">{SG2}</div>
 								<div id="ScoreBetweenTwo" className="inline ScoreBetween">
-                                   {Sb2}
+                                   {formatNumber(Sb2 as number)}
 								</div>
                                 <div id="ScoreText" className="inline">score</div>
                                 <div id="playScoreTwo" className="inline">
-									{playerDataTwo[2]}
+									{formatNumber(playerDataTwo[2] as number)}
 								</div>								
 							</div>
 							<div id="SlotP3" className={Or3}>
@@ -267,11 +310,11 @@ export const CurrentPlay: React.FC = () => {
 								</div>
                                 <div id="gapThree" className="inline">{SG3}</div>
                                 <div id="ScoreBetweenThree" className="inline ScoreBetween">
-                                    {Sb3}
+                                    {formatNumber(Sb3 as number)}
 								</div>
                                 <div id="ScoreText" className="inline">score</div>
 								<div id="playScoreThree" className="inline">
-									{playerDataThree[2]}
+									{formatNumber(playerDataThree[2] as number)}
 								</div>								
 							</div>
 							<div id="SlotP4" className={Or4}>
@@ -283,11 +326,11 @@ export const CurrentPlay: React.FC = () => {
 								</div>
                                 <div id="gapFour" className="inline">{SG4}</div>
 								<div id="ScoreBetweenFour" className="inline ScoreBetween">
-                                    {Sb4}
+                                    {formatNumber(Sb4 as number)}
 								</div>
                                 <div id="ScoreText" className="inline">score</div>
                                 <div id="playScoreFour" className="inline">
-									{playerDataFour[2]}
+									{formatNumber(playerDataFour[2] as number)}
 								</div>								
 							</div>
 						</>
