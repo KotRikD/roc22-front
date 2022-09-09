@@ -1,7 +1,10 @@
+import { Header } from '@/components/Header';
 import React, { useEffect, useState } from 'react';
 
 import { getQueryVariable } from '../../../utils/getQueryVariable';
 import './index.css';
+
+import { Screen } from '@/components/Screen';
 
 // interface AppState {
 //     scoreVisibleTemp?: boolean;
@@ -113,152 +116,184 @@ export const CurrentPlay: React.FC = () => {
 		Sb1,
 		Sb2,
 		Sb3,
-		Sb4 = null;
+		Sb4,
+        SG1,
+        SG2,
+        SG3,
+        SG4 = null;
 
 	if (Number(testScoreMassive[0]) === playerDataOne[2]) {
 		Or1 = 'setOrder4';
 		Sb1 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
+        SG1 = 'gap';
 	}
 	if (Number(testScoreMassive[0]) === playerDataTwo[2]) {
 		Or2 = 'setOrder4';
 		Sb2 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
+        SG2 = 'gap';
 	}
 	if (Number(testScoreMassive[0]) === playerDataThree[2]) {
 		Or3 = 'setOrder4';
 		Sb3 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
+        SG3 = 'gap';
 	}
 	if (Number(testScoreMassive[0]) === playerDataFour[2]) {
 		Or4 = 'setOrder4';
 		Sb4 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
+        SG4 = 'gap';
 	}
 
 	if (Number(testScoreMassive[1]) === playerDataOne[2]) {
 		Or1 = 'setOrder3';
 		Sb1 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
+        SG1 = 'gap';
 	}
 	if (Number(testScoreMassive[1]) === playerDataTwo[2]) {
 		Or2 = 'setOrder3';
 		Sb2 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
+        SG2 = 'gap';
 	}
 	if (Number(testScoreMassive[1]) === playerDataThree[2]) {
 		Or3 = 'setOrder3';
 		Sb3 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
+        SG3 = 'gap';
 	}
 	if (Number(testScoreMassive[1]) === playerDataFour[2]) {
 		Or4 = 'setOrder3';
 		Sb4 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
+        SG4 = 'gap';
 	}
 
 	if (Number(testScoreMassive[2]) === playerDataOne[2]) {
 		Or1 = 'setOrder2';
 		Sb1 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
+        SG1 = 'gap';
 	}
 	if (Number(testScoreMassive[2]) === playerDataTwo[2]) {
 		Or2 = 'setOrder2';
 		Sb2 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
+        SG2 = 'gap';
 	}
 	if (Number(testScoreMassive[2]) === playerDataThree[2]) {
 		Or3 = 'setOrder2';
 		Sb3 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
+        SG3 = 'gap';
 	}
 	if (Number(testScoreMassive[2]) === playerDataFour[2]) {
 		Or4 = 'setOrder2';
 		Sb4 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
+        SG4 = 'gap';
 	}
 
 	if (Number(testScoreMassive[3]) === playerDataOne[2]) {
 		Or1 = 'setOrder1';
 		Sb1 = '';
+        SG1 = '';
 	}
 	if (Number(testScoreMassive[3]) === playerDataTwo[2]) {
 		Or2 = 'setOrder1';
 		Sb2 = '';
+        SG2 = '';
 	}
 	if (Number(testScoreMassive[3]) === playerDataThree[2]) {
 		Or3 = 'setOrder1';
 		Sb3 = '';
+        SG3 = '';
 	}
 	if (Number(testScoreMassive[3]) === playerDataFour[2]) {
 		Or4 = 'setOrder1';
 		Sb4 = '';
+        SG4 = '';
 	}
 
 	/*
         Теперь всё состояние у нас доступно в переменной state, с которой мы вольны творить что угодно
     */
 	return (
-		<div>
+		<Screen>
 			{/* {JSON.stringify(state)} */}
-			<div id="main">
+			<Header customTextStart={'Round of 16'}/>
+            <div id="main">
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
-						<div id="NowPlaying">NOW PLAYING</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapDifficulty">[{mapDifficulty}]</div>
 					</div>
 				</div>
-				<div id="top">
-					<div id="StageName">ROUND OF 16</div>
-					<div id="ROC22">#roc22</div>
-					<div id="XP-Logo"></div>
-				</div>
+                <div id="scoreWall"></div>
 				<div id="bottom">
 					{/* <chat><players> | <chat><--players--> | <---chat--->{не будет задержки}<players>    */}
 					{!scoreVisible ? <div id="chats"></div> : null}
 					{scoreVisible ? (
 						<>
 							<div id="SlotP1" className={Or1}>
+                                <div id="wrap" style={{ backgroundImage: playerDataOne[1] }}></div>
 								<div id="avatarOne" className="inline" style={{ backgroundImage: playerDataOne[1] }}></div>
-								<div id="playerNameOne" className="inline">
-									{playerDataOne[0]}
+								<div id="Slot1Color" className="inline"></div>
+                                <div id="playerNameOne" className="inline">
+                                    {playerDataOne[0]}	
 								</div>
-								<div id="playScoreOne" className="inline">
-									{playerDataOne[2]}
-								</div>
+                                <div id="gapOne"className="inline">{SG1}</div>
 								<div id="ScoreBetweenOne" className="inline ScoreBetween">
 									{Sb1}
 								</div>
+                                <div id="ScoreText" className="inline">score</div>
+                                <div id="playScoreOne" className="inline">
+									{playerDataOne[2]}
+								</div>	
 							</div>
 							<div id="SlotP2" className={Or2}>
+                                <div id="wrap" style={{ backgroundImage: playerDataTwo[1] }}></div>
 								<div id="avatarTwo" className="inline" style={{ backgroundImage: playerDataTwo[1] }}></div>
-								<div id="playerNameTwo" className="inline">
+								<div id="Slot2Color" className="inline"></div>
+                                <div id="playerNameTwo" className="inline">
 									{playerDataTwo[0]}
 								</div>
-								<div id="playScoreTwo" className="inline">
-									{playerDataTwo[2]}
-								</div>
+                                <div id="gapTwo" className="inline">{SG2}</div>
 								<div id="ScoreBetweenTwo" className="inline ScoreBetween">
-									{Sb2}
+                                   {Sb2}
 								</div>
+                                <div id="ScoreText" className="inline">score</div>
+                                <div id="playScoreTwo" className="inline">
+									{playerDataTwo[2]}
+								</div>								
 							</div>
 							<div id="SlotP3" className={Or3}>
+                                <div id="wrap" style={{ backgroundImage: playerDataThree[1] }}></div>
 								<div id="avatarThree" className="inline" style={{ backgroundImage: playerDataThree[1] }}></div>
-								<div id="playerNameThree" className="inline">
+								<div id="Slot3Color" className="inline"></div>
+                                <div id="playerNameThree" className="inline">
 									{playerDataThree[0]}
 								</div>
+                                <div id="gapThree" className="inline">{SG3}</div>
+                                <div id="ScoreBetweenThree" className="inline ScoreBetween">
+                                    {Sb3}
+								</div>
+                                <div id="ScoreText" className="inline">score</div>
 								<div id="playScoreThree" className="inline">
 									{playerDataThree[2]}
-								</div>
-								<div id="ScoreBetweenThree" className="inline ScoreBetween">
-									{Sb3}
-								</div>
+								</div>								
 							</div>
 							<div id="SlotP4" className={Or4}>
+                                <div id="wrap" style={{ backgroundImage: playerDataFour[1] }}></div>
 								<div id="avatarFour" className="inline" style={{ backgroundImage: playerDataFour[1] }}></div>
-								<div id="playerNameFour" className="inline">
+								<div id="Slot4Color" className="inline"></div>
+                                <div id="playerNameFour" className="inline">
 									{playerDataFour[0]}
 								</div>
-								<div id="playScoreFour" className="inline">
-									{playerDataFour[2]}
-								</div>
+                                <div id="gapFour" className="inline">{SG4}</div>
 								<div id="ScoreBetweenFour" className="inline ScoreBetween">
-									{Sb4}
+                                    {Sb4}
 								</div>
+                                <div id="ScoreText" className="inline">score</div>
+                                <div id="playScoreFour" className="inline">
+									{playerDataFour[2]}
+								</div>								
 							</div>
 						</>
 					) : null}
 				</div>
 			</div>
-		</div>
+		</Screen>
 	);
 };

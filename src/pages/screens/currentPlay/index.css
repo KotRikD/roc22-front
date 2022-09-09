@@ -2,7 +2,6 @@
 	font-size: 30px;
 	font-family: Nexa Bold, Helvetica, sans-serif;
 	font-weight: normal;
-	background-color: #fc9cc0;
 	color: white;
 	width: 1920px;
 	height: 1080px;
@@ -24,41 +23,17 @@
 #top {
 	position: absolute;
 	width: 1920px;
-	height: 85px;
-	background-color: #eaefff;
+	height: 80px;
+	background-color: #FFFFFF;
 	top: 0px;
 	/* border: 1px solid red; */
 }
 
-#StageName {
-	position: inherit;
-	left: 40px;
-	color: black;
-	top: 15px;
-	font-size: 48px;
-}
-
-#ROC22 {
-	position: inherit;
-	right: 200px;
-	color: black;
-	top: 12px;
-	font-size: 48px;
-}
-
-#XP-Logo {
-	position: absolute;
-	right: 40px;
-	height: 80px;
-	width: 90px;
-	top: 2px;
-	background-image: url('./assets/xppen.png');
-	background-size: cover;
-}
 
 #bottom {
 	position: absolute;
-	bottom: 14px;
+	bottom: 92px;
+	left: 30px;
 	width: 940px;
 	height: 244px;
 	background-image: none;
@@ -135,30 +110,23 @@
 
 #mapContainer {
 	position: absolute;
-	bottom: 15px;
-	right: 15px;
-	height: 245px;
-	width: 940px;
+	width: 900px;
+	height: 149px;
+	left: 990px;
+	bottom: 188px;
 	background-color: black;
 	background-size: cover;
-	border-radius: 5px;
+	border-radius: 10px;
 	z-index: 0;
 	box-shadow: 0px 0px 20px -3px black;
 }
 #overlay {
 	position: relative;
-	height: 245px;
-	width: 940px;
+	width: 900px;
+	height: 149px;
 	z-index: 1;
 	background-color: rgba(0, 0, 0, 0.75);
-	border-radius: 5px;
-}
-#NowPlaying {
-	position: relative;
-	text-align: center;
-	top: 15px;
-	font-size: 36px;
-	background-color: #a3adcc;
+	border-radius: 10px;
 }
 #mapTitle,
 #mapDifficulty {
@@ -269,9 +237,10 @@
 #SlotP2,
 #SlotP3,
 #SlotP4 {
-	width: 800px;
-	height: 60px;
+	width: 900px;
+	height: 58px;
 	background-color: #2c2c2c;
+	border-radius: 10px;
 }
 
 #SlotP1 {
@@ -291,68 +260,103 @@
 }
 
 #playerNameOne {
-	background-color: #ff6c6c;
-	height: 60px;
-	width: 300px;
+	height: 58px;
+	width: 270px;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 190%;
 	text-align: left;
-	border-radius: 0px 25px 25px 0px;
 }
 
 #playerNameTwo {
-	background-color: #6c84ff;
-	height: 60px;
-	width: 300px;
+	height: 58px;
+	width: 270px;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 190%;
 	text-align: left;
-	border-radius: 0px 25px 25px 0px;
 }
 
 #playerNameThree {
-	background-color: #ff9933;
-	height: 60px;
-	width: 300px;
+	height: 58px;
+	width: 270px;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 190%;
 	text-align: left;
-	border-radius: 0px 25px 25px 0px;
 }
 
 #playerNameFour {
-	background-color: violet;
-	height: 60px;
-	width: 300px;
+	height: 58px;
+	width: 270px;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 190%;
 	text-align: left;
-	border-radius: 0px 25px 25px 0px;
 }
 
 #avatarOne,
 #avatarTwo,
 #avatarThree,
 #avatarFour {
-	height: 60px;
-	width: 60px;
+	height: 58px;
+	width: 86px;
 	background-image: url('https://a.ppy.sh/4571241');
 	background-size: cover;
+	border-radius: 10px;
 }
 
 #playScoreOne,
 #playScoreTwo,
 #playScoreThree,
 #playScoreFour {
-	height: 60px;
+	height: 58px;
 	width: 150px;
 	text-align: left;
+	font-size: 32px;
+	line-height: 200%;
 	margin-left: 1px;
 	border-radius: 0px 25px 25px 0px;
+}
+
+#gapOne,
+#gapTwo,
+#gapThree,
+#gapFour {
+	width: 20px;
+	height: 58px;
+	text-align: right;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 450%;
+	color: #F55E8C; 
+}
+
+#ScoreText {
+	width: 40px;
+	height: 58px;
+	text-align: right;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 450%;
+	color: #F55E8C; 
 }
 
 #ScoreBetweenOne,
 #ScoreBetweenTwo,
 #ScoreBetweenThree,
 #ScoreBetweenFour {
-	height: 60px;
-	width: 219px;
-	background-color: #fc9cc0;
-	color: black;
+	height: 58px;
+	width: 140px;
+	color: white;
+	font-size: 24px;
 	text-align: left;
 	margin-left: 10px;
+	line-height: 280%;
 }
 
 .setOrder4 {
@@ -373,4 +377,52 @@
 .setOrder1 {
 	transform: translateY(0px);
 	transition-duration: 1s;
+}
+
+#scoreWall {
+	position: absolute;
+	width: 960px;
+	height: 284px;
+	left: 0px;
+	bottom: 72px;
+
+	background: #191919;
+}
+
+#wrap {
+	position: absolute;
+	width: 900px;
+	height: 58px;
+	background-size: cover;
+	z-index: -1;
+	opacity: 0.0727;
+	border-radius: 10px;
+	background-position: 50% 0;
+}
+
+#Slot1Color,
+#Slot2Color,
+#Slot3Color,
+#Slot4Color {
+	margin: 15px;
+	padding: 2px;
+	width: 20px;
+	height: 20px;
+	border-radius: 8px;
+}
+
+#Slot1Color {
+	background: #FF0000;
+}
+
+#Slot2Color {
+	background: #0066FF;
+}
+
+#Slot3Color {
+	background: #FFD600;
+}
+
+#Slot4Color {
+	background: #05FF00;
 }
