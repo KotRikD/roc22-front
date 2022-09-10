@@ -3,14 +3,14 @@ import { useQuery } from 'react-query';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
-import { ComponentNoizyStuffPlaces } from '@/graphql/__generated__/types';
+import { ComponentNoizyStuffPlaces, ComponentStructuresPlayerFields } from '@/graphql/__generated__/types';
 import { graphqlClient } from '@/graphql/client';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
 import { getQueryVariable } from '@/utils/getQueryVariable';
 
 import styles from './index.module.scss';
 
-export function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null> | null): number {
+function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null> | null): number {
 	if (!places || places.length < 1) return 0;
 
 	let counter = 0;
@@ -23,6 +23,12 @@ export function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces 
 	});
 
 	return counter;
+}
+
+function getPickedMap(indexOfMap: number, players: ComponentStructuresPlayerFields[]): ComponentStructuresPlayerFields {
+	const ordering = [0, 1, 2, 3, 3, 2, 1, 0, 3];
+
+	return players.at(ordering.at(indexOfMap)!)!;
 }
 
 export const MatchPool: React.FC = () => {
@@ -118,7 +124,7 @@ export const MatchPool: React.FC = () => {
 				(map) => map!.map_id === player!.bans?.at(0)?.map_id
 			);
 			return (
-				<div className={styles.player}>
+				<div className={styles.player} key={index}>
 					<div
 						className={styles.player_avatar}
 						style={{
@@ -149,6 +155,39 @@ export const MatchPool: React.FC = () => {
 			  ))
 			: null;
 
+	const renderMapFeed = () => match.attributes?.picks?.map((pick, index) => {
+		const map = poolData[pick!.map_id];
+		const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id)
+
+		return (
+			<div className={styles.pick_filled} style={{
+				backgroundImage: `url('https://assets.ppy.sh/beatmaps/${map.beatmapset.id}/covers/cover@2x.jpg')`
+			}} key={index}>
+				<div className={styles.pick_filled_fade}>
+					<div className={styles.pick_filled_left}>
+						<div className={styles.pick_filled_card}>
+							<div className={styles.pick_filled_card_title}>{poolMap?.mode_combination.slice(0, 2)}</div>
+							<div className={styles.pick_filled_card_version}>{poolMap?.mode_combination.slice(2, 3)}</div>
+						</div>
+						<div className={styles.pick_filled_left_description}>
+							<span className={styles.pick_filled_left_description_title}>{map.beatmapset.title}</span>
+							<span className={styles.pick_filled_left_description_subtitle}>{map.beatmapset.artist}</span>
+						</div>
+					</div>
+					<div className={styles.pick_filled_right}>
+						<span><span className={styles.pick_filled_right_littleSpan}>Picked by</span> {getPickedMap(index, players as never).osu_name}</span>
+						<span><span className={styles.pick_filled_right_littleSpan}>Beatmap ID</span> {map.id}</span>
+					</div>
+				</div>
+			</div>
+		)
+	})
+
+	const renderEmpty = () => 9 - match.attributes?.picks?.length! > 0 ? Array.from(Array(9 - match.attributes?.picks?.length!).keys())
+		.map((_, index) => (
+			<div key={index} className={styles.pick_empty}/>
+		)) : null
+
 	return (
 		<Screen>
 			<Header customTextStart={group} />
@@ -160,7 +199,10 @@ export const MatchPool: React.FC = () => {
 					</div>
 					<div className={styles.xppenGirl} />
 				</div>
-				<div>Right</div>
+				<div className={styles.picks}>
+					{renderMapFeed()}
+					{renderEmpty()}
+				</div>
 			</div>
 		</Screen>
 	);

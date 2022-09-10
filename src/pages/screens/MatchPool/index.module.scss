@@ -173,3 +173,123 @@
 		line-height: 96px;
 	}
 }
+
+.picks {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	box-sizing: border-box;
+	margin: 30px;
+	gap: 20px;
+}
+
+.pick {
+	&_filled {
+		position: relative;
+		width: 900px;
+		height: 83px;
+		border-radius: 10px;
+		overflow: hidden;
+
+		background: url("https://a.kurikku.pw/999");
+		background-size: cover;
+		background-position: center;
+
+		color: white;
+
+		&_fade {
+			position: relative;
+			width: 900px;
+			height: 83px;
+			background: rgba(25, 25, 25, 0.9);
+
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		&_left {
+			display: flex;
+			flex-direction: row;
+			gap: 20px;
+
+			&_description {
+				display: flex;
+				flex-direction: column;
+
+				&_title {
+					max-width: 570px;
+					margin-top: 5px;
+					font-family: 'Poppins', sans-serif;
+					font-weight: 600;
+					font-size: 32px;
+					line-height: 48px;
+					white-space: nowrap; /* Запрещаем перенос строк */
+					overflow: hidden; /* Обрезаем все, что не помещается в область */
+					text-overflow: ellipsis; /* Добавляем многоточие */
+				}
+
+				&_subtitle {
+					font-family: 'Poppins', sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 20px;
+					line-height: 10px;
+				}
+			}
+		}
+
+		&_right {
+			display: flex;
+			flex-direction: column;
+			margin-top: 8px;
+			margin-right: 20px;
+
+			font-family: 'Poppins';
+			font-weight: 600;
+			font-size: 20px;
+
+			&_littleSpan {
+				font-weight: 400;
+				font-size: 14px;
+
+				color: #F55E8C;
+			}
+		}
+
+		&_card {
+			width: 50px;
+			height: 83px;
+			background: #FFFFFF;
+			border-radius: 10px;
+			color: #191919;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			font-family: 'Poppins';
+			font-weight: 600;
+
+			&_title {
+				font-size: 16px;
+				line-height: 24px;
+			}
+
+			&_version {
+				font-size: 36px;
+				line-height: 33px;
+			}
+		}
+
+	}
+
+	&_empty {
+		width: 900px;
+		height: 83px;
+
+		background: rgba(25, 25, 25, 0.97);
+		border-radius: 10px;
+	}
+}
