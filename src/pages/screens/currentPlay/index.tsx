@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
@@ -9,6 +9,7 @@ import { CountUp } from '@/pages/screens/currentPlay/components/CountUp';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
 import { graphqlClient } from '@/graphql/client';
 import { useQuery } from 'react-query';
+import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
 
 export function getBPM(bpmStruct: any): string {
 	if (bpmStruct.min === bpmStruct.max) return bpmStruct.max;
@@ -46,9 +47,8 @@ export const CurrentPlay: React.FC = () => {
 	}, []);
 
 	const {
-		isLoading,
 		error,
-		data: poolData
+		data: poolDataRaw
 	} = useQuery(
 		[`currentPool`, currentMatch],
 		() =>
@@ -59,6 +59,15 @@ export const CurrentPlay: React.FC = () => {
 			enabled: !!currentMatch
 		}
 	);
+
+	const previousPoolData = usePreviousNonNull(poolDataRaw);
+	const poolData = useMemo(() => {
+		if (poolDataRaw === undefined) {
+			return previousPoolData;
+		}
+
+		return poolDataRaw;
+	}, [poolDataRaw, previousPoolData])
 
 	useEffect(() => {
 		// @ts-ignore
@@ -77,7 +86,7 @@ export const CurrentPlay: React.FC = () => {
 	// иначе мы бы на каждый перерендер страницы, добавляли бы callback :)
 	// более подробно можно почитать на доке реакта
 
-	if (state === null || isLoading || !currentMatch?.matches || currentMatch.matches.data.length < 1) return null;
+	if (state === null || !poolData || poolData === null || !currentMatch?.matches || currentMatch.matches.data.length < 1) return null;
 
 	if (error) return <>Не удалось загрузить пул!</>;
 

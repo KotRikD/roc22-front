@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useQuery } from 'react-query';
 
 import { Header } from '@/components/Header';
@@ -10,6 +10,7 @@ import { getQueryVariable } from '@/utils/getQueryVariable';
 
 import styles from './index.module.scss';
 import { resolveSharkTeamChatCringe } from '@/pages/screens/MatchPool/mapping';
+import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
 
 function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null> | null): number {
 	if (!places || places.length < 1) return 0;
@@ -78,9 +79,8 @@ export const MatchPool: React.FC = () => {
 	}, []);
 
 	const {
-		isLoading,
 		error,
-		data: poolData
+		data: poolDataRaw
 	} = useQuery(
 		[`currentPool`, currentMatch],
 		() =>
@@ -92,7 +92,16 @@ export const MatchPool: React.FC = () => {
 		}
 	);
 
-	if (currentMatch === null || isLoading) {
+	const previousPoolData = usePreviousNonNull(poolDataRaw);
+	const poolData = useMemo(() => {
+		if (poolDataRaw === undefined) {
+			return previousPoolData;
+		}
+
+		return poolDataRaw;
+	}, [poolDataRaw, previousPoolData])
+
+	if (currentMatch === null || !poolData) {
 		return <Screen />;
 	}
 
