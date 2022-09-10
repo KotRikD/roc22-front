@@ -9,6 +9,7 @@ import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/Curren
 import { getQueryVariable } from '@/utils/getQueryVariable';
 
 import styles from './index.module.scss';
+import { resolveSharkTeamChatCringe } from '@/pages/screens/MatchPool/mapping';
 
 function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null> | null): number {
 	if (!places || places.length < 1) return 0;
@@ -148,7 +149,7 @@ export const MatchPool: React.FC = () => {
 			? chatEntries.map((val, ind) => (
 					<React.Fragment key={ind}>
 						<span className={styles.chat_time}>{val.time}&nbsp;&nbsp;&nbsp;</span>
-						<span className={styles[`chat_${val.team}`]}>{val.name}:&nbsp;</span>
+						<span className={styles[`chat_${resolveSharkTeamChatCringe(val.team)}`]}>{val.name}:&nbsp;</span>
 						<span>{val.messageBody}</span>
 						<br />
 					</React.Fragment>
