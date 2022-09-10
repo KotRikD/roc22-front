@@ -105,7 +105,6 @@ export const CurrentPlay: React.FC = () => {
 
 	const map = poolData[state.menu.bm.id] || { id: 0 };
 	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id)
-	console.log(match.attributes?.match_pool?.data?.attributes?.maps)
 
 	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
 	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
