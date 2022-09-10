@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
@@ -83,12 +83,9 @@ export const CurrentPlay: React.FC = () => {
 
 	const match = currentMatch.matches.data.at(0)!;
 	const group = `GROUP ${match.attributes?.lobby_id}`;
-	const players = match.attributes?.players!;
 
 	const backendVariable = getQueryVariable('backend');
 	const hostBackend = new URL(backendVariable || '').host;
-
-	const { scoreVisible } = state.tourney.manager.bools;
 
 	const pathToImage = state.menu.bm.path.full.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
 	const backgroundStyle = {
@@ -227,9 +224,7 @@ export const CurrentPlay: React.FC = () => {
 				<div id="scoreWall" />
 				<div id="xp-logo" />
 				<div id="bottom">
-					{
-						renderedPlayers
-					}
+					{ renderedPlayers }
 				</div>
 			</div>
 		</Screen>

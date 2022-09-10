@@ -60,7 +60,8 @@
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx,css,scss}": [
-      "yarn prettier:fix"
+      "yarn prettier:fix",
+      "git add ."
     ]
   },
   "devDependencies": {
