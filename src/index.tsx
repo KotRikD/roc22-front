@@ -2,6 +2,8 @@ import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
+import { MatchPool } from '@/pages/screens/MatchPool';
+
 import { prepareGOSU } from './gosu';
 import './index.css';
 import { Screens } from './pages/screens';
@@ -26,6 +28,7 @@ root.render(
 				<Route path="screens">
 					<Route path="schedule" element={<Schedule />} />
 					<Route path="currentPlay" element={<CurrentPlay />} />
+					<Route path="matchPool" element={<MatchPool />} />
 					<Route index element={<Screens />} />
 				</Route>
 				<Route path="testGQL" element={<TestGQLMatches />} />

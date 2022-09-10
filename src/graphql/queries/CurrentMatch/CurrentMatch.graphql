@@ -1,0 +1,46 @@
+query CurrentMatch {
+    matches(filters: {
+        is_active_match: {
+            eq: true
+        }
+    }) {
+        data {
+            id
+            attributes {
+                lobby_id
+                stage
+                matchType
+                matchState
+                date_start
+                proxy_pool_id
+                match_pool {
+                    data {
+                        attributes {
+                            name
+                            maps {
+                                map_id
+                                mode_combination
+                            }
+                        }
+                    }
+                }
+                players {
+                    osu_name
+                    osu_id
+                    protected_map
+                    places {
+                        place
+                    }
+                    bans {
+                        map_id
+                    }
+                }
+                picks {
+                    map_id
+                }
+                createdAt
+                updatedAt
+            }
+        }
+    }
+}

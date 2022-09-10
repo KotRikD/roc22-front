@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './index.module.scss';
 
 export interface PropsHeader {
-	customTextStart: string;
+	customTextStart: string | React.ReactNode;
 	customOverrideTextEnd?: string;
 }
 

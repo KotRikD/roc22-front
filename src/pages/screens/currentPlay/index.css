@@ -23,11 +23,10 @@
 	position: absolute;
 	width: 1920px;
 	height: 80px;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 	top: 0px;
 	/* border: 1px solid red; */
 }
-
 
 #bottom {
 	position: absolute;
@@ -125,10 +124,10 @@
 	width: 900px;
 	height: 149px;
 	z-index: 1;
-	background-color: rgba(0, 0, 0, 0.80);
+	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 10px;
 }
-#mapTitle{
+#mapTitle {
 	position: absolute;
 	width: 630px;
 	height: 56px;
@@ -145,9 +144,9 @@
 	overflow: hidden; /* Обрезаем все, что не помещается в область */
 	text-overflow: ellipsis; /* Добавляем многоточие */
 
-	color: #FFFFFF;
+	color: #ffffff;
 }
-#mapArtist{
+#mapArtist {
 	position: absolute;
 	width: 630px;
 	height: 55.16px;
@@ -164,10 +163,10 @@
 	overflow: hidden; /* Обрезаем все, что не помещается в область */
 	text-overflow: ellipsis; /* Добавляем многоточие */
 
-	color: #FFFFFF;
+	color: #ffffff;
 }
 
-#diffText{
+#diffText {
 	position: absolute;
 	width: 426px;
 	height: 31px;
@@ -184,7 +183,7 @@
 	display: flex;
 	align-items: flex-end;
 
-	color: #F55E8C;
+	color: #f55e8c;
 }
 
 #mapDifficulty {
@@ -193,27 +192,27 @@
 	height: 31px;
 	left: 133px;
 	top: 81px;
-	
+
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 156%;
 	/* or 31px */
-	
+
 	display: flex;
 	align-items: flex-end;
-	
-	color: #FFFFFF;	
+
+	color: #ffffff;
 }
 
 #mapperBlock {
 	display: flex;
-	flex-direction:row-reverse;
+	flex-direction: row-reverse;
 	gap: 5px;
 	margin-top: -56px;
 	margin-right: 20px;
-	align-items:center;
+	align-items: center;
 	text-align: left;
 }
 
@@ -227,7 +226,7 @@
 	margin-top: 3px;
 	/* or 22px */
 
-	color: #F55E8C;
+	color: #f55e8c;
 }
 
 #mapperName {
@@ -239,16 +238,16 @@
 	font-size: 18px;
 	/* or 31px */
 
-	color: #FFFFFF;
+	color: #ffffff;
 }
 
 #mapIDblock {
 	display: flex;
-	flex-direction:row-reverse;
+	flex-direction: row-reverse;
 	gap: 5px;
 	margin-top: 3px;
 	margin-right: 20px;
-	align-items:center;
+	align-items: center;
 	text-align: left;
 }
 
@@ -262,7 +261,7 @@
 	margin-top: 3px;
 	/* or 22px */
 
-	color: #F55E8C;
+	color: #f55e8c;
 }
 
 #mapID {
@@ -274,7 +273,7 @@
 	font-size: 18px;
 	/* or 31px */
 
-	color: #FFFFFF;
+	color: #ffffff;
 }
 
 #mapStats {
@@ -283,7 +282,7 @@
 	gap: 5px;
 	margin-top: 115px;
 	margin-left: 70px;
-	align-items:center;
+	align-items: center;
 	vertical-align: 5px;
 }
 
@@ -297,7 +296,7 @@
 	margin-top: 3px;
 	/* or 22px */
 
-	color: #F55E8C;
+	color: #f55e8c;
 }
 
 #mapCS {
@@ -309,7 +308,7 @@
 	font-size: 18px;
 	/* or 31px */
 
-	color: #FFFFFF;
+	color: #ffffff;
 }
 
 #arText {
@@ -322,22 +321,22 @@
 	margin-top: 3px;
 	/* or 22px */
 
-	color: #F55E8C;
+	color: #f55e8c;
 }
 
-#mapAR{
+#mapAR {
 	position: relative;
-	
+
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 18px;
-	/* or 31px */	
-	
-	color: #FFFFFF;	
+	/* or 31px */
+
+	color: #ffffff;
 }
 
-#odText{
+#odText {
 	position: relative;
 	margin-left: 10px;
 	font-family: 'Poppins';
@@ -346,20 +345,20 @@
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
-	
-	color: #F55E8C;	
+
+	color: #f55e8c;
 }
 
 #mapOD {
 	position: relative;
-	
+
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 18px;
-	/* or 31px */	
-	
-	color: #FFFFFF;	
+	/* or 31px */
+
+	color: #ffffff;
 }
 
 #bpmText {
@@ -371,21 +370,20 @@
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
-	
-	color: #F55E8C;	
+
+	color: #f55e8c;
 }
 
 #mapBPM {
 	position: relative;
-	
+
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 18px;
 	/* or 31px */
-	
-	
-	color: #FFFFFF;	
+
+	color: #ffffff;
 }
 
 #srText {
@@ -397,21 +395,20 @@
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
-	
-	color: #F55E8C;	
+
+	color: #f55e8c;
 }
 
 #mapSR {
 	position: relative;
-	
+
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 18px;
 	/* or 31px */
-	
-	
-	color: #FFFFFF;
+
+	color: #ffffff;
 }
 
 #chats {
@@ -599,7 +596,7 @@
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 450%;
-	color: #F55E8C; 
+	color: #f55e8c;
 }
 
 #ScoreText {
@@ -611,7 +608,7 @@
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 450%;
-	color: #F55E8C; 
+	color: #f55e8c;
 }
 
 #ScoreBetweenOne,
@@ -643,7 +640,6 @@
 }
 
 .setOrder1 {
-	transform: translateY(0px);
 	transition-duration: 1s;
 }
 
@@ -681,26 +677,26 @@
 }
 
 #Slot1Color {
-	background: #FF0000;
+	background: #ff0000;
 }
 
 #Slot2Color {
-	background: #0066FF;
+	background: #0066ff;
 }
 
 #Slot3Color {
-	background: #FFD600;
+	background: #ffd600;
 }
 
 #Slot4Color {
-	background: #05FF00;
+	background: #05ff00;
 }
 
 #mapCurrent {
 	position: absolute;
 	width: 51px;
 	height: 149px;
-	background: #FFFFFF;
+	background: #ffffff;
 	border-radius: 10px 0px 0px 10px;
 }
 
@@ -729,16 +725,16 @@
 	height: 96px;
 	left: 15px;
 	top: 40px;
-	
+
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 64px;
 	line-height: 96px;
 	/* identical to box height */
-	
+
 	text-align: center;
-	
+
 	color: #191919;
 }
 

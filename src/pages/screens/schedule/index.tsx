@@ -5,7 +5,9 @@ import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
 import { ComponentStructuresPlayerFields } from '@/graphql/__generated__/types';
 import { graphqlClient } from '@/graphql/client';
-import { MatchQueryQuery, getSdk } from '@/graphql/queries/MatchQuery.sdk';
+import { MatchQueryQuery, getSdk } from '@/graphql/queries/MatchQuery/MatchQuery.sdk';
+import { ScheduleTimer } from '@/pages/screens/schedule/components/Timer';
+import { getQueryVariable } from '@/utils/getQueryVariable';
 
 import styles from './index.module.scss';
 
@@ -63,7 +65,8 @@ export const Schedule: React.FC = () => {
 				<span className={styles.card_lightName}>
 					{new Date(match.attributes?.date_start).toLocaleTimeString('ru-RU', {
 						hour: '2-digit',
-						minute: '2-digit'
+						minute: '2-digit',
+						timeZone: 'Europe/Moscow'
 					})}
 				</span>{' '}
 				MSK
@@ -71,9 +74,12 @@ export const Schedule: React.FC = () => {
 		</div>
 	));
 
+	const timerSeconds = Number(getQueryVariable('timer')) || 0;
+	const timer = <ScheduleTimer seconds={timerSeconds} endText="Starting soon" />;
+
 	return (
 		<Screen>
-			<Header customTextStart={anyMatchStage} />
+			<Header customTextStart={timer} />
 			<div className={styles.header}>
 				ROC22 - {anyMatchStage} - {todayIs}
 			</div>

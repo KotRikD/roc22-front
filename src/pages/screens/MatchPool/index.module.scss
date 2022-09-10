@@ -1,0 +1,175 @@
+.boxes {
+	position: relative;
+	display: flex;
+
+	flex-direction: row;
+}
+
+.players {
+	position: relative;
+	box-sizing: border-box;
+	width: 960px;
+	height: 1080px;
+	background-color: #191919;
+	padding: 30px;
+
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	gap: 30px;
+}
+
+.chat {
+	width: 900px;
+	word-wrap: break-word;
+	box-sizing: border-box;
+	height: 157px;
+	max-height: 157px;
+	background-color: #232323;
+	border-radius: 10px;
+	padding: 8px 10px;
+	color: #ffffff;
+	white-space: pre-wrap;
+	overflow-y: auto;
+
+	font-family: 'Poppins';
+	font-size: 16px;
+	line-height: 24px;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&_red {
+		color: #ed6f6f;
+	}
+
+	&_blue {
+		color: #4f9fd9;
+	}
+	&_bot {
+		color: #ed6f9a;
+	}
+
+	&_referee,
+	&_unknown {
+		color: yellow;
+	}
+
+	&_time {
+		color: #939393;
+	}
+}
+
+.xppenGirl {
+	height: 142px;
+	min-height: 142px;
+	background-image: url('./assets/xppen.png');
+	background-size: cover;
+}
+
+.playersContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	height: 580px;
+}
+
+.player {
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	height: 130px;
+	display: flex;
+	flex-direction: row;
+	gap: 18px;
+
+	&_avatar {
+		width: 130px;
+		max-width: 130px;
+		max-height: 130px;
+
+		background-size: cover;
+		border-radius: 10px;
+	}
+
+	&_bans {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		& > div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			width: 54px;
+			height: 55px;
+			border-radius: 10px;
+
+			font-family: 'Poppins';
+			font-style: normal;
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+		}
+	}
+
+	&_ban {
+		&_red {
+			background: #d94f4f;
+			color: #5f1212;
+		}
+
+		&_blue {
+			background: #4f9fd9;
+			color: #12315f;
+		}
+	}
+
+	&_matchProgression {
+		width: 531px;
+		overflow: hidden;
+		background: #232323;
+		border-radius: 10px;
+	}
+
+	&_counterFill {
+		width: 130px;
+		height: 130px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		background: white;
+		border-radius: 10px;
+		color: #191919;
+
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 64px;
+		line-height: 96px;
+	}
+
+	&_counterOutline {
+		box-sizing: border-box;
+		width: 130px;
+		height: 130px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		border: 5px solid #ffffff;
+		border-radius: 10px;
+		color: white;
+
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 64px;
+		line-height: 96px;
+	}
+}

@@ -1,30 +1,58 @@
-import React, { useEffect, useState } from 'react';
-
 import { Header } from '@/components/Header';
-import { Screen } from '@/components/Screen';
-import { formatNumber } from '@/utils/formatNumber';
+import React, { useEffect, useState } from 'react';
 
 import { getQueryVariable } from '../../../utils/getQueryVariable';
 import './index.css';
+
+import { Screen } from '@/components/Screen';
+import { formatNumber } from '@/utils/formatNumber';
 
 // interface AppState {
 //     scoreVisibleTemp?: boolean;
 // }
 export function getBPM(bpmStruct: any): string {
-	if (bpmStruct.min === bpmStruct.max) return bpmStruct.max;
+    if (bpmStruct.min === bpmStruct.max) return bpmStruct.max
 
-	return `${bpmStruct.min}~${bpmStruct.max}`;
+    return `${bpmStruct.min}~${bpmStruct.max}`
 }
+
+const renderedPlayers = (playerArray: any[], scoreGaps: any[]) => playerArray.map((player, index) => {
+	console.log("re-render players")
+	//
+	// const currentScore = (player as any).gameplay.score;
+	return (
+		<div id="SlotP1" className='setOrder1' style={{
+			transform: `translateY(${scoreGaps[(player as any).spectating.userID][1]}px)`
+		}} key={index}>
+			<div id='wrap' style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}/>
+			<div id='avatarOne' className='inline' style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}/>
+			<div id='Slot1Color' className='inline'/>
+			<div id="playerNameOne" className="inline">
+				{(player as any).spectating.name}
+			</div>
+			<div id="gapOne" className="inline">gap</div>
+			<div id="ScoreBetweenOne" className="inline ScoreBetween">
+				{scoreGaps[(player as any).spectating.userID][0]}
+				{/*{formatNumber(gap as number)}*/}
+			</div>
+			<div id="ScoreText" className="inline">score</div>
+			<div id="playScoreOne" className="inline">
+				{/*{currentScore}*/}
+				{/*{formatNumber(playerDataOne[2] as number)}*/}
+			</div>
+		</div>
+	)
+})
 
 export const CurrentPlay: React.FC = () => {
 	const [state, setState] = useState<any>(null);
 	// const [appState, setAppState] = useState<AppState>({});
 
-	/*  
+	/*
         Короче, давай попробую объяснить что такое useEffect и почему он здесь нужен
         В реакте useEffect, нужен для того, чтобы выполнять любой side effect,
         в обычном js очень сильно можно сравнить с setTimeout, но так как реакт реактивен,
-        а значит может обновлять своё состояние 500 миллионов раз в секунду, 
+        а значит может обновлять своё состояние 500 миллионов раз в секунду,
         setTimeout нам не подходит.
 
         Соответственно, useEffect здесь будет вызван один раз, при первом вызове компонента
@@ -121,6 +149,7 @@ export const CurrentPlay: React.FC = () => {
 	];
 
 	testScoreMassive.sort();
+	// console.log(testScoreMassive);
 
 	let Or1,
 		Or2,
@@ -130,150 +159,108 @@ export const CurrentPlay: React.FC = () => {
 		Sb2,
 		Sb3,
 		Sb4,
-		SG1,
-		SG2,
-		SG3,
-		SG4 = null;
+        SG1,
+        SG2,
+        SG3,
+        SG4 = null;
 
 	if (Number(testScoreMassive[0]) === playerDataOne[2]) {
 		Or1 = 'setOrder4';
 		Sb1 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG1 = 'gap';
+        SG1 = 'gap';
 	}
 	if (Number(testScoreMassive[0]) === playerDataTwo[2]) {
 		Or2 = 'setOrder4';
 		Sb2 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG2 = 'gap';
+        SG2 = 'gap';
 	}
 	if (Number(testScoreMassive[0]) === playerDataThree[2]) {
 		Or3 = 'setOrder4';
 		Sb3 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG3 = 'gap';
+        SG3 = 'gap';
 	}
 	if (Number(testScoreMassive[0]) === playerDataFour[2]) {
 		Or4 = 'setOrder4';
 		Sb4 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG4 = 'gap';
+        SG4 = 'gap';
 	}
 
 	if (Number(testScoreMassive[1]) === playerDataOne[2]) {
 		Or1 = 'setOrder3';
 		Sb1 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG1 = 'gap';
+        SG1 = 'gap';
 	}
 	if (Number(testScoreMassive[1]) === playerDataTwo[2]) {
 		Or2 = 'setOrder3';
 		Sb2 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG2 = 'gap';
+        SG2 = 'gap';
 	}
 	if (Number(testScoreMassive[1]) === playerDataThree[2]) {
 		Or3 = 'setOrder3';
 		Sb3 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG3 = 'gap';
+        SG3 = 'gap';
 	}
 	if (Number(testScoreMassive[1]) === playerDataFour[2]) {
 		Or4 = 'setOrder3';
 		Sb4 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG4 = 'gap';
+        SG4 = 'gap';
 	}
 
 	if (Number(testScoreMassive[2]) === playerDataOne[2]) {
 		Or1 = 'setOrder2';
 		Sb1 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG1 = 'gap';
+        SG1 = 'gap';
 	}
 	if (Number(testScoreMassive[2]) === playerDataTwo[2]) {
 		Or2 = 'setOrder2';
 		Sb2 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG2 = 'gap';
+        SG2 = 'gap';
 	}
 	if (Number(testScoreMassive[2]) === playerDataThree[2]) {
 		Or3 = 'setOrder2';
 		Sb3 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG3 = 'gap';
+        SG3 = 'gap';
 	}
 	if (Number(testScoreMassive[2]) === playerDataFour[2]) {
 		Or4 = 'setOrder2';
 		Sb4 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG4 = 'gap';
+        SG4 = 'gap';
 	}
 
 	if (Number(testScoreMassive[3]) === playerDataOne[2]) {
 		Or1 = 'setOrder1';
 		Sb1 = '';
-		SG1 = '';
+        SG1 = '';
 	}
 	if (Number(testScoreMassive[3]) === playerDataTwo[2]) {
 		Or2 = 'setOrder1';
 		Sb2 = '';
-		SG2 = '';
+        SG2 = '';
 	}
 	if (Number(testScoreMassive[3]) === playerDataThree[2]) {
 		Or3 = 'setOrder1';
 		Sb3 = '';
-		SG3 = '';
+        SG3 = '';
 	}
 	if (Number(testScoreMassive[3]) === playerDataFour[2]) {
 		Or4 = 'setOrder1';
 		Sb4 = '';
-		SG4 = '';
+        SG4 = '';
 	}
 
-	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
-	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
-		// @ts-ignore
-		.sort((playerA, playerB) => (playerA.gameplay.score > playerB.gameplay.score ? -1 : 1));
 
 	const scoreGaps = {} as any;
-	sortedPlayerArray.forEach((player, index) => {
-		const currentScore = (player as any).gameplay.score;
-		const gap = index === 0 ? 0 : currentScore - (sortedPlayerArray.at(0) as any).gameplay.score;
+	const playerArray = Object.values(state.tourney.ipcClients)
 
-		scoreGaps[(player as any).spectating.userID] = [gap, index];
-	});
+	Object.values(state.tourney.ipcClients)
+		// @ts-ignore
+		.sort((playerA, playerB) => playerA.gameplay.score > playerB.gameplay.score ? -1 : 1)
+		.forEach((player, index) => {
+			const currentScore = (player as any).gameplay.score;
+			const gap = index === 0? 0 : (playerArray.at(0) as any).gameplay.score - currentScore;
 
-	const renderedPlayers = playerArray.map((player, index) => {
-		const currentScore = (player as any).gameplay.score;
-		const gap = scoreGaps[(player as any).spectating.userID][0];
-		return (
-			<div
-				id="SlotP1"
-				className="setOrder1"
-				style={{
-					transform: `translateY(${scoreGaps[(player as any).spectating.userID][1] * 60}px)`
-				}}
-				key={index}
-			>
-				<div id="wrap" style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }} />
-				<div
-					id="avatarOne"
-					className="inline"
-					style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}
-				/>
-				<div id="Slot1Color" className="inline" />
-				<div id="playerNameOne" className="inline">
-					{(player as any).spectating.name}
-				</div>
-				{gap !== 0 ? (
-					<>
-						<div id="gapOne" className="inline">
-							gap
-						</div>
-						<div id="ScoreBetweenOne" className="inline ScoreBetween">
-							{gap}
-						</div>
-					</>
-				) : null}
-
-				<div id="ScoreText" className="inline">
-					score
-				</div>
-				<div id="playScoreOne" className="inline">
-					{currentScore}
-				</div>
-			</div>
-		);
-	});
+			scoreGaps[(player as any).spectating.userID] = [gap, index * 60];
+		})
 
 	/*
         Теперь всё состояние у нас доступно в переменной state, с которой мы вольны творить что угодно
@@ -281,93 +268,136 @@ export const CurrentPlay: React.FC = () => {
 	return (
 		<Screen>
 			{/* {JSON.stringify(state)} */}
-			<Header customTextStart={'Round of 16'} />
-			<div id="main">
+			<Header customTextStart={'Round of 16'}/>
+            <div id="main">
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
-						<div id="mapCurrent">
-							<div id="MapSection">NM</div>
-							<div id="mapPicked">1</div>
-						</div>
+					<div id="mapCurrent">
+						<div id="MapSection">NM</div>
+						<div id="mapPicked">1</div>
+					</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapArtist">{mapArtist}</div>
 						<div id="diffText">Difficulty</div>
 						<div id="mapDifficulty">{mapDifficulty}</div>
-						<div id="mapStats">
-							<div id="csText">CS</div>
-							<div id="mapCS">{mapCS}</div>
-							<div id="arText">AR</div>
-							<div id="mapAR">{mapAR}</div>
-							<div id="odText">OD</div>
-							<div id="mapOD">{mapOD}</div>
-							<div id="bpmText">BPM</div>
-							<div id="mapBPM">{mapBPM}</div>
-							<div id="srText">SR</div>
-							<div id="mapSR">{mapSR}</div>
-						</div>
-						<div id="mapperBlock">
-							<div id="mapperName">{mapMapper}</div>
-							<div id="mapperText">Mapper</div>
-						</div>
-						<div id="mapIDblock">
-							<div id="mapID">{mapID}</div>
-							<div id="mapIDtext">Beatmap ID</div>
-						</div>
+					<div id="mapStats">
+						<div id="csText">CS</div>
+						<div id="mapCS">{mapCS}</div>
+						<div id="arText">AR</div>
+						<div id="mapAR">{mapAR}</div>
+						<div id="odText">OD</div>
+						<div id="mapOD">{mapOD}</div>
+						<div id="bpmText">BPM</div>
+						<div id="mapBPM">{mapBPM}</div>
+						<div id="srText">SR</div>
+						<div id="mapSR">{mapSR}</div>
+					</div>
+					<div id="mapperBlock">
+						<div id="mapperName">{mapMapper}</div>
+						<div id="mapperText">Mapper</div>
+					</div>
+					<div id="mapIDblock">
+						<div id="mapID">{mapID}</div>
+						<div id="mapIDtext">Beatmap ID</div>
+					</div>
 					</div>
 				</div>
-				<div id="scoreWall" />
-				<div id="xp-logo" />
+                <div id="scoreWall"/>
+				<div id="xp-logo"/>
 				<div id="bottom">
 					{/* <chat><players> | <chat><--players--> | <---chat--->{не будет задержки}<players>    */}
 					{!scoreVisible ? <div id="chats"></div> : null}
 					{scoreVisible ? (
 						<>
-							{renderedPlayers}
+							<div id="SlotP1" className='setOrder1' style={{
+								transform: `translateY(${scoreGaps[(playerArray[0] as any).spectating.userID][1]}px)`
+							}}>
+								<div id='wrap' style={{ backgroundImage: `url('https://a.ppy.sh/${(playerArray[0] as any).spectating.userID}')` }}/>
+								<div id='avatarOne' className='inline' style={{ backgroundImage: `url('https://a.ppy.sh/${(playerArray[0] as any).spectating.userID}')` }}/>
+								<div id='Slot1Color' className='inline'/>
+								<div id="playerNameOne" className="inline">
+									{(playerArray[0] as any).spectating.name}
+								</div>
+								<div id="gapOne" className="inline">gap</div>
+								<div id="ScoreBetweenOne" className="inline ScoreBetween">
+									{scoreGaps[(playerArray[0] as any).spectating.userID][0]}
+									{/*{formatNumber(gap as number)}*/}
+								</div>
+								<div id="ScoreText" className="inline">score</div>
+								<div id="playScoreOne" className="inline">
+									{(playerArray[0] as any).gameplay.score}
+									{/*{formatNumber(playerDataOne[2] as number)}*/}
+								</div>
+							</div>
+
+							<div id="SlotP1" className='setOrder1' style={{
+								transform: `translateY(${scoreGaps[(playerArray[1] as any).spectating.userID][1]}px)`
+							}}>
+								<div id='wrap' style={{ backgroundImage: `url('https://a.ppy.sh/${(playerArray[1] as any).spectating.userID}')` }}/>
+								<div id='avatarOne' className='inline' style={{ backgroundImage: `url('https://a.ppy.sh/${(playerArray[1] as any).spectating.userID}')` }}/>
+								<div id='Slot1Color' className='inline'/>
+								<div id="playerNameOne" className="inline">
+									{(playerArray[1] as any).spectating.name}
+								</div>
+								<div id="gapOne" className="inline">gap</div>
+								<div id="ScoreBetweenOne" className="inline ScoreBetween">
+									{scoreGaps[(playerArray[1] as any).spectating.userID][0]}
+									{/*{formatNumber(gap as number)}*/}
+								</div>
+								<div id="ScoreText" className="inline">score</div>
+								<div id="playScoreOne" className="inline">
+									{(playerArray[1] as any).gameplay.score}
+									{/*{formatNumber(playerDataOne[2] as number)}*/}
+								</div>
+							</div>
+
+
+
 							{/*<div id="SlotP2" className={Or2}>*/}
-							{/*    <div id="wrap" style={{ backgroundImage: playerDataTwo[1] }}></div>*/}
+                            {/*    <div id="wrap" style={{ backgroundImage: playerDataTwo[1] }}></div>*/}
 							{/*	<div id="avatarTwo" className="inline" style={{ backgroundImage: playerDataTwo[1] }}></div>*/}
 							{/*	<div id="Slot2Color" className="inline"></div>*/}
-							{/*    <div id="playerNameTwo" className="inline">*/}
+                            {/*    <div id="playerNameTwo" className="inline">*/}
 							{/*		{playerDataTwo[0]}*/}
 							{/*	</div>*/}
-							{/*    <div id="gapTwo" className="inline">{SG2}</div>*/}
+                            {/*    <div id="gapTwo" className="inline">{SG2}</div>*/}
 							{/*	<div id="ScoreBetweenTwo" className="inline ScoreBetween">*/}
-							{/*       {formatNumber(Sb2 as number)}*/}
+                            {/*       {formatNumber(Sb2 as number)}*/}
 							{/*	</div>*/}
-							{/*    <div id="ScoreText" className="inline">score</div>*/}
-							{/*    <div id="playScoreTwo" className="inline">*/}
+                            {/*    <div id="ScoreText" className="inline">score</div>*/}
+                            {/*    <div id="playScoreTwo" className="inline">*/}
 							{/*		{formatNumber(playerDataTwo[2] as number)}*/}
 							{/*	</div>								*/}
 							{/*</div>*/}
 							{/*<div id="SlotP3" className={Or3}>*/}
-							{/*    <div id="wrap" style={{ backgroundImage: playerDataThree[1] }}></div>*/}
+                            {/*    <div id="wrap" style={{ backgroundImage: playerDataThree[1] }}></div>*/}
 							{/*	<div id="avatarThree" className="inline" style={{ backgroundImage: playerDataThree[1] }}></div>*/}
 							{/*	<div id="Slot3Color" className="inline"></div>*/}
-							{/*    <div id="playerNameThree" className="inline">*/}
+                            {/*    <div id="playerNameThree" className="inline">*/}
 							{/*		{playerDataThree[0]}*/}
 							{/*	</div>*/}
-							{/*    <div id="gapThree" className="inline">{SG3}</div>*/}
-							{/*    <div id="ScoreBetweenThree" className="inline ScoreBetween">*/}
-							{/*        {formatNumber(Sb3 as number)}*/}
+                            {/*    <div id="gapThree" className="inline">{SG3}</div>*/}
+                            {/*    <div id="ScoreBetweenThree" className="inline ScoreBetween">*/}
+                            {/*        {formatNumber(Sb3 as number)}*/}
 							{/*	</div>*/}
-							{/*    <div id="ScoreText" className="inline">score</div>*/}
+                            {/*    <div id="ScoreText" className="inline">score</div>*/}
 							{/*	<div id="playScoreThree" className="inline">*/}
 							{/*		{formatNumber(playerDataThree[2] as number)}*/}
 							{/*	</div>								*/}
 							{/*</div>*/}
 							{/*<div id="SlotP4" className={Or4}>*/}
-							{/*    <div id="wrap" style={{ backgroundImage: playerDataFour[1] }}></div>*/}
+                            {/*    <div id="wrap" style={{ backgroundImage: playerDataFour[1] }}></div>*/}
 							{/*	<div id="avatarFour" className="inline" style={{ backgroundImage: playerDataFour[1] }}></div>*/}
 							{/*	<div id="Slot4Color" className="inline"></div>*/}
-							{/*    <div id="playerNameFour" className="inline">*/}
+                            {/*    <div id="playerNameFour" className="inline">*/}
 							{/*		{playerDataFour[0]}*/}
 							{/*	</div>*/}
-							{/*    <div id="gapFour" className="inline">{SG4}</div>*/}
+                            {/*    <div id="gapFour" className="inline">{SG4}</div>*/}
 							{/*	<div id="ScoreBetweenFour" className="inline ScoreBetween">*/}
-							{/*        {formatNumber(Sb4 as number)}*/}
+                            {/*        {formatNumber(Sb4 as number)}*/}
 							{/*	</div>*/}
-							{/*    <div id="ScoreText" className="inline">score</div>*/}
-							{/*    <div id="playScoreFour" className="inline">*/}
+                            {/*    <div id="ScoreText" className="inline">score</div>*/}
+                            {/*    <div id="playScoreFour" className="inline">*/}
 							{/*		{formatNumber(playerDataFour[2] as number)}*/}
 							{/*	</div>								*/}
 							{/*</div>*/}

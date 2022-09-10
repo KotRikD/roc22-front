@@ -1,5 +1,5 @@
 import { graphqlClient } from '@graphql-int/client';
-import { getSdk } from '@graphql-int/queries/MatchQuery.sdk';
+import { getSdk } from '@graphql-int/queries/MatchQuery/MatchQuery.sdk';
 import { useQuery } from 'react-query';
 
 export const TestGQLMatches: React.FC = () => {

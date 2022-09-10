@@ -47,7 +47,7 @@ export type BooleanFilterInput = {
 export type ComponentNoizyStuffPicks = {
   __typename?: 'ComponentNoizyStuffPicks';
   id: Scalars['ID'];
-  map_id: Maybe<Scalars['Long']>;
+  map_id: Scalars['Long'];
 };
 
 export type ComponentNoizyStuffPicksFiltersInput = {
@@ -65,7 +65,7 @@ export type ComponentNoizyStuffPicksInput = {
 export type ComponentNoizyStuffPlaces = {
   __typename?: 'ComponentNoizyStuffPlaces';
   id: Scalars['ID'];
-  place: Maybe<Scalars['Int']>;
+  place: Scalars['Int'];
 };
 
 export type ComponentNoizyStuffPlacesFiltersInput = {
@@ -84,8 +84,8 @@ export type ComponentStructuresPlayerFields = {
   __typename?: 'ComponentStructuresPlayerFields';
   bans: Maybe<Array<Maybe<ComponentNoizyStuffPicks>>>;
   id: Scalars['ID'];
-  osu_id: Maybe<Scalars['Long']>;
-  osu_name: Maybe<Scalars['String']>;
+  osu_id: Scalars['Long'];
+  osu_name: Scalars['String'];
   places: Maybe<Array<Maybe<ComponentNoizyStuffPlaces>>>;
   protected_map: Maybe<Scalars['Long']>;
 };
@@ -127,8 +127,8 @@ export type ComponentStructuresPlayerFieldsInput = {
 export type ComponentTestPickedMap = {
   __typename?: 'ComponentTestPickedMap';
   id: Scalars['ID'];
-  map_id: Maybe<Scalars['Long']>;
-  mode_combination: Maybe<Scalars['String']>;
+  map_id: Scalars['Long'];
+  mode_combination: Scalars['String'];
 };
 
 export type ComponentTestPickedMapFiltersInput = {
@@ -346,14 +346,16 @@ export type LongFilterInput = {
 export type Match = {
   __typename?: 'Match';
   createdAt: Maybe<Scalars['DateTime']>;
-  date_start: Maybe<Scalars['DateTime']>;
-  lobby_id: Maybe<Scalars['String']>;
+  date_start: Scalars['DateTime'];
+  is_active_match: Scalars['Boolean'];
+  lobby_id: Scalars['String'];
   matchState: Maybe<Enum_Match_Matchstate>;
-  matchType: Maybe<Enum_Match_Matchtype>;
+  matchType: Enum_Match_Matchtype;
   match_pool: Maybe<MatchPoolEntityResponse>;
   picks: Maybe<Array<Maybe<ComponentNoizyStuffPicks>>>;
   players: Maybe<Array<Maybe<ComponentStructuresPlayerFields>>>;
-  stage: Maybe<Scalars['String']>;
+  proxy_pool_id: Scalars['String'];
+  stage: Scalars['String'];
   updatedAt: Maybe<Scalars['DateTime']>;
 };
 
@@ -393,6 +395,7 @@ export type MatchFiltersInput = {
   createdAt: InputMaybe<DateTimeFilterInput>;
   date_start: InputMaybe<DateTimeFilterInput>;
   id: InputMaybe<IdFilterInput>;
+  is_active_match: InputMaybe<BooleanFilterInput>;
   lobby_id: InputMaybe<StringFilterInput>;
   matchState: InputMaybe<StringFilterInput>;
   matchType: InputMaybe<StringFilterInput>;
@@ -401,18 +404,21 @@ export type MatchFiltersInput = {
   or: InputMaybe<Array<InputMaybe<MatchFiltersInput>>>;
   picks: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
   players: InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>;
+  proxy_pool_id: InputMaybe<StringFilterInput>;
   stage: InputMaybe<StringFilterInput>;
   updatedAt: InputMaybe<DateTimeFilterInput>;
 };
 
 export type MatchInput = {
   date_start: InputMaybe<Scalars['DateTime']>;
+  is_active_match: InputMaybe<Scalars['Boolean']>;
   lobby_id: InputMaybe<Scalars['String']>;
   matchState: InputMaybe<Enum_Match_Matchstate>;
   matchType: InputMaybe<Enum_Match_Matchtype>;
   match_pool: InputMaybe<Scalars['ID']>;
   picks: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksInput>>>;
   players: InputMaybe<Array<InputMaybe<ComponentStructuresPlayerFieldsInput>>>;
+  proxy_pool_id: InputMaybe<Scalars['String']>;
   stage: InputMaybe<Scalars['String']>;
 };
 
@@ -420,7 +426,7 @@ export type MatchPool = {
   __typename?: 'MatchPool';
   createdAt: Maybe<Scalars['DateTime']>;
   maps: Maybe<Array<Maybe<ComponentTestPickedMap>>>;
-  name: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   updatedAt: Maybe<Scalars['DateTime']>;
 };
 
