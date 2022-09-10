@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
-import { formatNumber } from '@/utils/formatNumber';
 
-import { getQueryVariable } from '../../../utils/getQueryVariable';
+import { getQueryVariable } from '@/utils/getQueryVariable';
 import './index.css';
+import { CountUp } from '@/pages/screens/currentPlay/components/CountUp';
+import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
+import { graphqlClient } from '@/graphql/client';
+import { useQuery } from 'react-query';
 
-// interface AppState {
-//     scoreVisibleTemp?: boolean;
-// }
 export function getBPM(bpmStruct: any): string {
 	if (bpmStruct.min === bpmStruct.max) return bpmStruct.max;
 
@@ -18,17 +18,48 @@ export function getBPM(bpmStruct: any): string {
 
 export const CurrentPlay: React.FC = () => {
 	const [state, setState] = useState<any>(null);
-	// const [appState, setAppState] = useState<AppState>({});
 
-	/*  
+	/*
         Короче, давай попробую объяснить что такое useEffect и почему он здесь нужен
         В реакте useEffect, нужен для того, чтобы выполнять любой side effect,
         в обычном js очень сильно можно сравнить с setTimeout, но так как реакт реактивен,
-        а значит может обновлять своё состояние 500 миллионов раз в секунду, 
+        а значит может обновлять своё состояние 500 миллионов раз в секунду,
         setTimeout нам не подходит.
 
         Соответственно, useEffect здесь будет вызван один раз, при первом вызове компонента
     */
+	const [currentMatch, setCurrentMatch] = useState<null | CurrentMatchQuery>(null);
+
+	const sdk = getSdk(graphqlClient);
+
+	useEffect(() => {
+		const pollTask = () =>
+			sdk
+				.CurrentMatch()
+				.then((data) => setCurrentMatch(data))
+				.catch(() => console.error("[GQL] can't ask for all matches"));
+		setInterval(pollTask, 1000);
+
+		// @ts-ignore
+		return () => clearInterval(pollTask);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const {
+		isLoading,
+		error,
+		data: poolData
+	} = useQuery(
+		[`currentPool`, currentMatch],
+		() =>
+			fetch(`https://roc22-admin.kotworks.cyou/bmproxy/pool/${currentMatch!.matches!.data[0].attributes!.proxy_pool_id}`).then(
+				(res) => res.json()
+			),
+		{
+			enabled: !!currentMatch
+		}
+	);
+
 	useEffect(() => {
 		// @ts-ignore
 		const callback = (data) => {
@@ -46,35 +77,18 @@ export const CurrentPlay: React.FC = () => {
 	// иначе мы бы на каждый перерендер страницы, добавляли бы callback :)
 	// более подробно можно почитать на доке реакта
 
-	if (state === null) return null;
+	if (state === null || isLoading || !currentMatch?.matches || currentMatch.matches.data.length < 1) return null;
+
+	if (error) return <>Не удалось загрузить пул!</>;
+
+	const match = currentMatch.matches.data.at(0)!;
+	const group = `GROUP ${match.attributes?.lobby_id}`;
+	const players = match.attributes?.players!;
 
 	const backendVariable = getQueryVariable('backend');
 	const hostBackend = new URL(backendVariable || '').host;
 
 	const { scoreVisible } = state.tourney.manager.bools;
-
-	// if(appState.scoreVisibleTemp !== state.tourney.manager.bools.scoreVisible) {
-	//     setAppState({
-	//         ...appState,
-	//         scoreVisibleTemp: state.tourney.manager.bools.scoreVisible
-	//     })
-	// }
-
-	// const chatStyle = {
-	//     opacity: appState.scoreVisibleTemp ? 0 : 1,
-	// }
-	// const playerScoreOneStyle = {
-	//     opacity: appState.scoreVisibleTemp ? 1 : 0
-	// }
-	// const playerScoreTwoStyle = {
-	//     opacity: appState.scoreVisibleTemp ? 1 : 0
-	// }
-	// const playerScoreThreeStyle = {
-	//     opacity: appState.scoreVisibleTemp ? 1 : 0
-	// }
-	// const playerScoreFourStyle = {
-	//     opacity: appState.scoreVisibleTemp ? 1 : 0
-	// }
 
 	const pathToImage = state.menu.bm.path.full.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
 	const backgroundStyle = {
@@ -91,6 +105,10 @@ export const CurrentPlay: React.FC = () => {
 	const mapBPM = getBPM(state.menu.bm.stats.BPM);
 	const mapSR = `${state.menu.bm.stats.SR}*`;
 	const mapID = `${state.menu.bm.id}`;
+
+	const map = poolData[state.menu.bm.id] || { id: 0 };
+	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id)
+	console.log(match.attributes?.match_pool?.data?.attributes?.maps)
 
 	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
 	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
@@ -147,15 +165,13 @@ export const CurrentPlay: React.FC = () => {
 				<div id="ScoreBetweenOne" className="inline ScoreBetween" style={{
 					visibility: gap === 0 ? "hidden" : "visible"
 				}}>
-					{formatNumber(gap as number)}
+					<CountUp duration={1} value={gap as number}/>
 				</div>
-			
-
 				<div id="ScoreText" className="inline">
 					score
 				</div>
 				<div id="playScoreOne" className="inline">
-					{formatNumber(currentScore as number)}
+					<CountUp duration={.5} value={currentScore as number}/>
 				</div>
 			</div>
 		);
@@ -166,14 +182,21 @@ export const CurrentPlay: React.FC = () => {
     */
 	return (
 		<Screen>
-			{/* {JSON.stringify(state)} */}
-			<Header customTextStart={'Round of 16'} />
+			<Header customTextStart={group} />
 			<div id="main">
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
 						<div id="mapCurrent">
-							<div id="MapSection"></div>
-							<div id="mapPicked"></div>
+							{
+								poolMap ? <>
+									<div id="MapSection">{poolMap?.mode_combination.slice(0, 2)}</div>
+									<div id="mapPicked">{poolMap?.mode_combination.slice(2, 3)}</div>
+								</> :
+								<>
+									<div id='MapSection'/>
+									<div id='mapPicked'/>
+								</>
+							}
 						</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapArtist">{mapArtist}</div>
@@ -207,57 +230,7 @@ export const CurrentPlay: React.FC = () => {
 					{/* <chat><players> | <chat><--players--> | <---chat--->{не будет задержки}<players>    */}
 					{!scoreVisible ? <div id="chats"></div> : null}
 					{scoreVisible ? (
-						<>
-							{renderedPlayers}
-							{/*<div id="SlotP2" className={Or2}>*/}
-							{/*    <div id="wrap" style={{ backgroundImage: playerDataTwo[1] }}></div>*/}
-							{/*	<div id="avatarTwo" className="inline" style={{ backgroundImage: playerDataTwo[1] }}></div>*/}
-							{/*	<div id="Slot2Color" className="inline"></div>*/}
-							{/*    <div id="playerNameTwo" className="inline">*/}
-							{/*		{playerDataTwo[0]}*/}
-							{/*	</div>*/}
-							{/*    <div id="gapTwo" className="inline">{SG2}</div>*/}
-							{/*	<div id="ScoreBetweenTwo" className="inline ScoreBetween">*/}
-							{/*       {formatNumber(Sb2 as number)}*/}
-							{/*	</div>*/}
-							{/*    <div id="ScoreText" className="inline">score</div>*/}
-							{/*    <div id="playScoreTwo" className="inline">*/}
-							{/*		{formatNumber(playerDataTwo[2] as number)}*/}
-							{/*	</div>								*/}
-							{/*</div>*/}
-							{/*<div id="SlotP3" className={Or3}>*/}
-							{/*    <div id="wrap" style={{ backgroundImage: playerDataThree[1] }}></div>*/}
-							{/*	<div id="avatarThree" className="inline" style={{ backgroundImage: playerDataThree[1] }}></div>*/}
-							{/*	<div id="Slot3Color" className="inline"></div>*/}
-							{/*    <div id="playerNameThree" className="inline">*/}
-							{/*		{playerDataThree[0]}*/}
-							{/*	</div>*/}
-							{/*    <div id="gapThree" className="inline">{SG3}</div>*/}
-							{/*    <div id="ScoreBetweenThree" className="inline ScoreBetween">*/}
-							{/*        {formatNumber(Sb3 as number)}*/}
-							{/*	</div>*/}
-							{/*    <div id="ScoreText" className="inline">score</div>*/}
-							{/*	<div id="playScoreThree" className="inline">*/}
-							{/*		{formatNumber(playerDataThree[2] as number)}*/}
-							{/*	</div>								*/}
-							{/*</div>*/}
-							{/*<div id="SlotP4" className={Or4}>*/}
-							{/*    <div id="wrap" style={{ backgroundImage: playerDataFour[1] }}></div>*/}
-							{/*	<div id="avatarFour" className="inline" style={{ backgroundImage: playerDataFour[1] }}></div>*/}
-							{/*	<div id="Slot4Color" className="inline"></div>*/}
-							{/*    <div id="playerNameFour" className="inline">*/}
-							{/*		{playerDataFour[0]}*/}
-							{/*	</div>*/}
-							{/*    <div id="gapFour" className="inline">{SG4}</div>*/}
-							{/*	<div id="ScoreBetweenFour" className="inline ScoreBetween">*/}
-							{/*        {formatNumber(Sb4 as number)}*/}
-							{/*	</div>*/}
-							{/*    <div id="ScoreText" className="inline">score</div>*/}
-							{/*    <div id="playScoreFour" className="inline">*/}
-							{/*		{formatNumber(playerDataFour[2] as number)}*/}
-							{/*	</div>								*/}
-							{/*</div>*/}
-						</>
+						renderedPlayers
 					) : null}
 				</div>
 			</div>

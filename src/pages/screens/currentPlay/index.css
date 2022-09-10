@@ -202,6 +202,9 @@
 
 	display: flex;
 	align-items: flex-end;
+	white-space: nowrap; /* Запрещаем перенос строк */
+	overflow: hidden; /* Обрезаем все, что не помещается в область */
+	text-overflow: ellipsis; /* Добавляем многоточие */
 
 	color: #ffffff;
 }
@@ -721,9 +724,9 @@
 
 #mapPicked {
 	position: absolute;
-	width: 24px;
 	height: 96px;
-	left: 15px;
+	left: 0;
+	right: 0;
 	top: 40px;
 
 	font-family: 'Poppins';
@@ -734,6 +737,8 @@
 	/* identical to box height */
 
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 
 	color: #191919;
 }
