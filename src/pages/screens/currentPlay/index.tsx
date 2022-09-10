@@ -227,11 +227,9 @@ export const CurrentPlay: React.FC = () => {
 				<div id="scoreWall" />
 				<div id="xp-logo" />
 				<div id="bottom">
-					{/* <chat><players> | <chat><--players--> | <---chat--->{не будет задержки}<players>    */}
-					{!scoreVisible ? <div id="chats"></div> : null}
-					{scoreVisible ? (
+					{
 						renderedPlayers
-					) : null}
+					}
 				</div>
 			</div>
 		</Screen>
