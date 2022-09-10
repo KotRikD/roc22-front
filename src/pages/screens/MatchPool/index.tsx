@@ -117,7 +117,7 @@ export const MatchPool: React.FC = () => {
 	const players = match.attributes?.players!;
 
 	// @ts-ignore
-	const playersSorted = players.sort((player1, player2) => calculatePlacesToPoints(player1.places) < calculatePlacesToPoints(player2.places))
+	const playersSorted = [...players].sort((player1, player2) => calculatePlacesToPoints(player1.places) < calculatePlacesToPoints(player2.places) ? 1 : -1)
 		// @ts-ignore
 		.map((player, index) => {
 			const protectedMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((map) => map!.map_id === player!.protected_map);
