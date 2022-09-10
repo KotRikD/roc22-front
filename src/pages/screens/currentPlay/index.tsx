@@ -92,133 +92,6 @@ export const CurrentPlay: React.FC = () => {
 	const mapSR = `${state.menu.bm.stats.SR}*`;
 	const mapID = `${state.menu.bm.id}`;
 
-	const playerDataOne = [
-		state.tourney.ipcClients['0'].spectating.name,
-		`url('https://a.ppy.sh/${state.tourney.ipcClients['0'].spectating.userID}')`,
-		state.tourney.ipcClients['0'].gameplay.score
-	];
-	const playerDataTwo = [
-		state.tourney.ipcClients['1'].spectating.name,
-		`url('https://a.ppy.sh/${state.tourney.ipcClients['1'].spectating.userID}')`,
-		state.tourney.ipcClients['1'].gameplay.score
-	];
-	const playerDataThree = [
-		state.tourney.ipcClients['2'].spectating.name,
-		`url('https://a.ppy.sh/${state.tourney.ipcClients['2'].spectating.userID}')`,
-		state.tourney.ipcClients['2'].gameplay.score
-	];
-	const playerDataFour = [
-		state.tourney.ipcClients['3'].spectating.name,
-		`url('https://a.ppy.sh/${state.tourney.ipcClients['3'].spectating.userID}')`,
-		state.tourney.ipcClients['3'].gameplay.score
-	];
-
-	let testScoreMassive = [
-		Number(state.tourney.ipcClients['0'].gameplay.score),
-		Number(state.tourney.ipcClients['1'].gameplay.score),
-		Number(state.tourney.ipcClients['2'].gameplay.score),
-		Number(state.tourney.ipcClients['3'].gameplay.score)
-	];
-
-	testScoreMassive.sort();
-
-	let Or1,
-		Or2,
-		Or3,
-		Or4,
-		Sb1,
-		Sb2,
-		Sb3,
-		Sb4,
-		SG1,
-		SG2,
-		SG3,
-		SG4 = null;
-
-	if (Number(testScoreMassive[0]) === playerDataOne[2]) {
-		Or1 = 'setOrder4';
-		Sb1 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG1 = 'gap';
-	}
-	if (Number(testScoreMassive[0]) === playerDataTwo[2]) {
-		Or2 = 'setOrder4';
-		Sb2 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG2 = 'gap';
-	}
-	if (Number(testScoreMassive[0]) === playerDataThree[2]) {
-		Or3 = 'setOrder4';
-		Sb3 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG3 = 'gap';
-	}
-	if (Number(testScoreMassive[0]) === playerDataFour[2]) {
-		Or4 = 'setOrder4';
-		Sb4 = Number(testScoreMassive[0]) - Number(testScoreMassive[3]);
-		SG4 = 'gap';
-	}
-
-	if (Number(testScoreMassive[1]) === playerDataOne[2]) {
-		Or1 = 'setOrder3';
-		Sb1 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG1 = 'gap';
-	}
-	if (Number(testScoreMassive[1]) === playerDataTwo[2]) {
-		Or2 = 'setOrder3';
-		Sb2 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG2 = 'gap';
-	}
-	if (Number(testScoreMassive[1]) === playerDataThree[2]) {
-		Or3 = 'setOrder3';
-		Sb3 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG3 = 'gap';
-	}
-	if (Number(testScoreMassive[1]) === playerDataFour[2]) {
-		Or4 = 'setOrder3';
-		Sb4 = Number(testScoreMassive[1]) - Number(testScoreMassive[3]);
-		SG4 = 'gap';
-	}
-
-	if (Number(testScoreMassive[2]) === playerDataOne[2]) {
-		Or1 = 'setOrder2';
-		Sb1 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG1 = 'gap';
-	}
-	if (Number(testScoreMassive[2]) === playerDataTwo[2]) {
-		Or2 = 'setOrder2';
-		Sb2 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG2 = 'gap';
-	}
-	if (Number(testScoreMassive[2]) === playerDataThree[2]) {
-		Or3 = 'setOrder2';
-		Sb3 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG3 = 'gap';
-	}
-	if (Number(testScoreMassive[2]) === playerDataFour[2]) {
-		Or4 = 'setOrder2';
-		Sb4 = Number(testScoreMassive[2]) - Number(testScoreMassive[3]);
-		SG4 = 'gap';
-	}
-
-	if (Number(testScoreMassive[3]) === playerDataOne[2]) {
-		Or1 = 'setOrder1';
-		Sb1 = '';
-		SG1 = '';
-	}
-	if (Number(testScoreMassive[3]) === playerDataTwo[2]) {
-		Or2 = 'setOrder1';
-		Sb2 = '';
-		SG2 = '';
-	}
-	if (Number(testScoreMassive[3]) === playerDataThree[2]) {
-		Or3 = 'setOrder1';
-		Sb3 = '';
-		SG3 = '';
-	}
-	if (Number(testScoreMassive[3]) === playerDataFour[2]) {
-		Or4 = 'setOrder1';
-		Sb4 = '';
-		SG4 = '';
-	}
-
 	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
 	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
 		// @ts-ignore
@@ -230,6 +103,18 @@ export const CurrentPlay: React.FC = () => {
 		const gap = index === 0 ? 0 : currentScore - (sortedPlayerArray.at(0) as any).gameplay.score;
 
 		scoreGaps[(player as any).spectating.userID] = [gap, index];
+	});
+
+	const colors = [
+		"#0066ff",
+		"#ff0000",
+		"#ffd600",
+		"#05ff00"
+	]
+
+	const ColorMassive = {} as any;
+	playerArray.forEach((player, index) => {
+		ColorMassive[(player as any).spectating.userID] = colors[index];
 	});
 
 	const renderedPlayers = playerArray.map((player, index) => {
@@ -250,26 +135,27 @@ export const CurrentPlay: React.FC = () => {
 					className="inline"
 					style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}
 				/>
-				<div id="Slot1Color" className="inline" />
+				<div id="SlotColor" className="inline" style={{background: ColorMassive[(player as any).spectating.userID]}} />
 				<div id="playerNameOne" className="inline">
 					{(player as any).spectating.name}
 				</div>
-				{gap !== 0 ? (
-					<>
-						<div id="gapOne" className="inline">
-							gap
-						</div>
-						<div id="ScoreBetweenOne" className="inline ScoreBetween">
-							{gap}
-						</div>
-					</>
-				) : null}
+				<div id="gapOne" className="inline" style={{
+					visibility: gap === 0 ? "hidden" : "visible"
+				}}>
+					gap
+				</div>
+				<div id="ScoreBetweenOne" className="inline ScoreBetween" style={{
+					visibility: gap === 0 ? "hidden" : "visible"
+				}}>
+					{formatNumber(gap as number)}
+				</div>
+			
 
 				<div id="ScoreText" className="inline">
 					score
 				</div>
 				<div id="playScoreOne" className="inline">
-					{currentScore}
+					{formatNumber(currentScore as number)}
 				</div>
 			</div>
 		);
@@ -286,8 +172,8 @@ export const CurrentPlay: React.FC = () => {
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
 						<div id="mapCurrent">
-							<div id="MapSection">NM</div>
-							<div id="mapPicked">1</div>
+							<div id="MapSection"></div>
+							<div id="mapPicked"></div>
 						</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapArtist">{mapArtist}</div>

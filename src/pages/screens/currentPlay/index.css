@@ -191,7 +191,7 @@
 	width: 426px;
 	height: 31px;
 	left: 133px;
-	top: 81px;
+	top: 83px;
 
 	font-family: 'Poppins';
 	font-style: normal;
@@ -576,10 +576,10 @@
 #playScoreThree,
 #playScoreFour {
 	height: 58px;
-	width: 160px;
+	width: 180px;
 	text-align: left;
-	font-size: 32px;
-	line-height: 200%;
+	font-size: 30px;
+	line-height: 68px;
 	margin-left: 1px;
 	border-radius: 0px 25px 25px 0px;
 }
@@ -595,7 +595,7 @@
 	font-style: normal;
 	font-weight: 400;
 	font-size: 16px;
-	line-height: 450%;
+	line-height: 70px;
 	color: #f55e8c;
 }
 
@@ -665,7 +665,7 @@
 	background-position: 50% 50%;
 }
 
-#Slot1Color,
+#SlotColor,
 #Slot2Color,
 #Slot3Color,
 #Slot4Color {
