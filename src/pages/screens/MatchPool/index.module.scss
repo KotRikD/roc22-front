@@ -32,7 +32,7 @@
 	white-space: pre-wrap;
 	overflow-y: auto;
 
-	font-family: 'Poppins';
+	font-family: 'Poppins', Arial, sans-serif;
 	font-size: 16px;
 	line-height: 24px;
 
@@ -117,13 +117,13 @@
 
 	&_ban {
 		&_red {
-			background: #d94f4f;
-			color: #5f1212;
+			border: 2px solid #d94f4f;
+			color: #d94f4f;
 		}
 
 		&_blue {
-			background: #4f9fd9;
-			color: #12315f;
+			border: 2px solid #4F9FD9;
+			color: #4f9fd9;
 		}
 	}
 
@@ -132,6 +132,40 @@
 		overflow: hidden;
 		background: #232323;
 		border-radius: 10px;
+
+		display: flex;
+
+		&_matchPick {
+			position: relative;
+			width: 100px;
+			height: 100%;
+			background-position: center;
+			background-size: cover;
+			background-image: url('https://assets.ppy.sh/beatmaps/1/covers/cover@2x.jpg');
+		}
+
+		&_matchPick:before {
+			width: 100%;
+			position: absolute;
+			content: '';
+			height: 100%;
+		}
+
+		&_green:before {
+			background: rgba(5, 255, 0, 0.4);
+		}
+
+		&_yellow:before {
+			background: rgba(255, 214, 0, 0.4);
+		}
+
+		&_red:before {
+			background: rgba(255, 0, 0, 0.4);
+		}
+
+		&_blue:before {
+			background: rgba(0, 102, 255, 0.4);
+		}
 	}
 
 	&_counterFill {

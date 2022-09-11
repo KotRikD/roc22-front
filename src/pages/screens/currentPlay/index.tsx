@@ -123,7 +123,7 @@ export const CurrentPlay: React.FC = () => {
 	const scoreGaps = {} as any;
 	sortedPlayerArray.forEach((player, index) => {
 		const currentScore = (player as any).gameplay.score;
-		const gap = index === 0 ? 0 : currentScore - (sortedPlayerArray.at(0) as any).gameplay.score;
+		const gap = index === 0 ? 0 : currentScore - (sortedPlayerArray.at(index - 1) as any).gameplay.score;
 
 		scoreGaps[(player as any).spectating.userID] = [gap, index];
 	});

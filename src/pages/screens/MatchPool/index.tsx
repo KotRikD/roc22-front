@@ -124,6 +124,28 @@ export const MatchPool: React.FC = () => {
 	const match = currentMatch.matches.data.at(0)!;
 	const group = `GROUP ${match.attributes?.lobby_id}`;
 	const players = match.attributes?.players!;
+	const picks = match.attributes?.picks!;
+
+	const placesMap = (place: number) => ({
+		1: [styles.player_matchProgression_green,  '59px'],
+		2: [styles.player_matchProgression_yellow, '41px'],
+		3: [styles.player_matchProgression_red,    '29px'],
+		4: [styles.player_matchProgression_blue,   '18px'],
+		5: ['', 								   '9px']
+	}[place])
+
+	const renderPlaces = (places: ComponentNoizyStuffPlaces[]) => places.map((place, index) => {
+		const picksMap = picks.at(index)!.map_id;
+		const beatmapset = poolData[picksMap].beatmapset;
+		const stylesForPlace = placesMap(place.place)!;
+
+		return (
+			<div className={`${styles.player_matchProgression_matchPick} ${stylesForPlace[0]}`} style={{
+				width: stylesForPlace[1],
+				backgroundImage: `url('https://assets.ppy.sh/beatmaps/${beatmapset.id}/covers/cover@2x.jpg')`
+			}}/>
+		)
+	})
 
 	// @ts-ignore
 	const playersSorted = [...players].sort((player1, player2) => calculatePlacesToPoints(player1.places) < calculatePlacesToPoints(player2.places) ? 1 : -1)
@@ -145,7 +167,9 @@ export const MatchPool: React.FC = () => {
 						<div className={styles.player_ban_blue}>{protectedMap ? protectedMap.mode_combination : '??'}</div>
 						<div className={styles.player_ban_red}>{bannedMap ? bannedMap.mode_combination : '??'}</div>
 					</div>
-					<div className={styles.player_matchProgression} />
+					<div className={styles.player_matchProgression}>
+						{renderPlaces(player!.places as never)}
+					</div>
 					<div className={index === 0 ? styles.player_counterFill : styles.player_counterOutline}>
 						{calculatePlacesToPoints(player!.places as never)}
 					</div>
