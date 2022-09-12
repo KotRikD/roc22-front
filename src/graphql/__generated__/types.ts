@@ -88,6 +88,7 @@ export type ComponentStructuresPlayerFields = {
   osu_name: Scalars['String'];
   places: Maybe<Array<Maybe<ComponentNoizyStuffPlaces>>>;
   protected_map: Maybe<Scalars['Long']>;
+  roll: Scalars['Int'];
 };
 
 
@@ -113,6 +114,7 @@ export type ComponentStructuresPlayerFieldsFiltersInput = {
   osu_name: InputMaybe<StringFilterInput>;
   places: InputMaybe<ComponentNoizyStuffPlacesFiltersInput>;
   protected_map: InputMaybe<LongFilterInput>;
+  roll: InputMaybe<IntFilterInput>;
 };
 
 export type ComponentStructuresPlayerFieldsInput = {
@@ -122,6 +124,7 @@ export type ComponentStructuresPlayerFieldsInput = {
   osu_name: InputMaybe<Scalars['String']>;
   places: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPlacesInput>>>;
   protected_map: InputMaybe<Scalars['Long']>;
+  roll: InputMaybe<Scalars['Int']>;
 };
 
 export type ComponentTestPickedMap = {
@@ -168,12 +171,6 @@ export type DateTimeFilterInput = {
   or: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith: InputMaybe<Scalars['DateTime']>;
 };
-
-export type Enum_Match_Matchstate =
-  | 'CANCELED'
-  | 'FINISHED'
-  | 'IN_PROGRESS'
-  | 'NOT_STARTED';
 
 export type Enum_Match_Matchtype =
   | 'ROC'
@@ -349,7 +346,6 @@ export type Match = {
   date_start: Scalars['DateTime'];
   is_active_match: Scalars['Boolean'];
   lobby_id: Scalars['String'];
-  matchState: Maybe<Enum_Match_Matchstate>;
   matchType: Enum_Match_Matchtype;
   match_pool: Maybe<MatchPoolEntityResponse>;
   picks: Maybe<Array<Maybe<ComponentNoizyStuffPicks>>>;
@@ -397,7 +393,6 @@ export type MatchFiltersInput = {
   id: InputMaybe<IdFilterInput>;
   is_active_match: InputMaybe<BooleanFilterInput>;
   lobby_id: InputMaybe<StringFilterInput>;
-  matchState: InputMaybe<StringFilterInput>;
   matchType: InputMaybe<StringFilterInput>;
   match_pool: InputMaybe<MatchPoolFiltersInput>;
   not: InputMaybe<MatchFiltersInput>;
@@ -413,7 +408,6 @@ export type MatchInput = {
   date_start: InputMaybe<Scalars['DateTime']>;
   is_active_match: InputMaybe<Scalars['Boolean']>;
   lobby_id: InputMaybe<Scalars['String']>;
-  matchState: InputMaybe<Enum_Match_Matchstate>;
   matchType: InputMaybe<Enum_Match_Matchtype>;
   match_pool: InputMaybe<Scalars['ID']>;
   picks: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksInput>>>;
