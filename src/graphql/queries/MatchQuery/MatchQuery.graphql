@@ -6,7 +6,6 @@ query MatchQuery($filter: MatchFiltersInput, $pagination: PaginationArg) {
         lobby_id
         stage
         matchType
-        matchState
         date_start
         proxy_pool_id
         match_pool {
@@ -24,6 +23,7 @@ query MatchQuery($filter: MatchFiltersInput, $pagination: PaginationArg) {
           osu_name
           osu_id
           protected_map
+          roll
           places {
             place
           }

@@ -10,7 +10,6 @@ query CurrentMatch {
                 lobby_id
                 stage
                 matchType
-                matchState
                 date_start
                 proxy_pool_id
                 match_pool {
@@ -28,6 +27,7 @@ query CurrentMatch {
                     osu_name
                     osu_id
                     protected_map
+                    roll
                     places {
                         place
                     }
