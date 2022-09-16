@@ -123,26 +123,23 @@ export const MatchPool: React.FC = () => {
 	const players = match.attributes?.players!;
 	const picks = match.attributes?.picks!;
 
-	const placesMap = (place: number) =>
-		({
-			1: [styles.player_matchProgression_green, '59px'],
-			2: [styles.player_matchProgression_yellow, '41px'],
-			3: [styles.player_matchProgression_red, '29px'],
-			4: [styles.player_matchProgression_blue, '18px'],
-			5: ['', '9px']
-		}[place]);
+	const placesMap = new Map()
+		.set(1, [styles.player_matchProgression_green, '59px'])
+		.set(2, [styles.player_matchProgression_yellow, '41px'])
+		.set(3, [styles.player_matchProgression_red, '29px'])
+		.set(4, [styles.player_matchProgression_blue, '18px']);
 
 	const renderPlaces = (places: ComponentNoizyStuffPlaces[]) =>
 		places.map((place, index) => {
 			const picksMap = picks.at(index)!.map_id;
 			const beatmapset = poolData[picksMap].beatmapset;
-			const stylesForPlace = placesMap(place.place)!;
+			const [placeStyle, placeWidth] = placesMap.get(place.place)!;
 
 			return (
 				<div
-					className={`${styles.player_matchProgression_matchPick} ${stylesForPlace[0]}`}
+					className={`${styles.player_matchProgression_matchPick} ${placeStyle}`}
 					style={{
-						width: stylesForPlace[1],
+						width: placeWidth,
 						backgroundImage: `url('https://assets.ppy.sh/beatmaps/${beatmapset.id}/covers/cover@2x.jpg')`
 					}}
 				/>
