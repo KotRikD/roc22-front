@@ -151,6 +151,7 @@ export const MatchPool: React.FC = () => {
 
 	// @ts-ignore
 	const playersSorted = [...players]
+		// @ts-ignore
 		.sort((player1, player2) => (calculatePlacesToPoints(player1.places) < calculatePlacesToPoints(player2.places) ? 1 : -1))
 		// @ts-ignore
 		.map((player, index) => {
