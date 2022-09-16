@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { Header } from '@/components/Header';
@@ -6,11 +6,11 @@ import { Screen } from '@/components/Screen';
 import { ComponentNoizyStuffPlaces, ComponentStructuresPlayerFields } from '@/graphql/__generated__/types';
 import { graphqlClient } from '@/graphql/client';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
+import { resolveSharkTeamChatCringe } from '@/pages/screens/MatchPool/mapping';
 import { getQueryVariable } from '@/utils/getQueryVariable';
+import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
 
 import styles from './index.module.scss';
-import { resolveSharkTeamChatCringe } from '@/pages/screens/MatchPool/mapping';
-import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
 
 function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null> | null): number {
 	if (!places || places.length < 1) return 0;
@@ -27,7 +27,7 @@ function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null>
 	return counter;
 }
 
-function getPickedMap(indexOfMap: number, players: ComponentStructuresPlayerFields[]): ComponentStructuresPlayerFields {
+export function getPickedMap(indexOfMap: number, players: ComponentStructuresPlayerFields[]): ComponentStructuresPlayerFields {
 	const ordering = [0, 1, 2, 3, 3, 2, 1, 0, 3];
 
 	return players.at(ordering.at(indexOfMap)!)!;
@@ -78,10 +78,7 @@ export const MatchPool: React.FC = () => {
 		};
 	}, []);
 
-	const {
-		error,
-		data: poolDataRaw
-	} = useQuery(
+	const { error, data: poolDataRaw } = useQuery(
 		[`currentPool`, currentMatch],
 		() =>
 			fetch(`https://roc22-admin.kotworks.cyou/bmproxy/pool/${currentMatch!.matches!.data[0].attributes!.proxy_pool_id}`).then(
@@ -99,7 +96,7 @@ export const MatchPool: React.FC = () => {
 		}
 
 		return poolDataRaw;
-	}, [poolDataRaw, previousPoolData])
+	}, [poolDataRaw, previousPoolData]);
 
 	if (currentMatch === null || !poolData) {
 		return <Screen />;
@@ -126,29 +123,35 @@ export const MatchPool: React.FC = () => {
 	const players = match.attributes?.players!;
 	const picks = match.attributes?.picks!;
 
-	const placesMap = (place: number) => ({
-		1: [styles.player_matchProgression_green,  '59px'],
-		2: [styles.player_matchProgression_yellow, '41px'],
-		3: [styles.player_matchProgression_red,    '29px'],
-		4: [styles.player_matchProgression_blue,   '18px'],
-		5: ['', 								   '9px']
-	}[place])
+	const placesMap = (place: number) =>
+		({
+			1: [styles.player_matchProgression_green, '59px'],
+			2: [styles.player_matchProgression_yellow, '41px'],
+			3: [styles.player_matchProgression_red, '29px'],
+			4: [styles.player_matchProgression_blue, '18px'],
+			5: ['', '9px']
+		}[place]);
 
-	const renderPlaces = (places: ComponentNoizyStuffPlaces[]) => places.map((place, index) => {
-		const picksMap = picks.at(index)!.map_id;
-		const beatmapset = poolData[picksMap].beatmapset;
-		const stylesForPlace = placesMap(place.place)!;
+	const renderPlaces = (places: ComponentNoizyStuffPlaces[]) =>
+		places.map((place, index) => {
+			const picksMap = picks.at(index)!.map_id;
+			const beatmapset = poolData[picksMap].beatmapset;
+			const stylesForPlace = placesMap(place.place)!;
 
-		return (
-			<div className={`${styles.player_matchProgression_matchPick} ${stylesForPlace[0]}`} style={{
-				width: stylesForPlace[1],
-				backgroundImage: `url('https://assets.ppy.sh/beatmaps/${beatmapset.id}/covers/cover@2x.jpg')`
-			}}/>
-		)
-	})
+			return (
+				<div
+					className={`${styles.player_matchProgression_matchPick} ${stylesForPlace[0]}`}
+					style={{
+						width: stylesForPlace[1],
+						backgroundImage: `url('https://assets.ppy.sh/beatmaps/${beatmapset.id}/covers/cover@2x.jpg')`
+					}}
+				/>
+			);
+		});
 
 	// @ts-ignore
-	const playersSorted = [...players].sort((player1, player2) => calculatePlacesToPoints(player1.places) < calculatePlacesToPoints(player2.places) ? 1 : -1)
+	const playersSorted = [...players]
+		.sort((player1, player2) => (calculatePlacesToPoints(player1.places) < calculatePlacesToPoints(player2.places) ? 1 : -1))
 		// @ts-ignore
 		.map((player, index) => {
 			const protectedMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((map) => map!.map_id === player!.protected_map);
@@ -157,6 +160,10 @@ export const MatchPool: React.FC = () => {
 			);
 			return (
 				<div className={styles.player} key={index}>
+					<div className={styles.player_roll}>
+						<span>!roll</span>
+						<span>{player!.roll ?? '???'}</span>
+					</div>
 					<div
 						className={styles.player_avatar}
 						style={{
@@ -167,12 +174,8 @@ export const MatchPool: React.FC = () => {
 						<div className={styles.player_ban_blue}>{protectedMap ? protectedMap.mode_combination : '??'}</div>
 						<div className={styles.player_ban_red}>{bannedMap ? bannedMap.mode_combination : '??'}</div>
 					</div>
-					<div className={styles.player_matchProgression}>
-						{renderPlaces(player!.places as never)}
-					</div>
-					<div className={index === 0 ? styles.player_counterFill : styles.player_counterOutline}>
-						{calculatePlacesToPoints(player!.places as never)}
-					</div>
+					<div className={styles.player_matchProgression}>{renderPlaces(player!.places as never)}</div>
+					<div className={styles.player_counterOutline}>{calculatePlacesToPoints(player!.places as never)}</div>
 				</div>
 			);
 		});
@@ -189,38 +192,55 @@ export const MatchPool: React.FC = () => {
 			  ))
 			: null;
 
-	const renderMapFeed = () => match.attributes?.picks?.map((pick, index) => {
-		const map = poolData[pick!.map_id];
-		const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id)
+	const renderMapFeed = () =>
+		match.attributes?.picks?.map((pick, index) => {
+			const map = poolData[pick!.map_id];
+			const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
+			const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
 
-		return (
-			<div className={styles.pick_filled} style={{
-				backgroundImage: `url('https://assets.ppy.sh/beatmaps/${map.beatmapset.id}/covers/cover@2x.jpg')`
-			}} key={index}>
-				<div className={styles.pick_filled_fade}>
-					<div className={styles.pick_filled_left}>
-						<div className={styles.pick_filled_card}>
-							<div className={styles.pick_filled_card_title}>{poolMap?.mode_combination.slice(0, 2)}</div>
-							<div className={styles.pick_filled_card_version}>{poolMap?.mode_combination.slice(2, 3)}</div>
+			return (
+				<div
+					className={styles.pick_filled}
+					style={{
+						backgroundImage: `url('https://assets.ppy.sh/beatmaps/${map.beatmapset.id}/covers/cover@2x.jpg')`
+					}}
+					key={index}
+				>
+					<div className={styles.pick_filled_fade}>
+						<div className={styles.pick_filled_left}>
+							<div className={`${styles.pick_filled_card} ${styles[modeCombination]}`}>
+								<div className={styles.pick_filled_card_title}>{modeCombination}</div>
+								<div className={styles.pick_filled_card_version}>{poolMap?.mode_combination.slice(2, 3)}</div>
+							</div>
+							<div className={styles.pick_filled_left_description}>
+								<span className={styles.pick_filled_left_description_title}>{map.beatmapset.title}</span>
+								<span className={styles.pick_filled_left_description_subtitle}>{map.beatmapset.artist}</span>
+							</div>
 						</div>
-						<div className={styles.pick_filled_left_description}>
-							<span className={styles.pick_filled_left_description_title}>{map.beatmapset.title}</span>
-							<span className={styles.pick_filled_left_description_subtitle}>{map.beatmapset.artist}</span>
+						<div className={styles.pick_filled_right}>
+							<span>
+								<span className={`${styles.pick_filled_right_littleSpan} ${styles[modeCombination]}`}>PICKED BY</span>{' '}
+								{getPickedMap(index, players as never).osu_name}
+							</span>
+							<span>
+								<span className={`${styles.pick_filled_right_littleSpan} ${styles[modeCombination]}`}>BEATMAP ID</span>{' '}
+								{map.id}
+							</span>
 						</div>
-					</div>
-					<div className={styles.pick_filled_right}>
-						<span><span className={styles.pick_filled_right_littleSpan}>Picked by</span> {getPickedMap(index, players as never).osu_name}</span>
-						<span><span className={styles.pick_filled_right_littleSpan}>Beatmap ID</span> {map.id}</span>
 					</div>
 				</div>
-			</div>
-		)
-	})
+			);
+		});
 
-	const renderEmpty = () => 9 - match.attributes?.picks?.length! > 0 ? Array.from(Array(9 - match.attributes?.picks?.length!).keys())
-		.map((_, index) => (
-			<div key={index} className={styles.pick_empty}/>
-		)) : null
+	const emptyCount = Array.from(Array(9 - match.attributes?.picks?.length!).keys());
+	const renderEmpty = () =>
+		9 - match.attributes?.picks?.length! > 0
+			? emptyCount.map((_, index) => (
+					<div key={index} className={styles.pick_empty}>
+						{emptyCount.length - 1 === index ? 'TB' : getPickedMap(8 - (index + 1), players as never).osu_name + '’s Pick'}
+					</div>
+			  ))
+			: null;
 
 	return (
 		<Screen>

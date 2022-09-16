@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
-
-import { getQueryVariable } from '@/utils/getQueryVariable';
-import './index.css';
-import { CountUp } from '@/pages/screens/currentPlay/components/CountUp';
-import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
 import { graphqlClient } from '@/graphql/client';
-import { useQuery } from 'react-query';
+import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
+import { CountUp } from '@/pages/screens/currentPlay/components/CountUp';
+import { getQueryVariable } from '@/utils/getQueryVariable';
 import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
+
+import './index.css';
 
 export function getBPM(bpmStruct: any): string {
 	if (bpmStruct.min === bpmStruct.max) return bpmStruct.max;
@@ -46,10 +46,7 @@ export const CurrentPlay: React.FC = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const {
-		error,
-		data: poolDataRaw
-	} = useQuery(
+	const { error, data: poolDataRaw } = useQuery(
 		[`currentPool`, currentMatch],
 		() =>
 			fetch(`https://roc22-admin.kotworks.cyou/bmproxy/pool/${currentMatch!.matches!.data[0].attributes!.proxy_pool_id}`).then(
@@ -67,7 +64,7 @@ export const CurrentPlay: React.FC = () => {
 		}
 
 		return poolDataRaw;
-	}, [poolDataRaw, previousPoolData])
+	}, [poolDataRaw, previousPoolData]);
 
 	useEffect(() => {
 		// @ts-ignore
@@ -113,7 +110,7 @@ export const CurrentPlay: React.FC = () => {
 	const mapID = `${state.menu.bm.id}`;
 
 	const map = poolData[state.menu.bm.id] || { id: 0 };
-	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id)
+	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
 
 	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
 	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
@@ -128,12 +125,7 @@ export const CurrentPlay: React.FC = () => {
 		scoreGaps[(player as any).spectating.userID] = [gap, index];
 	});
 
-	const colors = [
-		"#0066ff",
-		"#ff0000",
-		"#ffd600",
-		"#05ff00"
-	]
+	const colors = ['#0066ff', '#ff0000', '#ffd600', '#05ff00'];
 
 	const ColorMassive = {} as any;
 	playerArray.forEach((player, index) => {
@@ -158,25 +150,33 @@ export const CurrentPlay: React.FC = () => {
 					className="inline"
 					style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}
 				/>
-				<div id="SlotColor" className="inline" style={{background: ColorMassive[(player as any).spectating.userID]}} />
+				<div id="SlotColor" className="inline" style={{ background: ColorMassive[(player as any).spectating.userID] }} />
 				<div id="playerNameOne" className="inline">
 					{(player as any).spectating.name}
 				</div>
-				<div id="gapOne" className="inline" style={{
-					visibility: gap === 0 ? "hidden" : "visible"
-				}}>
+				<div
+					id="gapOne"
+					className="inline"
+					style={{
+						visibility: gap === 0 ? 'hidden' : 'visible'
+					}}
+				>
 					gap
 				</div>
-				<div id="ScoreBetweenOne" className="inline ScoreBetween" style={{
-					visibility: gap === 0 ? "hidden" : "visible"
-				}}>
-					<CountUp duration={1} value={gap as number}/>
+				<div
+					id="ScoreBetweenOne"
+					className="inline ScoreBetween"
+					style={{
+						visibility: gap === 0 ? 'hidden' : 'visible'
+					}}
+				>
+					<CountUp duration={1} value={gap as number} />
 				</div>
 				<div id="ScoreText" className="inline">
 					score
 				</div>
 				<div id="playScoreOne" className="inline">
-					<CountUp duration={.5} value={currentScore as number}/>
+					<CountUp duration={0.5} value={currentScore as number} />
 				</div>
 			</div>
 		);
@@ -192,16 +192,17 @@ export const CurrentPlay: React.FC = () => {
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
 						<div id="mapCurrent">
-							{
-								poolMap ? <>
+							{poolMap ? (
+								<>
 									<div id="MapSection">{poolMap?.mode_combination.slice(0, 2)}</div>
 									<div id="mapPicked">{poolMap?.mode_combination.slice(2, 3)}</div>
-								</> :
-								<>
-									<div id='MapSection'/>
-									<div id='mapPicked'/>
 								</>
-							}
+							) : (
+								<>
+									<div id="MapSection" />
+									<div id="mapPicked" />
+								</>
+							)}
 						</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapArtist">{mapArtist}</div>
@@ -231,9 +232,7 @@ export const CurrentPlay: React.FC = () => {
 				</div>
 				<div id="scoreWall" />
 				<div id="xp-logo" />
-				<div id="bottom">
-					{ renderedPlayers }
-				</div>
+				<div id="bottom">{renderedPlayers}</div>
 			</div>
 		</Screen>
 	);

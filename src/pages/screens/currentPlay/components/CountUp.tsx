@@ -14,15 +14,13 @@ export const CountUp: React.FC<CountUpProps> = (props) => {
 		end: 0,
 		delay: 0,
 		duration: props.duration,
-		separator: " ",
-		useEasing: true,
+		separator: ' ',
+		useEasing: true
 	});
 
 	useEffect(() => {
 		update(props.value);
-	}, [props.value, update])
+	}, [props.value, update]);
 
-	return (
-		<span ref={countUpRef}/>
-	);
-}
+	return <span ref={countUpRef} />;
+};
