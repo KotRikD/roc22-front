@@ -140,7 +140,7 @@ export const CurrentPlay: React.FC = () => {
 				id="SlotP1"
 				className="setOrder1"
 				style={{
-					transform: `translateY(${scoreGaps[(player as any).spectating.userID][1] * 60}px)`
+					transform: `translateY(${scoreGaps[(player as any).spectating.userID][1] * 63}px)`
 				}}
 				key={index}
 			>
@@ -150,7 +150,6 @@ export const CurrentPlay: React.FC = () => {
 					className="inline"
 					style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}
 				/>
-				<div id="SlotColor" className="inline" style={{ background: ColorMassive[(player as any).spectating.userID] }} />
 				<div id="playerNameOne" className="inline">
 					{(player as any).spectating.name}
 				</div>
@@ -206,7 +205,7 @@ export const CurrentPlay: React.FC = () => {
 						</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapArtist">{mapArtist}</div>
-						<div id="diffText">Difficulty</div>
+						<div id="diffText">DIFFICULTY</div>
 						<div id="mapDifficulty">{mapDifficulty}</div>
 						<div id="mapStats">
 							<div id="csText">CS</div>
@@ -222,16 +221,30 @@ export const CurrentPlay: React.FC = () => {
 						</div>
 						<div id="mapperBlock">
 							<div id="mapperName">{mapMapper}</div>
-							<div id="mapperText">Mapper</div>
+							<div id="mapperText">MAPPER</div>
 						</div>
 						<div id="mapIDblock">
 							<div id="mapID">{mapID}</div>
-							<div id="mapIDtext">Beatmap ID</div>
+							<div id="mapIDtext">BEATMAP ID</div>
 						</div>
 					</div>
 				</div>
 				<div id="scoreWall" />
 				<div id="xp-logo" />
+				<div id="pointsWall">
+					<div id="scoreMP1" className="setScoreMP1" style={{ visibility: playerArray.length < 1 ? 'hidden' : 'visible' }}>
+						10
+					</div>
+					<div id="scoreMP2" className="setScoreMP2" style={{ visibility: playerArray.length < 2 ? 'hidden' : 'visible' }}>
+						7
+					</div>
+					<div id="scoreMP3" className="setScoreMP3" style={{ visibility: playerArray.length < 3 ? 'hidden' : 'visible' }}>
+						5
+					</div>
+					<div id="scoreMP4" className="setScoreMP4" style={{ visibility: playerArray.length < 4 ? 'hidden' : 'visible' }}>
+						3
+					</div>
+				</div>
 				<div id="bottom">{renderedPlayers}</div>
 			</div>
 		</Screen>

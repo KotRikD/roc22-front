@@ -111,7 +111,7 @@
 	width: 900px;
 	height: 149px;
 	left: 990px;
-	bottom: 188px;
+	bottom: 197px;
 	background-color: black;
 	background-size: cover;
 	border-radius: 10px;
@@ -190,8 +190,8 @@
 	position: absolute;
 	width: 426px;
 	height: 31px;
-	left: 133px;
-	top: 83px;
+	left: 150px;
+	top: 81px;
 
 	font-family: 'Poppins';
 	font-style: normal;
@@ -224,7 +224,7 @@
 
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -259,7 +259,7 @@
 
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -294,7 +294,7 @@
 
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -319,7 +319,7 @@
 	margin-left: 10px;
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -344,7 +344,7 @@
 	margin-left: 10px;
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -369,7 +369,7 @@
 	margin-left: 10px;
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -394,7 +394,7 @@
 	margin-left: 10px;
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	margin-top: 3px;
 	/* or 22px */
@@ -505,14 +505,16 @@
 #SlotP2,
 #SlotP3,
 #SlotP4 {
-	width: 900px;
+	width: 850px;
 	height: 58px;
-	background-color: #2c2c2c;
+	background-color: #000000;
 	border-radius: 10px;
+	left: 60px;
 }
 
 #SlotP1 {
 	position: absolute;
+	top: -10px;
 }
 
 #SlotP2 {
@@ -628,17 +630,17 @@
 }
 
 .setOrder4 {
-	transform: translateY(180px);
+	transform: translateY(189px);
 	transition-duration: 1s;
 }
 
 .setOrder3 {
-	transform: translateY(120px);
+	transform: translateY(126px);
 	transition-duration: 1s;
 }
 
 .setOrder2 {
-	transform: translateY(60px);
+	transform: translateY(63px);
 	transition-duration: 1s;
 }
 
@@ -653,17 +655,16 @@
 	left: 0px;
 	bottom: 78px;
 
-	background: #191919;
+	background: #000000;
 }
 
 #wrap {
 	position: absolute;
-	width: 900px;
+	width: 850px;
 	height: 58px;
 	background-size: cover;
-	background-color: #191919;
-	z-index: -1;
-	opacity: 0.0727;
+	background-color: #000000;
+	opacity: 0.15;
 	border-radius: 10px;
 	background-position: 50% 50%;
 }
@@ -748,8 +749,62 @@
 	width: 900px;
 	height: 80px;
 	left: 990px;
-	bottom: 95px;
+	bottom: 97px;
 	background-image: url('./assets/xppen-pippy.png');
 	background-size: cover;
 	border-radius: 10px;
 }
+
+#pointsWall {
+	position: flex;
+	padding-top: 727px;
+	margin-left: 15px;
+	width: 70px;
+	height: 300px;
+	top: 500px;
+}
+
+#scoreMP1,
+#scoreMP2,
+#scoreMP3,
+#scoreMP4 {
+	position: relative;
+	margin-top: 6px;
+	height: 58px;
+	width: 58px;
+	font-family: 'Nexa';
+	font-style: normal;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 185%;
+	border-radius: 10px;
+	align-items: center;
+	text-align: center;
+}
+
+.setScoreMP1 {
+	color: #1f4217;
+	background-color: #6bd94f;
+}
+
+.setScoreMP2 {
+	color: #444518;
+	background-color: #d6d94f;
+}
+
+.setScoreMP3 {
+	color: #451818;
+	background-color: #d94f4f;
+}
+
+.setScoreMP4 {
+	color: #183545;
+	background-color: #4f9fd9;
+}
+
+/* 
+	1F4217
+	444518
+	451818
+	183545
+*/
