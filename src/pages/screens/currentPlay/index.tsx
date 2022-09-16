@@ -9,7 +9,8 @@ import { CountUp } from '@/pages/screens/currentPlay/components/CountUp';
 import { getQueryVariable } from '@/utils/getQueryVariable';
 import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
 
-import './index.css';
+import styles from './currentPlay.module.scss';
+import './odometer.scss';
 
 export function getBPM(bpmStruct: any): string {
 	if (bpmStruct.min === bpmStruct.max) return bpmStruct.max;
@@ -137,26 +138,21 @@ export const CurrentPlay: React.FC = () => {
 		const gap = scoreGaps[(player as any).spectating.userID][0];
 		return (
 			<div
-				id="SlotP1"
-				className="setOrder1"
+				key={index}
+				className={styles.playerSlot}
 				style={{
 					transform: `translateY(${scoreGaps[(player as any).spectating.userID][1] * 60}px)`
 				}}
-				key={index}
 			>
-				<div id="wrap" style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }} />
+				<div className={styles.wrap} style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }} />
 				<div
-					id="avatarOne"
-					className="inline"
+					className={styles.avatar}
 					style={{ backgroundImage: `url('https://a.ppy.sh/${(player as any).spectating.userID}')` }}
 				/>
-				<div id="SlotColor" className="inline" style={{ background: ColorMassive[(player as any).spectating.userID] }} />
-				<div id="playerNameOne" className="inline">
-					{(player as any).spectating.name}
-				</div>
+				<div className={styles.slotColor} style={{ background: ColorMassive[(player as any).spectating.userID] }} />
+				<div className={styles.playerName}>{(player as any).spectating.name}</div>
 				<div
-					id="gapOne"
-					className="inline"
+					className={styles.gap}
 					style={{
 						visibility: gap === 0 ? 'hidden' : 'visible'
 					}}
@@ -164,18 +160,15 @@ export const CurrentPlay: React.FC = () => {
 					gap
 				</div>
 				<div
-					id="ScoreBetweenOne"
-					className="inline ScoreBetween"
+					className={styles.scoreBetween}
 					style={{
 						visibility: gap === 0 ? 'hidden' : 'visible'
 					}}
 				>
 					<CountUp duration={1} value={gap as number} />
 				</div>
-				<div id="ScoreText" className="inline">
-					score
-				</div>
-				<div id="playScoreOne" className="inline">
+				<div className={styles.scoreText}>score</div>
+				<div className={styles.playerScore}>
 					<CountUp duration={0.5} value={currentScore as number} />
 				</div>
 			</div>
@@ -188,51 +181,74 @@ export const CurrentPlay: React.FC = () => {
 	return (
 		<Screen>
 			<Header customTextStart={group} />
-			<div id="main">
-				<div id="mapContainer" style={backgroundStyle}>
-					<div id="overlay">
-						<div id="mapCurrent">
+			<div className={styles.main}>
+				<div className={styles.mapContainer} style={backgroundStyle}>
+					<div className={styles.overlay}>
+						<div className={styles.mapCurrent}>
 							{poolMap ? (
 								<>
-									<div id="MapSection">{poolMap?.mode_combination.slice(0, 2)}</div>
-									<div id="mapPicked">{poolMap?.mode_combination.slice(2, 3)}</div>
+									<div className={styles.mapSection}>{poolMap?.mode_combination.slice(0, 2)}</div>
+									<div className={styles.mapSection}>{poolMap?.mode_combination.slice(2, 3)}</div>
 								</>
 							) : (
 								<>
-									<div id="MapSection" />
-									<div id="mapPicked" />
+									<div className={styles.mapSection} />
+									<div className={styles.mapSection} />
 								</>
 							)}
 						</div>
-						<div id="mapTitle">{mapTitle}</div>
-						<div id="mapArtist">{mapArtist}</div>
-						<div id="diffText">Difficulty</div>
-						<div id="mapDifficulty">{mapDifficulty}</div>
-						<div id="mapStats">
-							<div id="csText">CS</div>
-							<div id="mapCS">{mapCS}</div>
-							<div id="arText">AR</div>
-							<div id="mapAR">{mapAR}</div>
-							<div id="odText">OD</div>
-							<div id="mapOD">{mapOD}</div>
-							<div id="bpmText">BPM</div>
-							<div id="mapBPM">{mapBPM}</div>
-							<div id="srText">SR</div>
-							<div id="mapSR">{mapSR}</div>
-						</div>
-						<div id="mapperBlock">
-							<div id="mapperName">{mapMapper}</div>
-							<div id="mapperText">Mapper</div>
-						</div>
-						<div id="mapIDblock">
-							<div id="mapID">{mapID}</div>
-							<div id="mapIDtext">Beatmap ID</div>
+						<div className={styles.mapInfo}>
+							<div className={styles.mapInfoItem}>
+								<span className={styles.mapInfoTitle}>{mapTitle}</span>
+								<span className={styles.mapInfoArtist}>{mapArtist}</span>
+							</div>
+
+							<div className={styles.mapInfoFooter}>
+								<div className={styles.mapInfoItemRow}>
+									<div className={styles.stat}>
+										<span className={styles.statTitle}>Difficulty</span>
+										<span className={styles.statText}>{mapDifficulty}</span>
+									</div>
+									<div className={styles.stat}>
+										<span className={styles.statTitle}>Mapper</span>
+										<span className={styles.statText}>{mapMapper}</span>
+									</div>
+								</div>
+								<div className={styles.mapInfoItemRow}>
+									<div className={styles.mapStats}>
+										<div className={styles.stat}>
+											<span className={styles.statTitle}>CS</span>
+											<span className={styles.statText}>{mapCS}</span>
+										</div>
+										<div className={styles.stat}>
+											<span className={styles.statTitle}>AR</span>
+											<span className={styles.statText}>{mapAR}</span>
+										</div>
+										<div className={styles.stat}>
+											<span className={styles.statTitle}>OD</span>
+											<span className={styles.statText}>{mapOD}</span>
+										</div>
+										<div className={styles.stat}>
+											<span className={styles.statTitle}>BPM</span>
+											<span className={styles.statText}>{mapBPM}</span>
+										</div>
+										<div className={styles.stat}>
+											<span className={styles.statTitle}>SR</span>
+											<span className={styles.statText}>{mapSR}</span>
+										</div>
+									</div>
+									<div className={styles.stat}>
+										<span className={styles.statTitle}>Beatmap ID</span>
+										<span className={styles.statText}>{mapID}</span>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div id="scoreWall" />
-				<div id="xp-logo" />
-				<div id="bottom">{renderedPlayers}</div>
+				<div className={styles.scoreWall} />
+				<div className={styles.xpLogo} />
+				<div className={styles.bottom}>{renderedPlayers}</div>
 			</div>
 		</Screen>
 	);

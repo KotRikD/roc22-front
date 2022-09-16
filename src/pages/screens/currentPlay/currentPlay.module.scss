@@ -1,0 +1,318 @@
+.inline {
+	display: inline-block;
+	align-content: middle;
+	vertical-align: middle;
+	text-align: center;
+	margin: 0px;
+	padding-left: 15px;
+	justify-content: center;
+	line-height: 55px;
+}
+
+.playerSlot {
+	position: absolute;
+	width: 900px;
+	height: 58px;
+	background-color: #2c2c2c;
+	border-radius: 10px;
+	transition-duration: 1s;
+}
+
+.wrap {
+	position: absolute;
+	width: 900px;
+	height: 58px;
+	background-size: cover;
+	background-color: #191919;
+	z-index: -1;
+	opacity: 0.0727;
+	border-radius: 10px;
+	background-position: 50% 50%;
+}
+
+.avatar {
+	height: 58px;
+	width: 86px;
+	background-image: url('https://a.ppy.sh/4571241');
+	background-size: cover;
+	border-radius: 10px;
+
+	@extend .inline;
+}
+
+.slotColor {
+	margin: 15px;
+	padding: 2px;
+	width: 20px;
+	height: 20px;
+	border-radius: 8px;
+
+	@extend .inline;
+}
+
+.playerName {
+	height: 58px;
+	width: 270px;
+	font-weight: 650;
+	font-size: 32px;
+	line-height: 190%;
+	text-align: left;
+
+	@extend .inline;
+}
+
+.gap {
+	width: 20px;
+	height: 58px;
+	text-align: right;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 70px;
+	color: #f55e8c;
+
+	@extend .inline;
+}
+
+.scoreBetween {
+	height: 58px;
+	width: 140px;
+	color: white;
+	font-size: 24px;
+	text-align: left;
+	margin-left: 10px;
+	line-height: 280%;
+
+	@extend .inline;
+}
+
+.scoreText {
+	width: 40px;
+	height: 58px;
+	text-align: right;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 450%;
+	color: #f55e8c;
+
+	@extend .inline;
+}
+
+.playerScore {
+	height: 58px;
+	width: 180px;
+	text-align: left;
+	font-size: 30px;
+	line-height: 68px;
+	margin-left: 1px;
+	border-radius: 0px 25px 25px 0px;
+
+	@extend .inline;
+}
+
+.main {
+	font-size: 30px;
+	font-family: Nexa Bold, Helvetica, sans-serif;
+	font-weight: normal;
+	color: white;
+	width: 1920px;
+	height: 1080px;
+	position: relative;
+}
+
+.mapContainer {
+	position: absolute;
+	width: 900px;
+	height: 149px;
+	left: 990px;
+	bottom: 188px;
+	background-color: black;
+	background-size: cover;
+	border-radius: 10px;
+	z-index: 0;
+}
+
+.overlay {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 900px;
+	height: 149px;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+	display: flex;
+}
+
+.mapCurrent {
+	width: 51px;
+	height: 100%;
+	background: #ffffff;
+	border-radius: 10px 0px 0px 10px;
+}
+
+.mapSection {
+	position: absolute;
+	width: 40px;
+	height: 36px;
+	left: 6px;
+	top: 26px;
+
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 36px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #191919;
+}
+
+.mapPicked {
+	position: absolute;
+	height: 96px;
+	left: 0;
+	right: 0;
+	top: 40px;
+
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 64px;
+	line-height: 96px;
+	/* identical to box height */
+
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+
+	color: #191919;
+}
+
+.popins {
+	font-family: 'Poppins';
+	font-style: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mapInfo {
+	padding: 5px 17px;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.mapInfoItem {
+	display: flex;
+	flex-direction: column;
+}
+
+.mapInfoItemRow {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.mapInfoFooter {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.mapInfoTitle {
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 48px;
+	color: #ffffff;
+	@extend .popins;
+}
+
+.mapInfoDifficulty {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: #ffffff;
+	@extend .popins;
+}
+
+.mapInfoArtist {
+	margin-top: -10px;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	@extend .popins;
+}
+
+.stat {
+	display: inline-flex;
+}
+
+.statText {
+	font-weight: 600;
+	font-size: 18px;
+	color: #ffffff;
+	@extend .popins;
+}
+
+.statTitle {
+	margin-top: 5px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #f55e8c;
+	margin-right: 5px;
+	@extend .popins;
+}
+
+.mapStats {
+	display: flex;
+
+	.stat {
+		margin-right: 10px;
+
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}
+
+.scoreWall {
+	position: absolute;
+	width: 960px;
+	height: 284px;
+	left: 0px;
+	bottom: 78px;
+
+	background: #191919;
+}
+
+.xpLogo {
+	position: absolute;
+	width: 900px;
+	height: 80px;
+	left: 990px;
+	bottom: 95px;
+	background-image: url('./assets/xppen-pippy.png');
+	background-size: cover;
+	border-radius: 10px;
+}
+
+.bottom {
+	position: absolute;
+	bottom: 92px;
+	left: 30px;
+	width: 940px;
+	height: 244px;
+	background-image: none;
+	background-repeat: no-repeat;
+	transition: ease-in-out 200ms;
+	z-index: 0;
+	background-size: cover;
+}
