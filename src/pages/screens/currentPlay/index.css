@@ -764,10 +764,7 @@
 	top: 500px;
 }
 
-#scoreMP1,
-#scoreMP2,
-#scoreMP3,
-#scoreMP4 {
+.scoreMP {
 	position: relative;
 	margin-top: 6px;
 	height: 58px;
@@ -782,22 +779,22 @@
 	text-align: center;
 }
 
-.setScoreMP1 {
+.scoreMP.green {
 	color: #1f4217;
 	background-color: #6bd94f;
 }
 
-.setScoreMP2 {
+.scoreMP.yellow {
 	color: #444518;
 	background-color: #d6d94f;
 }
 
-.setScoreMP3 {
+.scoreMP.red {
 	color: #451818;
 	background-color: #d94f4f;
 }
 
-.setScoreMP4 {
+.scoreMP.blue {
 	color: #183545;
 	background-color: #4f9fd9;
 }

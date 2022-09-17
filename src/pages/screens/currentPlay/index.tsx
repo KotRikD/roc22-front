@@ -181,6 +181,14 @@ export const CurrentPlay: React.FC = () => {
 		);
 	});
 
+	const resolveColorBeforePlayerBadge = (index: number) =>
+		({
+			0: ['10', 'green'],
+			1: ['7', 'yellow'],
+			2: ['5', 'red'],
+			3: ['3', 'blue']
+		}[index]);
+
 	/*
         Теперь всё состояние у нас доступно в переменной state, с которой мы вольны творить что угодно
     */
@@ -232,18 +240,11 @@ export const CurrentPlay: React.FC = () => {
 				<div id="scoreWall" />
 				<div id="xp-logo" />
 				<div id="pointsWall">
-					<div id="scoreMP1" className="setScoreMP1" style={{ visibility: playerArray.length < 1 ? 'hidden' : 'visible' }}>
-						10
-					</div>
-					<div id="scoreMP2" className="setScoreMP2" style={{ visibility: playerArray.length < 2 ? 'hidden' : 'visible' }}>
-						7
-					</div>
-					<div id="scoreMP3" className="setScoreMP3" style={{ visibility: playerArray.length < 3 ? 'hidden' : 'visible' }}>
-						5
-					</div>
-					<div id="scoreMP4" className="setScoreMP4" style={{ visibility: playerArray.length < 4 ? 'hidden' : 'visible' }}>
-						3
-					</div>
+					{[...Array.from(Array(playerArray.length).keys())].map((_, index) => (
+						<div key={index} className={`scoreMP ${resolveColorBeforePlayerBadge(index)![1]}`}>
+							{resolveColorBeforePlayerBadge(index)![0]}
+						</div>
+					))}
 				</div>
 				<div id="bottom">{renderedPlayers}</div>
 			</div>
