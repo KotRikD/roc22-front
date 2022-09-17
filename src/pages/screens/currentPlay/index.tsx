@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
 import { graphqlClient } from '@/graphql/client';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
+import { getPickedMap } from '@/pages/screens/MatchPool';
 import { CountUp } from '@/pages/screens/currentPlay/components/CountUp';
 import { getQueryVariable } from '@/utils/getQueryVariable';
 import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
@@ -111,6 +112,7 @@ export const CurrentPlay: React.FC = () => {
 
 	const map = poolData[state.menu.bm.id] || { id: 0 };
 	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
+	const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
 
 	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
 	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
@@ -189,6 +191,11 @@ export const CurrentPlay: React.FC = () => {
 			3: ['3', 'blue']
 		}[index]);
 
+	const pickedBy =
+		match.attributes!.picks!.length > 0 && poolMap
+			? getPickedMap(match.attributes!.picks!.length - 1, match.attributes!.players as never).osu_name
+			: null;
+
 	/*
         Теперь всё состояние у нас доступно в переменной state, с которой мы вольны творить что угодно
     */
@@ -198,11 +205,19 @@ export const CurrentPlay: React.FC = () => {
 			<div id="main">
 				<div id="mapContainer" style={backgroundStyle}>
 					<div id="overlay">
+						<div className="pickedBy">
+							<span className={modeCombination}>PICKED BY</span>
+							<span>{pickedBy}</span>
+						</div>
 						<div id="mapCurrent">
 							{poolMap ? (
 								<>
-									<div id="MapSection">{poolMap?.mode_combination.slice(0, 2)}</div>
-									<div id="mapPicked">{poolMap?.mode_combination.slice(2, 3)}</div>
+									<div id="MapSection" className={modeCombination}>
+										{poolMap?.mode_combination.slice(0, 2)}
+									</div>
+									<div id="mapPicked" className={modeCombination}>
+										{poolMap?.mode_combination.slice(2, 3)}
+									</div>
 								</>
 							) : (
 								<>
@@ -213,27 +228,43 @@ export const CurrentPlay: React.FC = () => {
 						</div>
 						<div id="mapTitle">{mapTitle}</div>
 						<div id="mapArtist">{mapArtist}</div>
-						<div id="diffText">DIFFICULTY</div>
+						<div id="diffText" className={modeCombination}>
+							DIFFICULTY
+						</div>
 						<div id="mapDifficulty">{mapDifficulty}</div>
 						<div id="mapStats">
-							<div id="csText">CS</div>
+							<div id="csText" className={modeCombination}>
+								CS
+							</div>
 							<div id="mapCS">{mapCS}</div>
-							<div id="arText">AR</div>
+							<div id="arText" className={modeCombination}>
+								AR
+							</div>
 							<div id="mapAR">{mapAR}</div>
-							<div id="odText">OD</div>
+							<div id="odText" className={modeCombination}>
+								OD
+							</div>
 							<div id="mapOD">{mapOD}</div>
-							<div id="bpmText">BPM</div>
+							<div id="bpmText" className={modeCombination}>
+								BPM
+							</div>
 							<div id="mapBPM">{mapBPM}</div>
-							<div id="srText">SR</div>
+							<div id="srText" className={modeCombination}>
+								SR
+							</div>
 							<div id="mapSR">{mapSR}</div>
 						</div>
 						<div id="mapperBlock">
 							<div id="mapperName">{mapMapper}</div>
-							<div id="mapperText">MAPPER</div>
+							<div id="mapperText" className={modeCombination}>
+								MAPPER
+							</div>
 						</div>
 						<div id="mapIDblock">
 							<div id="mapID">{mapID}</div>
-							<div id="mapIDtext">BEATMAP ID</div>
+							<div id="mapIDtext" className={modeCombination}>
+								BEATMAP ID
+							</div>
 						</div>
 					</div>
 				</div>

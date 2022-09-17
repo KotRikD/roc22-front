@@ -7,18 +7,7 @@
 	height: 1080px;
 	position: relative;
 }
-.odometer.odometer-auto-theme {
-	font-size: 24px !important;
-	font-family: 'Nexa Bold', Helvetica, sans-serif !important;
-	font-weight: normal !important;
-}
-.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner,
-.odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
-	padding-left: 5px !important;
-	padding-right: 5px !important;
-	margin-left: -5px !important;
-	margin-right: -5px !important;
-}
+
 #top {
 	position: absolute;
 	width: 1920px;
@@ -139,6 +128,7 @@
 	font-weight: 600;
 	font-size: 32px;
 	line-height: 48px;
+	letter-spacing: 0.03em;
 
 	white-space: nowrap; /* Запрещаем перенос строк */
 	overflow: hidden; /* Обрезаем все, что не помещается в область */
@@ -158,6 +148,7 @@
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 30px;
+	letter-spacing: 0.03em;
 
 	white-space: nowrap; /* Запрещаем перенос строк */
 	overflow: hidden; /* Обрезаем все, что не помещается в область */
@@ -175,9 +166,10 @@
 
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	line-height: 156%;
+	letter-spacing: 0.03em;
 	/* or 22px */
 
 	display: flex;
@@ -198,6 +190,7 @@
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 156%;
+	letter-spacing: 0.03em;
 	/* or 31px */
 
 	display: flex;
@@ -217,6 +210,7 @@
 	margin-right: 20px;
 	align-items: center;
 	text-align: left;
+	letter-spacing: 0.03em;
 }
 
 #mapperText {
@@ -287,6 +281,7 @@
 	margin-left: 70px;
 	align-items: center;
 	vertical-align: 5px;
+	letter-spacing: 0.03em;
 }
 
 #csText {
@@ -799,9 +794,63 @@
 	background-color: #4f9fd9;
 }
 
+.pickedBy {
+	position: absolute;
+	top: 10px;
+	right: 14px;
+	display: flex;
+	gap: 5px;
+	align-items: flex-end;
+	justify-content: flex-end;
+	letter-spacing: 0.03em;
+}
+
+.pickedBy span:nth-child(1) {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 31px;
+}
+
+.pickedBy span:nth-child(2) {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 37px;
+}
+
 /* 
 	1F4217
 	444518
 	451818
 	183545
 */
+
+.NOT_DEFINED_MODS {
+}
+
+.NM {
+	color: #878787 !important;
+}
+
+.HD {
+	color: #d9bb4f !important;
+}
+
+.HR {
+	color: #d94f4f !important;
+}
+
+.FM {
+	color: hotpink !important;
+}
+
+.DT {
+	color: #9c4fd9 !important;
+}
+
+.TB {
+	color: #6bd94f !important;
+}
