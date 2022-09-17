@@ -234,6 +234,10 @@
 		&_blue:before {
 			background: rgba(0, 102, 255, 0.6);
 		}
+
+		&_hidden {
+			display: none;
+		}
 	}
 
 	&_counterFill {

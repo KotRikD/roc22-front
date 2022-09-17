@@ -127,7 +127,8 @@ export const MatchPool: React.FC = () => {
 		.set(1, [styles.player_matchProgression_green, '59px'])
 		.set(2, [styles.player_matchProgression_yellow, '41px'])
 		.set(3, [styles.player_matchProgression_red, '29px'])
-		.set(4, [styles.player_matchProgression_blue, '18px']);
+		.set(4, [styles.player_matchProgression_blue, '18px'])
+		.set(5, [styles.player_matchProgression_hidden, '0px']);
 
 	const renderPlaces = (places: ComponentNoizyStuffPlaces[]) =>
 		places.map((place, index) => {
