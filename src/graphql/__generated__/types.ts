@@ -351,6 +351,7 @@ export type Match = {
   picks: Maybe<Array<Maybe<ComponentNoizyStuffPicks>>>;
   players: Maybe<Array<Maybe<ComponentStructuresPlayerFields>>>;
   proxy_pool_id: Scalars['String'];
+  staff: Maybe<UsersPermissionsUserRelationResponseCollection>;
   stage: Scalars['String'];
   updatedAt: Maybe<Scalars['DateTime']>;
 };
@@ -365,6 +366,13 @@ export type MatchPicksArgs = {
 
 export type MatchPlayersArgs = {
   filters: InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type MatchStaffArgs = {
+  filters: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -400,6 +408,7 @@ export type MatchFiltersInput = {
   picks: InputMaybe<ComponentNoizyStuffPicksFiltersInput>;
   players: InputMaybe<ComponentStructuresPlayerFieldsFiltersInput>;
   proxy_pool_id: InputMaybe<StringFilterInput>;
+  staff: InputMaybe<UsersPermissionsUserFiltersInput>;
   stage: InputMaybe<StringFilterInput>;
   updatedAt: InputMaybe<DateTimeFilterInput>;
 };
@@ -413,6 +422,7 @@ export type MatchInput = {
   picks: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPicksInput>>>;
   players: InputMaybe<Array<InputMaybe<ComponentStructuresPlayerFieldsInput>>>;
   proxy_pool_id: InputMaybe<Scalars['String']>;
+  staff: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   stage: InputMaybe<Scalars['String']>;
 };
 
@@ -1207,6 +1217,7 @@ export type UsersPermissionsUser = {
   confirmed: Maybe<Scalars['Boolean']>;
   createdAt: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  osu_id: Maybe<Scalars['Long']>;
   provider: Maybe<Scalars['String']>;
   role: Maybe<UsersPermissionsRoleEntityResponse>;
   updatedAt: Maybe<Scalars['DateTime']>;
@@ -1240,6 +1251,7 @@ export type UsersPermissionsUserFiltersInput = {
   id: InputMaybe<IdFilterInput>;
   not: InputMaybe<UsersPermissionsUserFiltersInput>;
   or: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  osu_id: InputMaybe<LongFilterInput>;
   password: InputMaybe<StringFilterInput>;
   provider: InputMaybe<StringFilterInput>;
   resetPasswordToken: InputMaybe<StringFilterInput>;
@@ -1253,6 +1265,7 @@ export type UsersPermissionsUserInput = {
   confirmationToken: InputMaybe<Scalars['String']>;
   confirmed: InputMaybe<Scalars['Boolean']>;
   email: InputMaybe<Scalars['String']>;
+  osu_id: InputMaybe<Scalars['Long']>;
   password: InputMaybe<Scalars['String']>;
   provider: InputMaybe<Scalars['String']>;
   resetPasswordToken: InputMaybe<Scalars['String']>;

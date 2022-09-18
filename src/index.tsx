@@ -6,6 +6,8 @@ import { MatchPool } from '@/pages/screens/MatchPool';
 
 import { prepareGOSU } from './gosu';
 import './index.css';
+import { Casters } from './pages/casters/index';
+import { CastersLoginRedirect } from './pages/casters/index/redirect';
 import { Screens } from './pages/screens';
 import { CurrentPlay } from './pages/screens/currentPlay';
 import { Schedule } from './pages/screens/schedule';
@@ -33,6 +35,10 @@ root.render(
 				</Route>
 				<Route path="testGQL" element={<TestGQLMatches />} />
 				<Route path="testGQLPoller" element={<TestGQLMatchesPoller />} />
+				<Route path="casters">
+					<Route path="getToken" element={<CastersLoginRedirect />} />
+					<Route index element={<Casters />} />
+				</Route>
 			</Routes>
 		</HashRouter>
 	</QueryClientProvider>

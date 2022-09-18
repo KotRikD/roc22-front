@@ -4,7 +4,10 @@
   "private": true,
   "homepage": "https://roc22-app.kotworks.cyou",
   "dependencies": {
+    "@chakra-ui/react": "^2.3.2",
     "@craco/craco": "^7.0.0-alpha.3",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -14,6 +17,7 @@
     "@types/react-dom": "^18.0.0",
     "date-fns": "^2.29.2",
     "date-fns-tz": "^1.3.7",
+    "framer-motion": "^7.3.5",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
     "react": "^18.2.0",

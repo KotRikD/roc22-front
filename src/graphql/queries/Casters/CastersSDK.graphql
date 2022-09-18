@@ -1,0 +1,18 @@
+mutation GoToCaster($matchID: ID!, $newStaff: [ID]) {
+  updateMatch(id: $matchID, data: {
+    staff: $newStaff
+  }) {
+  	data {
+      attributes {
+        staff {
+          data {
+            attributes {
+              osu_id
+              username
+            }
+          }
+        }
+      }
+    }  
+  }
+}

@@ -19,6 +19,14 @@ query MatchQuery($filter: MatchFiltersInput, $pagination: PaginationArg) {
             }
           }
         }
+        staff {
+          data {
+            attributes {
+              osu_id
+              username
+            }
+          }
+        }
         players {
           osu_name
           osu_id
