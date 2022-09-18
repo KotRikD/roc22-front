@@ -3,6 +3,7 @@ import { GraphQLClient } from 'graphql-request';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 
+import Devushka from '@/assets/images/devushki_molyatsya.png';
 import { MatchEntity } from '@/graphql/__generated__/types';
 import { getSdk as getCastersSdk } from '@/graphql/queries/Casters/CastersSDK.sdk';
 import { getSdk } from '@/graphql/queries/MatchQuery/MatchQuery.sdk';
@@ -39,7 +40,11 @@ export const LoggedScreen: React.FC = () => {
 	);
 
 	if (isLoading) {
-		return <>Матчи грузятся, им по кайфу!</>;
+		return (
+			<Flex w="100%" h="100vh" justifyContent="center" alignItems="center">
+				<img src={Devushka} alt="Молимся" />
+			</Flex>
+		);
 	}
 	if (error) {
 		return <>Админка лежит, пните котрика</>;
