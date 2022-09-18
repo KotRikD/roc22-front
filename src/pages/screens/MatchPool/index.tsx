@@ -236,7 +236,9 @@ export const MatchPool: React.FC = () => {
 		9 - match.attributes?.picks?.length! > 0
 			? emptyCount.map((_, index) => (
 					<div key={index} className={styles.pick_empty}>
-						{emptyCount.length - 1 === index ? 'TB' : getPickedMap(8 - (index + 1), players as never).osu_name + '’s Pick'}
+						{emptyCount.length - 1 === index
+							? 'TB'
+							: getPickedMap(index + match.attributes!.picks!.length, players as never).osu_name + '’s Pick'}
 					</div>
 			  ))
 			: null;
