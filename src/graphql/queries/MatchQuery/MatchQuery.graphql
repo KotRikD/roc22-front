@@ -21,6 +21,7 @@ query MatchQuery($filter: MatchFiltersInput, $pagination: PaginationArg) {
         }
         staff {
           data {
+            id
             attributes {
               osu_id
               username
