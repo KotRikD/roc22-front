@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.d1732d8c.css",
-    "main.js": "/static/js/main.ba311315.js",
+    "main.js": "/static/js/main.ce366a0e.js",
     "static/media/rocbackground.webm": "/static/media/rocbackground.b048b331cc6f9e2a6663.webm",
     "static/media/xppen.png": "/static/media/xppen.192a5f62cb921d6d785d.png",
     "static/media/schedule_xp_pen.png": "/static/media/schedule_xp_pen.1f03743c7a828fdc3a6c.png",
@@ -13,6 +13,6 @@
   },
   "entrypoints": [
     "static/css/main.d1732d8c.css",
-    "static/js/main.ba311315.js"
+    "static/js/main.ce366a0e.js"
   ]
 }
