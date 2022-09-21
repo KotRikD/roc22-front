@@ -110,8 +110,8 @@ export const LoggedScreen: React.FC = () => {
 			</Container>
 			<Container maxWidth="1000px">
 				{allMatches?.matches?.data.map((match, index) => (
-					<div key={index}>
-						<Flex direction="column" h="150px" background="gray" borderRadius="10px" justifyContent="flex-end" padding="10px">
+					<div key={index} style={{ marginBottom: '20px', border: '1px ' }}>
+						<Flex direction="column" background="gray" borderRadius="10px" justifyContent="flex-end" padding="10px">
 							<Text fontSize="2xl" fontWeight="600">
 								GROUP {match.attributes?.lobby_id}
 							</Text>
@@ -120,6 +120,18 @@ export const LoggedScreen: React.FC = () => {
 									timeZone: 'Europe/Moscow'
 								})}
 							</Text>
+							<Flex flexDirection="row" flexWrap="wrap" w="100%" gap="10px">
+								{match.attributes?.players?.map((player, index) => (
+									<Flex justifyContent="space-between" key={index}>
+										<Flex gap="10px" alignItems="center">
+											<Avatar name={player!.osu_name} src={`https://a.ppy.sh/${player!.osu_id}`} />{' '}
+											<Text fontSize="xl" fontWeight="500">
+												{player!.osu_name}
+											</Text>
+										</Flex>
+									</Flex>
+								))}
+							</Flex>
 						</Flex>
 						<div style={{ padding: '10px' }}>
 							<Text fontSize="md" fontWeight="500" marginBottom="10px">
