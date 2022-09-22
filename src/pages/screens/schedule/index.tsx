@@ -74,8 +74,17 @@ export const Schedule: React.FC = () => {
 		</div>
 	));
 
-	const timerSeconds = Number(getQueryVariable('timer')) || 0;
-	const timer = <ScheduleTimer seconds={timerSeconds} endText="Starting soon" />;
+	let timerSeconds = 0;
+	const someLiveMatch = allMatches.matches.data.find((match) => match!.attributes!.is_active_match);
+	const queryTimerValue = getQueryVariable('timer');
+	if (queryTimerValue) {
+		timerSeconds = Number(queryTimerValue);
+	} else if (someLiveMatch) {
+		const startDate = new Date(someLiveMatch.attributes?.date_start).valueOf();
+		const liveTime = Date.now();
+		timerSeconds = startDate > liveTime ? startDate - liveTime : 0;
+	}
+	const timer = <ScheduleTimer seconds={timerSeconds} endText="LIVE!" />;
 
 	return (
 		<Screen>

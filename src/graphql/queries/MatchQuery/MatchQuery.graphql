@@ -8,6 +8,7 @@ query MatchQuery($filter: MatchFiltersInput, $pagination: PaginationArg) {
         matchType
         date_start
         proxy_pool_id
+        is_active_match
         match_pool {
           data {
             attributes {
