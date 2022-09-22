@@ -26,7 +26,7 @@ export const Schedule: React.FC = () => {
 			},
 			// @ts-ignore
 			pagination: {
-				limit: 3
+				limit: 8
 			}
 		})
 			.then((data) => setAllMatches(data))
@@ -40,36 +40,38 @@ export const Schedule: React.FC = () => {
 
 	const renderPlayers = (player: ComponentStructuresPlayerFields) => (
 		<div className={styles.avatar} key={player.osu_id}>
+			<div className={styles.avatar_name}>{player.osu_name}</div>
 			<div
 				className={styles.avatar_img}
 				style={{
 					backgroundImage: `url("https://a.ppy.sh/${player.osu_id}")`
 				}}
 			/>
-			<div className={styles.avatar_name}>{player.osu_name}</div>
 		</div>
 	);
 
 	const renderGroups = allMatches.matches.data.map((match) => (
 		<div className={styles.card} key={match.attributes?.lobby_id}>
-			<div className={styles.card_name}>
-				Group <span className={styles.card_lightName}>{match.attributes?.lobby_id}</span>
+			<div className={styles.card_info}>
+				<div className={styles.card_name}>
+					Group <span className={styles.card_lightName}>{match.attributes?.lobby_id}</span>
+				</div>
+				<div className={styles.card_time}>
+					<span className={styles.card_lightName}>
+						{new Date(match.attributes?.date_start).toLocaleTimeString('ru-RU', {
+							hour: '2-digit',
+							minute: '2-digit',
+							timeZone: 'Europe/Moscow'
+						})}
+					</span>{' '}
+					MSK
+				</div>
 			</div>
 			<div className={styles.avatars}>
 				{
 					// @ts-ignore
 					match.attributes!.players!.map((player) => renderPlayers(player))
 				}
-			</div>
-			<div className={styles.card_name}>
-				<span className={styles.card_lightName}>
-					{new Date(match.attributes?.date_start).toLocaleTimeString('ru-RU', {
-						hour: '2-digit',
-						minute: '2-digit',
-						timeZone: 'Europe/Moscow'
-					})}
-				</span>{' '}
-				MSK
 			</div>
 		</div>
 	));

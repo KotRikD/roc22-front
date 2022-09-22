@@ -27,17 +27,24 @@
 }
 
 .cards {
+	width: 98.7%;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	margin: 26px;
-	gap: 20px;
+	flex-wrap: wrap;
+	margin-left: 31px;
+	margin-right: 31px;
+	gap: 25px;
+	max-height: 750px;
 }
 
 .card {
 	display: flex;
-	height: 154px;
+	width: 900px;
+	box-sizing: border-box;
+	height: 160px;
 
-	padding: 26px;
+	padding: 16px;
 	border-radius: 10px;
 
 	background-color: var(--card-bg-color);
@@ -50,9 +57,20 @@
 		font-family: 'Poppins';
 		font-style: normal;
 		font-weight: 700;
-		font-size: 48px;
+		font-size: 32px;
 
-		line-height: 50px;
+		line-height: 48px;
+		color: var(--card-font-color);
+		text-transform: uppercase;
+	}
+
+	&_time {
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 700;
+
+		font-size: 48px;
+		line-height: 52px;
 		color: var(--card-font-color);
 		text-transform: uppercase;
 	}
@@ -60,15 +78,21 @@
 	&_lightName {
 		color: white;
 	}
+
+	&_info {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+	}
 }
 
 .avatars {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
-	margin-top: 7px;
-	gap: 50px;
+	gap: 30px;
 }
 
 .avatar {
@@ -76,7 +100,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 12px;
 
 	&_img {
 		width: 100px;
@@ -85,14 +108,21 @@
 		min-height: 100px;
 		max-width: 100px;
 		max-height: 100px;
+		border-radius: 15px;
 	}
 
 	&_name {
+		max-width: 100px;
 		color: white;
 		font-family: 'Nexa Bold', sans-serif;
 		font-style: normal;
 		font-weight: 650;
-		font-size: 24px;
+		font-size: 20px;
+		line-height: 30px;
+
+		white-space: nowrap; /* Запрещаем перенос строк */
+		overflow: hidden; /* Обрезаем все, что не помещается в область */
+		text-overflow: ellipsis; /* Добавляем многоточие */
 	}
 }
 

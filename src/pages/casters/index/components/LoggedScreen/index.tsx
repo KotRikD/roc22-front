@@ -1,6 +1,6 @@
 import { Avatar, Button, Container, Flex, Text, useColorMode } from '@chakra-ui/react';
 import { GraphQLClient } from 'graphql-request';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Devushka from '@/assets/images/devushki_molyatsya.png';
