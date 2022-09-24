@@ -84,7 +84,7 @@ export const Schedule: React.FC = () => {
 	} else if (someLiveMatch) {
 		const startDate = new Date(someLiveMatch.attributes?.date_start).valueOf();
 		const liveTime = Date.now();
-		timerSeconds = startDate > liveTime ? startDate - liveTime : 0;
+		timerSeconds = startDate > liveTime ? Math.floor((startDate - liveTime) / 1000) : 0;
 	}
 	const timer = <ScheduleTimer seconds={timerSeconds} endText="LIVE!" />;
 
