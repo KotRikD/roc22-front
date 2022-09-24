@@ -24,6 +24,8 @@ export const LoggedScreen: React.FC = () => {
 
 	const matchesSdk = getSdk(authorizedClient);
 	const castersSdk = getCastersSdk(authorizedClient);
+	const todayIs = new Date();
+	todayIs.setUTCHours(0, 0, 0, 0);
 	const {
 		data: allMatches,
 		isLoading,
@@ -33,7 +35,7 @@ export const LoggedScreen: React.FC = () => {
 			filter: {
 				// @ts-ignore
 				date_start: {
-					gte: new Date().toISOString()
+					gte: todayIs.toISOString()
 				}
 			}
 		})
