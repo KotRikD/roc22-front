@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Header } from '@/components/Header';
+import { MapInfo } from '@/components/MapInfo';
 import { Screen } from '@/components/Screen';
 import XpLogo from '@/components/XpLogo';
 import VersusPlayer from '@/pages/screens/versusPlay/VersusPlayer';
@@ -32,6 +33,7 @@ export const VersusPlay = () => {
 					currentMatchScore={2}
 				/>
 				<div className="versus-center">
+					<MapInfo style={{ marginBottom: '20px' }} />
 					<XpLogo width={'100%'} height={'85px'} />
 				</div>
 				<VersusPlayer

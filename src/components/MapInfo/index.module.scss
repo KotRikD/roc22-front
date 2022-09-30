@@ -1,0 +1,131 @@
+.popins {
+	font-family: 'Poppins';
+	font-style: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mapInfo {
+	padding: 5px 17px;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
+	border-radius: 10px;
+
+	&::after {
+		position: absolute;
+		left: 0;
+		top: 0;
+		content: '';
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.8);
+		z-index: 1;
+	}
+
+	& > * {
+		z-index: 2;
+	}
+}
+
+.mapInfoItem {
+	display: flex;
+	flex-direction: column;
+}
+
+.mapInfoItemRow {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.mapInfoFooter {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.mapInfoTitle {
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 48px;
+	color: #ffffff;
+	@extend .popins;
+}
+
+.mapInfoDifficulty {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: #ffffff;
+	@extend .popins;
+}
+
+.mapInfoArtist {
+	margin-top: -10px;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: #fff;
+	@extend .popins;
+}
+
+.stat {
+	display: inline-flex;
+}
+
+.statText {
+	font-weight: 600;
+	font-size: 18px;
+	color: #ffffff;
+	@extend .popins;
+}
+
+.statTitle {
+	margin-top: 5px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #f55e8c;
+	margin-right: 5px;
+	@extend .popins;
+}
+
+.mapStats {
+	display: flex;
+
+	.stat {
+		margin-right: 10px;
+
+		&:last-child {
+			margin-right: 0px;
+		}
+	}
+}
+
+.NM {
+	color: #878787 !important;
+}
+
+.HD {
+	color: #d9bb4f !important;
+}
+
+.HR {
+	color: #d94f4f !important;
+}
+
+.FM {
+	color: hotpink !important;
+}
+
+.DT {
+	color: #9c4fd9 !important;
+}
+
+.TB {
+	color: #6bd94f !important;
+}
