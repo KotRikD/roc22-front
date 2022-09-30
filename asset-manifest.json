@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.35a81542.css",
-    "main.js": "/static/js/main.f741a93b.js",
+    "main.css": "/static/css/main.b0eae867.css",
+    "main.js": "/static/js/main.771d9746.js",
     "static/media/rocbackground.webm": "/static/media/rocbackground.b048b331cc6f9e2a6663.webm",
     "static/media/xppen.png": "/static/media/xppen.192a5f62cb921d6d785d.png",
     "static/media/schedule_xp_pen.png": "/static/media/schedule_xp_pen.1f03743c7a828fdc3a6c.png",
@@ -12,7 +12,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.35a81542.css",
-    "static/js/main.f741a93b.js"
+    "static/css/main.b0eae867.css",
+    "static/js/main.771d9746.js"
   ]
 }
