@@ -13,6 +13,7 @@ import { CurrentPlay } from './pages/screens/currentPlay';
 import { Schedule } from './pages/screens/schedule';
 import { TestGQLMatches } from './pages/screens/testGQLMatches';
 import { TestGQLMatchesPoller } from './pages/screens/testGQLMatches-polling';
+import { VersusPlay } from './pages/screens/versusPlay';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ root.render(
 				<Route path="screens">
 					<Route path="schedule" element={<Schedule />} />
 					<Route path="currentPlay" element={<CurrentPlay />} />
+					<Route path="versusPlay" element={<VersusPlay />} />
 					<Route path="matchPool" element={<MatchPool />} />
 					<Route index element={<Screens />} />
 				</Route>

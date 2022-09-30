@@ -4,9 +4,11 @@ import rocBG from '@/assets/rocbackground.webm';
 
 import styles from './index.module.scss';
 
-export const Screen: React.FC<PropsWithChildren> = (props) => {
+interface IProps extends React.HTMLAttributes<HTMLDivElement>, PropsWithChildren {}
+
+export const Screen: React.FC<IProps> = (props) => {
 	return (
-		<div className={styles.Screen}>
+		<div className={styles.Screen} {...props}>
 			{props.children}
 			<video
 				src={rocBG}

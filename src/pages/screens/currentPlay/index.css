@@ -739,19 +739,13 @@
 	color: #191919;
 }
 
-#xp-logo {
-	position: absolute;
+#main .xpLogo {
 	width: 900px;
-	height: 80px;
 	left: 990px;
 	bottom: 97px;
-	background-image: url('./assets/xppen-pippy.png');
-	background-size: cover;
-	border-radius: 10px;
 }
 
 #pointsWall {
-	position: flex;
 	padding-top: 727px;
 	margin-left: 15px;
 	width: 70px;
@@ -821,7 +815,7 @@
 	line-height: 37px;
 }
 
-/* 
+/*
 	1F4217
 	444518
 	451818

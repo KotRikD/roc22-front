@@ -1,0 +1,151 @@
+.green-screen {
+	flex-grow: 1;
+
+	&__left,
+	&__right {
+		width: 50%;
+	}
+
+	&__left {
+		background: #33ff00;
+	}
+
+	&__right {
+		background: #2fe502;
+	}
+}
+
+.versus-footer {
+	width: 100%;
+	height: 285px;
+	display: flex;
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.versus-center {
+	flex: 1;
+	padding: 0 30px;
+}
+
+.versus-play {
+	width: 580px;
+	height: 100%;
+	background: black;
+	padding: 20px 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&.left {
+		border-top-right-radius: 40px;
+	}
+
+	&.right {
+		border-top-left-radius: 40px;
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 150px;
+	}
+
+	&.right &__header {
+		justify-content: flex-end;
+	}
+
+	&__avatar {
+		width: 150px;
+		height: 150px;
+		border-radius: 20px;
+		overflow: hidden;
+		background: green;
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	&.left &__avatar {
+		margin-right: 20px;
+	}
+
+	&.right &__avatar {
+		order: 2;
+		margin-left: 20px;
+	}
+
+	&__info {
+		height: 100%;
+	}
+
+	&__nickname {
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 650;
+		font-size: 32px;
+		line-height: 150%;
+		color: #ffffff;
+		margin-bottom: 20px;
+	}
+
+	&.right &__nickname {
+		text-align: right;
+	}
+
+	&__main-score {
+		display: flex;
+		position: relative;
+		padding: 0px 30px;
+		z-index: 0;
+
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 48px;
+		line-height: 156%;
+		color: #f55e8c;
+
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			inset: 0;
+			padding: 4px;
+			border-radius: 15px;
+			-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			-webkit-mask-composite: xor;
+			mask-composite: exclude;
+		}
+	}
+
+	$leader-color: #f55e8c;
+	$looser-color: rgba(255, 255, 255, 0.2);
+
+	&.left &__main-score {
+		&.leader::before {
+			background: linear-gradient(90deg, #000 0%, $leader-color 100%);
+		}
+
+		&::before {
+			background: linear-gradient(90deg, rgba(#000, 0) 0%, $looser-color 100%);
+		}
+	}
+
+	&.right &__main-score {
+		justify-content: flex-end;
+
+		&.leader::before {
+			background: linear-gradient(-90deg, #000 0%, $leader-color 100%);
+		}
+
+		&::before {
+			background: linear-gradient(-90deg, rgba(#000, 0) 0%, $looser-color 100%);
+		}
+	}
+}

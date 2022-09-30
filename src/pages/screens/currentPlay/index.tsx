@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
+import XpLogo from '@/components/XpLogo';
 import { graphqlClient } from '@/graphql/client';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
 import { getPickedMap } from '@/pages/screens/MatchPool';
@@ -269,7 +270,9 @@ export const CurrentPlay: React.FC = () => {
 					</div>
 				</div>
 				<div id="scoreWall" />
-				<div id="xp-logo" />
+				<div className="xpLogo">
+					<XpLogo />
+				</div>
 				<div id="pointsWall">
 					{[...Array.from(Array(playerArray.length).keys())].map((_, index) => (
 						<div key={index} className={`scoreMP ${resolveColorBeforePlayerBadge(index)![1]}`}>

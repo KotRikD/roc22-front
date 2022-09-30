@@ -4,6 +4,7 @@ import { useCountUp } from 'react-countup';
 interface CountUpProps {
 	value: number;
 	duration: number;
+	separator?: string;
 }
 
 export const CountUp: React.FC<CountUpProps> = (props) => {
@@ -14,7 +15,7 @@ export const CountUp: React.FC<CountUpProps> = (props) => {
 		end: 0,
 		delay: 0,
 		duration: props.duration,
-		separator: ' ',
+		separator: props.separator ?? ' ',
 		useEasing: true
 	});
 

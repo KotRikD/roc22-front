@@ -1,0 +1,85 @@
+.match-score {
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 156%;
+		color: #f55e8c;
+		text-transform: uppercase;
+	}
+
+	&.right &__title {
+		text-align: right;
+	}
+
+	&__stars {
+		display: flex;
+		margin-top: 3px;
+	}
+
+	&.left &__stars {
+		flex-direction: row;
+
+		.star {
+			margin-right: 15px;
+
+			&:last-child {
+				margin-right: 0px;
+			}
+		}
+	}
+
+	&.right &__stars {
+		flex-direction: row-reverse;
+
+		.star {
+			margin-left: 10px;
+
+			&:last-child {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.star {
+		position: relative;
+		width: 33px;
+		height: 33px;
+
+		&__item {
+			width: 5px;
+			height: 15px;
+			background: rgba(#fff, 0.3);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+
+			$offset: 10px;
+
+			&--active {
+				background: #f55e8c;
+			}
+
+			//Ебать я гений
+			&--1 {
+				transform: translate(calc(-50% - $offset), calc(-50% - $offset)) rotate(-45deg);
+			}
+
+			&--2 {
+				transform: translate(calc(-50% + $offset), calc(-50% - $offset)) rotate(45deg);
+			}
+
+			&--3 {
+				transform: translate(calc(-50% - $offset), calc(-50% + $offset)) rotate(-135deg);
+			}
+
+			&--4 {
+				transform: translate(calc(-50% + $offset), calc(-50% + $offset)) rotate(135deg);
+			}
+		}
+	}
+}
