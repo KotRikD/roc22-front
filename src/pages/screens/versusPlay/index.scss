@@ -1,9 +1,11 @@
 .green-screen {
+	display: flex;
 	flex-grow: 1;
 
 	&__left,
 	&__right {
 		width: 50%;
+		height: 100%;
 	}
 
 	&__left {
@@ -26,13 +28,17 @@
 
 .versus-center {
 	flex: 1;
-	padding: 0 30px;
+	padding: 15px 30px;
+	display: flex;
+	flex-direction: column;
 }
+
+$bg-color: rgba(#000, 0.95);
 
 .versus-play {
 	width: 580px;
 	height: 100%;
-	background: black;
+	background: $bg-color;
 	padding: 20px 30px;
 	display: flex;
 	flex-direction: column;
@@ -97,6 +103,12 @@
 		text-align: right;
 	}
 
+	$leader-color: #f55e8c;
+	$looser-color: rgba(#fff, 0.3);
+
+	$border-weight: 90%;
+	$border-width: 4px;
+
 	&__main-score {
 		display: flex;
 		position: relative;
@@ -108,14 +120,19 @@
 		font-weight: 600;
 		font-size: 48px;
 		line-height: 156%;
-		color: #f55e8c;
+		color: $looser-color;
+
+		&.leader {
+			color: #f55e8c;
+		}
 
 		&::before {
 			content: '';
 			position: absolute;
 			z-index: -1;
 			inset: 0;
-			padding: 4px;
+			width: $border-weight;
+			padding: $border-width;
 			border-radius: 15px;
 			-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
 			mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -124,16 +141,14 @@
 		}
 	}
 
-	$leader-color: #f55e8c;
-	$looser-color: rgba(255, 255, 255, 0.2);
-
 	&.left &__main-score {
 		&.leader::before {
-			background: linear-gradient(90deg, #000 0%, $leader-color 100%);
+			background: linear-gradient(-90deg, rgba($bg-color, 0) 0%, $leader-color 100%);
 		}
 
 		&::before {
-			background: linear-gradient(90deg, rgba(#000, 0) 0%, $looser-color 100%);
+			left: 0;
+			background: linear-gradient(-90deg, rgba($bg-color, 0) 0%, $looser-color 100%);
 		}
 	}
 
@@ -141,11 +156,12 @@
 		justify-content: flex-end;
 
 		&.leader::before {
-			background: linear-gradient(-90deg, #000 0%, $leader-color 100%);
+			background: linear-gradient(90deg, rgba($bg-color, 0) 0%, $leader-color 100%);
 		}
 
 		&::before {
-			background: linear-gradient(-90deg, rgba(#000, 0) 0%, $looser-color 100%);
+			left: calc(100% - $border-weight - $border-width * 2);
+			background: linear-gradient(90deg, rgba($bg-color, 0) 0%, $looser-color 100%);
 		}
 	}
 }

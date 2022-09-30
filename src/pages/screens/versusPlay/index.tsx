@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Header } from '@/components/Header';
 import { Screen } from '@/components/Screen';
+import XpLogo from '@/components/XpLogo';
 import VersusPlayer from '@/pages/screens/versusPlay/VersusPlayer';
 import { Direction } from '@/utils/Direction';
 
@@ -17,8 +18,8 @@ export const VersusPlay = () => {
 		>
 			<Header customTextStart={''} />
 			<div className="green-screen">
-				<div className="greenScreen__left"></div>
-				<div className="greenScreen__right"></div>
+				<div className="green-screen__left"></div>
+				<div className="green-screen__right"></div>
 			</div>
 			<div className="versus-footer">
 				<VersusPlayer
@@ -30,7 +31,9 @@ export const VersusPlay = () => {
 					currentScore={1727727}
 					currentMatchScore={2}
 				/>
-				<div className="versus-center"></div>
+				<div className="versus-center">
+					<XpLogo width={'100%'} height={'85px'} />
+				</div>
 				<VersusPlayer
 					direction={Direction.Right}
 					nickname={'TheEZIC'}
