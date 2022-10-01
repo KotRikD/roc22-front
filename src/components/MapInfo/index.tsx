@@ -76,20 +76,16 @@ export const MapInfo: FC<IProps> = (props) => {
 		};
 	}, []);
 
-	if (state === null || !poolData || poolData === null || !currentMatch?.matches || currentMatch.matches.data.length < 1) return null;
+	if (state === null || !poolData || !currentMatch?.matches || currentMatch.matches.data.length < 1) return null;
 
 	if (error) return <>Не удалось загрузить пул!</>;
 
-	const match = currentMatch.matches.data.at(0)!;
-	const group = `GROUP ${match.attributes?.lobby_id}`;
+	// const match = currentMatch.matches.data.at(0)!;
 
 	const backendVariable = getQueryVariable('backend');
 	const hostBackend = new URL(backendVariable || '').host;
 
 	const pathToImage = state.menu.bm.path.full.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
-	const backgroundStyle = {
-		backgroundImage: `url('http://${hostBackend}/Songs/${pathToImage}')`
-	};
 
 	const mapTitle = `${state.menu.bm.metadata.title}`;
 	const mapArtist = `${state.menu.bm.metadata.artist}`;
@@ -102,36 +98,16 @@ export const MapInfo: FC<IProps> = (props) => {
 	const mapSR = `${state.menu.bm.stats.SR}*`;
 	const mapID = `${state.menu.bm.id}`;
 
-	const map = poolData[state.menu.bm.id] || { id: 0 };
-	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
-	const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
-
-	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
-	const sortedPlayerArray = Object.values(state.tourney.ipcClients)
-		// @ts-ignore
-		.sort((playerA, playerB) => (playerA.gameplay.score > playerB.gameplay.score ? -1 : 1));
-
-	const scoreGaps = {} as any;
-	sortedPlayerArray.forEach((player, index) => {
-		const currentScore = (player as any).gameplay.score;
-		const gap = index === 0 ? 0 : currentScore - (sortedPlayerArray.at(index - 1) as any).gameplay.score;
-
-		scoreGaps[(player as any).spectating.userID] = [gap, index];
-	});
-
-	const colors = ['#0066ff', '#ff0000', '#ffd600', '#05ff00'];
-
-	const ColorMassive = {} as any;
-	playerArray.forEach((player, index) => {
-		ColorMassive[(player as any).spectating.userID] = colors[index];
-	});
+	// const map = poolData[state.menu.bm.id] || { id: 0 };
+	// const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
+	// const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
 
 	return (
 		<div
 			{...props}
 			className={styles.mapInfo}
 			style={{
-				backgroundImage: `url('https://assets.ppy.sh/beatmaps/1258152/covers/cover.jpg?1663958250')`,
+				backgroundImage: `url('http://${hostBackend}/Songs/${pathToImage}')`,
 				backgroundSize: 'cover',
 				backgroundPosition: 'center center',
 				...props.style,
@@ -158,28 +134,28 @@ export const MapInfo: FC<IProps> = (props) => {
 					<div className={styles.mapStats}>
 						<div className={styles.stat}>
 							<span className={styles.statTitle}>CS</span>
-							<span className={styles.statText}>{'mapCS'}</span>
+							<span className={styles.statText}>{mapCS}</span>
 						</div>
 						<div className={styles.stat}>
 							<span className={styles.statTitle}>AR</span>
-							<span className={styles.statText}>{'mapAR'}</span>
+							<span className={styles.statText}>{mapAR}</span>
 						</div>
 						<div className={styles.stat}>
 							<span className={styles.statTitle}>OD</span>
-							<span className={styles.statText}>{'mapOD'}</span>
+							<span className={styles.statText}>{mapOD}</span>
 						</div>
 						<div className={styles.stat}>
 							<span className={styles.statTitle}>BPM</span>
-							<span className={styles.statText}>{'mapBPM'}</span>
+							<span className={styles.statText}>{mapBPM}</span>
 						</div>
 						<div className={styles.stat}>
 							<span className={styles.statTitle}>SR</span>
-							<span className={styles.statText}>{'mapSR'}</span>
+							<span className={styles.statText}>{mapSR}</span>
 						</div>
 					</div>
 					<div className={styles.stat}>
 						<span className={`${styles.statTitle}`}>Beatmap ID</span>
-						<span className={styles.statText}>{'mapID'}</span>
+						<span className={styles.statText}>{mapID}</span>
 					</div>
 				</div>
 			</div>

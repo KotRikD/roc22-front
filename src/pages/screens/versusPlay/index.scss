@@ -1,20 +1,7 @@
-.green-screen {
+.transparent-screen {
 	display: flex;
 	flex-grow: 1;
-
-	&__left,
-	&__right {
-		width: 50%;
-		height: 100%;
-	}
-
-	&__left {
-		background: #33ff00;
-	}
-
-	&__right {
-		background: #2fe502;
-	}
+	height: 100%;
 }
 
 .versus-footer {
