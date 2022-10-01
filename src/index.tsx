@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { MatchPool } from '@/pages/screens/MatchPool';
+import { MatchPoolVersus } from '@/pages/screens/MatchPoolVersus';
 
 import { prepareGOSU } from './gosu';
 import './index.css';
@@ -33,6 +34,7 @@ root.render(
 					<Route path="currentPlay" element={<CurrentPlay />} />
 					<Route path="versusPlay" element={<VersusPlay />} />
 					<Route path="matchPool" element={<MatchPool />} />
+					<Route path="matchPoolVersus" element={<MatchPoolVersus />} />
 					<Route index element={<Screens />} />
 				</Route>
 				<Route path="testGQL" element={<TestGQLMatches />} />

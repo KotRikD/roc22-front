@@ -15,7 +15,7 @@ export const MatchScore: FC<IProps> = ({ bestOf, currentScore, direction = Direc
 		const activeClass = index + 1 <= currentScore ? 'star__item--active' : '';
 
 		return (
-			<div className="star">
+			<div className="star" key={index}>
 				{new Array(4).fill(0).map((_, i) => (
 					<div key={`star-item-${i}`} className={`star__item ${activeClass} star__item--${i + 1}`} />
 				))}

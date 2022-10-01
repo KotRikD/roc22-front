@@ -27,6 +27,7 @@ query CurrentMatch {
                     osu_name
                     osu_id
                     protected_map
+                    protected_map_vs
                     roll
                     places {
                         place

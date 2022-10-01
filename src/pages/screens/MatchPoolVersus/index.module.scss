@@ -1,0 +1,395 @@
+.NOT_DEFINED_MODS {
+}
+
+.NM {
+	color: #878787 !important;
+}
+
+.HD {
+	color: #d9bb4f !important;
+}
+
+.HR {
+	color: #d94f4f !important;
+}
+
+.FM {
+	color: hotpink !important;
+}
+
+.DT {
+	color: #9c4fd9 !important;
+}
+
+.TB {
+	color: #6bd94f !important;
+}
+
+.boxes {
+	position: relative;
+	box-sizing: border-box;
+	display: flex;
+	height: 100%;
+
+	gap: 31px;
+
+	flex-direction: row;
+
+	&_maps {
+		position: relative;
+		width: 100%;
+		height: 1000px;
+		box-sizing: border-box;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&_player {
+		box-sizing: border-box;
+		width: 419px;
+		height: 1000px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+}
+
+.players {
+	position: relative;
+	box-sizing: border-box;
+	width: 960px;
+	height: 1080px;
+	background-color: black;
+	padding: 30px;
+
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	gap: 30px;
+}
+
+.chat {
+	width: 100%;
+	word-wrap: break-word;
+	box-sizing: border-box;
+	height: 157px;
+	max-height: 157px;
+	background-color: black;
+	border-radius: 10px;
+	padding: 8px 10px;
+	color: #ffffff;
+	white-space: pre-wrap;
+	overflow-y: auto;
+
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&_red {
+		color: #ed6f6f;
+	}
+
+	&_blue {
+		color: #4f9fd9;
+	}
+	&_bot {
+		color: #ed6f9a;
+	}
+
+	&_referee,
+	&_unknown {
+		color: yellow;
+	}
+
+	&_time {
+		color: #939393;
+	}
+}
+
+.xppenGirl {
+	height: 83px;
+	min-height: 83px;
+	margin-top: 28px;
+	margin-bottom: 21px;
+	background-image: url('./assets/xppen.png');
+	background-size: cover;
+}
+
+.playersContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	height: 580px;
+}
+
+.player {
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	height: 289px;
+	background: black;
+	border-radius: 0 40px 0 0;
+	display: flex;
+	flex-direction: column;
+	padding: 0 22px 20px;
+
+	&_reverse {
+		align-items: flex-end;
+		border-radius: 40px 0 0 0;
+	}
+
+	&_roll {
+		width: 50px;
+		height: 50px;
+		max-width: 50px;
+		max-height: 50px;
+
+		position: absolute;
+		bottom: -10px;
+		right: -9px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+
+		background: #ffffff;
+		box-shadow: 0px 4px 4px #000000;
+		border-radius: 10px;
+
+		white-space: nowrap; /* Запрещаем перенос строк */
+		overflow: hidden; /* Обрезаем все, что не помещается в область */
+		text-overflow: ellipsis; /* Добавляем многоточие */
+
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 600;
+
+		text-align: center;
+		letter-spacing: 0.03em;
+
+		& > span:nth-child(1) {
+			font-size: 10px;
+			line-height: 11px;
+		}
+		& > span:nth-child(2) {
+			font-size: 24px;
+			line-height: 28px;
+		}
+
+		&_reverse {
+			left: -9px;
+		}
+	}
+
+	&_ava_holder {
+		position: relative;
+		box-sizing: border-box;
+		margin-top: -64px;
+		width: min-content;
+	}
+
+	&_avatar {
+		width: 180px;
+		max-width: 180px;
+		min-height: 180px;
+		max-height: 180px;
+
+		background-size: cover;
+		border-radius: 10px;
+	}
+
+	&_bans {
+		background: black;
+		height: 494px;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		border-radius: 0 0 40px 0;
+
+		padding-top: 37px;
+		padding-left: 31px;
+		padding-right: 31px;
+
+		&_bans_reverse {
+			border-radius: 0 0 0 40px;
+		}
+
+		& > div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-sizing: border-box;
+
+			width: 357px;
+			height: 77px;
+			border-radius: 10px;
+
+			font-family: 'Poppins', sans-serif;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 24px;
+			line-height: 36px;
+		}
+
+		span {
+			max-width: 330px;
+			overflow: hidden;
+			white-space: nowrap; /* Запрещаем перенос строк */
+			overflow: hidden; /* Обрезаем все, что не помещается в область */
+			text-overflow: ellipsis; /* Добавляем многоточие */
+		}
+	}
+
+	&_name {
+		margin-top: 28px;
+		margin-bottom: 22px;
+		color: white;
+		font-family: 'Nexa Bold', sans-serif;
+		font-style: normal;
+		font-weight: 650;
+		font-size: 42px;
+		line-height: 27px;
+	}
+
+	&_ban {
+		&_red {
+			border: 4px solid #d94f4f;
+			color: #d94f4f;
+		}
+
+		&_blue {
+			border: 4px solid #4f9fd9;
+			color: #4f9fd9;
+		}
+	}
+}
+
+.picks {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	box-sizing: border-box;
+	justify-content: space-between;
+	gap: 20px;
+
+	&_holder {
+		display: flex;
+		flex-direction: row;
+		gap: 31px;
+		margin-top: 37px;
+	}
+}
+
+.pick {
+	&_filled {
+		position: relative;
+		width: 494px;
+		height: 76px;
+		border-radius: 10px;
+		overflow: hidden;
+
+		background: url('https://a.kurikku.pw/999');
+		background-size: cover;
+		background-position: center;
+
+		color: white;
+
+		&_fade {
+			position: relative;
+			width: 900px;
+			height: 76px;
+			background: rgba(25, 25, 25, 0.9);
+
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		&_left {
+			display: flex;
+			flex-direction: row;
+			gap: 20px;
+
+			&_description {
+				display: flex;
+				flex-direction: column;
+
+				&_title {
+					max-width: 440px;
+					margin-top: 5px;
+					font-family: 'Poppins', sans-serif;
+					font-weight: 600;
+					font-size: 32px;
+					line-height: 48px;
+					white-space: nowrap; /* Запрещаем перенос строк */
+					overflow: hidden; /* Обрезаем все, что не помещается в область */
+					text-overflow: ellipsis; /* Добавляем многоточие */
+				}
+
+				&_subtitle {
+					font-family: 'Poppins', sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 20px;
+					line-height: 10px;
+				}
+			}
+		}
+
+		&_card {
+			width: 28px;
+			height: 76px;
+			background: #ffffff;
+			border-radius: 4px;
+			color: #191919;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			font-family: 'Poppins';
+			font-weight: 600;
+
+			&_title {
+				font-size: 16px;
+				line-height: 24px;
+			}
+
+			&_version {
+				font-size: 36px;
+				line-height: 33px;
+			}
+		}
+	}
+
+	&_empty {
+		width: 494px;
+		height: 76px;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		font-family: 'Poppins', sans-serif;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 36px;
+		line-height: 54px;
+		text-align: center;
+		letter-spacing: 0.03em;
+
+		background: rgba(0, 0, 0, 0.7);
+		border-radius: 10px;
+	}
+}

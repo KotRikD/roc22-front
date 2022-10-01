@@ -88,6 +88,7 @@ export type ComponentStructuresPlayerFields = {
   osu_name: Scalars['String'];
   places: Maybe<Array<Maybe<ComponentNoizyStuffPlaces>>>;
   protected_map: Maybe<Scalars['Long']>;
+  protected_map_vs: Maybe<Scalars['String']>;
   roll: Scalars['Int'];
 };
 
@@ -114,6 +115,7 @@ export type ComponentStructuresPlayerFieldsFiltersInput = {
   osu_name: InputMaybe<StringFilterInput>;
   places: InputMaybe<ComponentNoizyStuffPlacesFiltersInput>;
   protected_map: InputMaybe<LongFilterInput>;
+  protected_map_vs: InputMaybe<StringFilterInput>;
   roll: InputMaybe<IntFilterInput>;
 };
 
@@ -124,6 +126,7 @@ export type ComponentStructuresPlayerFieldsInput = {
   osu_name: InputMaybe<Scalars['String']>;
   places: InputMaybe<Array<InputMaybe<ComponentNoizyStuffPlacesInput>>>;
   protected_map: InputMaybe<Scalars['Long']>;
+  protected_map_vs: InputMaybe<Scalars['String']>;
   roll: InputMaybe<Scalars['Int']>;
 };
 
