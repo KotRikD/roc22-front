@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import { graphqlClient } from '@/graphql/client';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
-import { getBPM } from '@/pages/screens/currentPlay';
+// import { getBPM } from '@/pages/screens/currentPlay';
 import { getQueryVariable } from '@/utils/getQueryVariable';
 import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
 
