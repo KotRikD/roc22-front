@@ -83,7 +83,6 @@ $bg-color: rgba(#000, 0.95);
 		font-size: 32px;
 		line-height: 150%;
 		color: #ffffff;
-		margin-bottom: 20px;
 	}
 
 	&.right &__nickname {
@@ -99,14 +98,15 @@ $bg-color: rgba(#000, 0.95);
 	&__main-score {
 		display: flex;
 		position: relative;
-		padding: 0px 30px;
+		box-sizing: border-box;
+		padding: 17px 30px;
 		z-index: 0;
 
 		font-family: 'Poppins';
 		font-style: normal;
 		font-weight: 600;
 		font-size: 48px;
-		line-height: 156%;
+		line-height: 48px;
 		color: $looser-color;
 
 		&.leader {
@@ -150,5 +150,42 @@ $bg-color: rgba(#000, 0.95);
 			left: calc(100% - $border-weight - $border-width * 2);
 			background: linear-gradient(90deg, rgba($bg-color, 0) 0%, $looser-color 100%);
 		}
+	}
+
+	&__nickwrap {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	&.left &__nickwrap {
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+	}
+
+	&.right &__nickwrap {
+		justify-content: flex-end;
+	}
+
+	&__mapPicker {
+		position: relative;
+		box-sizing: border-box;
+
+		text-align: center;
+
+		width: 109px;
+		height: 27px;
+		border: 2px solid #f55e8c;
+		border-radius: 10px;
+		padding: 2px 10px;
+
+		font-family: 'Poppins', sans-serif;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 22px;
+		color: #f55e8c;
+		letter-spacing: 0.16em;
 	}
 }

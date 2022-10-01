@@ -26,7 +26,7 @@ function calculatePlacesToPoints(places: Array<ComponentNoizyStuffPlaces | null>
 	return counter;
 }
 
-function getOrdering(reversed: boolean = false): number[] {
+export function getOrdering(reversed: boolean = false): number[] {
 	return reversed ? [0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0] : [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1];
 }
 
@@ -264,7 +264,7 @@ export const MatchPoolVersus: React.FC = () => {
 
 	return (
 		<Screen>
-			<Header customTextStart={`Lobby ${match.attributes?.stage}`} />
+			<Header customTextStart={`Lobby ${match.attributes?.lobby_id}`} />
 			<div className={styles.boxes}>
 				{playersSorted[0]}
 

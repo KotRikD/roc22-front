@@ -94,14 +94,18 @@ export const MapInfo: FC<IProps> = (props) => {
 	const mapCS = `${state.menu.bm.stats.CS.toFixed(1)}`;
 	const mapAR = `${state.menu.bm.stats.AR.toFixed(1)}`;
 	const mapOD = `${state.menu.bm.stats.OD.toFixed(1)}`;
-	const mapBPM = getBPM(state.menu.bm.stats.BPM);
-	const mapSR = `${state.menu.bm.stats.SR}*`;
+	const mapHP = `${state.menu.bm.stats.HP.toFixed(1)}`;
+	// const mapBPM = getBPM(state.menu.bm.stats.BPM);
+	// const mapSR = `${state.menu.bm.stats.SR}*`;
 	const mapID = `${state.menu.bm.id}`;
 
 	const map = poolData[state.menu.bm.id] || { id: 0 };
 	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
-	console.log(match, 'match');
 	const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
+
+	const time = state.menu.bm.time.full / 1000;
+	const minutes = Math.floor(time / 60);
+	const seconds = Math.round(time - minutes * 60);
 
 	return (
 		<div
@@ -116,18 +120,12 @@ export const MapInfo: FC<IProps> = (props) => {
 			}}
 		>
 			<div className={styles.mapInfoMod}>
-				{/*<>*/}
-				{/*	<div className={`${modeCombination} ${styles.mapInfoModText}`}>*/}
-				{/*		DT*/}
-				{/*	</div>*/}
-				{/*	<div className={`${modeCombination} ${styles.mapInfoModNumber}`}>*/}
-				{/*		1*/}
-				{/*	</div>*/}
-				{/*</>*/}
 				{poolMap ? (
 					<>
-						<div className={`${modeCombination} ${styles.mapInfoModText}`}>{poolMap?.mode_combination.slice(0, 2)}</div>
-						<div className={`${modeCombination} ${styles.mapInfoModNumber}`}>{poolMap?.mode_combination.slice(2, 3)}</div>
+						<div className={`${styles.mapInfoModText} ${styles[modeCombination]}`}>{poolMap?.mode_combination.slice(0, 2)}</div>
+						<div className={`${styles.mapInfoModNumber} ${styles[modeCombination]}`}>
+							{poolMap?.mode_combination.slice(2, 3)}
+						</div>
 					</>
 				) : (
 					<></>
@@ -142,39 +140,41 @@ export const MapInfo: FC<IProps> = (props) => {
 			<div className={styles.mapInfoFooter}>
 				<div className={styles.mapInfoItemRow}>
 					<div className={styles.stat}>
-						<span className={`${modeCombination} ${styles.statTitle}`}>Difficulty</span>
+						<span className={`${styles.statTitle} ${styles[modeCombination]}`}>DIFFICULTY</span>
 						<span className={styles.statText}>{mapDifficulty}</span>
 					</div>
 					<div className={styles.stat}>
-						<span className={`${modeCombination} ${styles.statTitle}`}>Mapper</span>
+						<span className={`${styles.statTitle} ${styles[modeCombination]}`}>MAPPER</span>
 						<span className={styles.statText}>{mapMapper}</span>
 					</div>
 				</div>
 				<div className={styles.mapInfoItemRow}>
 					<div className={styles.mapStats}>
 						<div className={styles.stat}>
-							<span className={`${modeCombination} ${styles.statTitle}`}>CS</span>
+							<span className={`${styles.statTitle} ${styles[modeCombination]}`}>CS</span>
 							<span className={styles.statText}>{mapCS}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={`${modeCombination} ${styles.statTitle}`}>AR</span>
+							<span className={`${styles.statTitle} ${styles[modeCombination]}`}>AR</span>
 							<span className={styles.statText}>{mapAR}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={`${modeCombination} ${styles.statTitle}`}>OD</span>
+							<span className={`${styles.statTitle} ${styles[modeCombination]}`}>HP</span>
+							<span className={styles.statText}>{mapHP}</span>
+						</div>
+						<div className={styles.stat}>
+							<span className={`${styles.statTitle} ${styles[modeCombination]}`}>OD</span>
 							<span className={styles.statText}>{mapOD}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={`${modeCombination} ${styles.statTitle}`}>BPM</span>
-							<span className={styles.statText}>{mapBPM}</span>
-						</div>
-						<div className={styles.stat}>
-							<span className={`${modeCombination} ${styles.statTitle}`}>SR</span>
-							<span className={styles.statText}>{mapSR}</span>
+							<span className={`${styles.statTitle} ${styles[modeCombination]}`}>LENGTH</span>
+							<span className={styles.statText}>
+								{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+							</span>
 						</div>
 					</div>
 					<div className={styles.stat}>
-						<span className={`${modeCombination} ${styles.statTitle}`}>Beatmap ID</span>
+						<span className={`${styles.statTitle} ${styles[modeCombination]}`}>BEATMAP ID</span>
 						<span className={styles.statText}>{mapID}</span>
 					</div>
 				</div>

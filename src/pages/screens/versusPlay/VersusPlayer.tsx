@@ -12,9 +12,19 @@ interface IProps {
 	bestOf: number;
 	currentScore: number;
 	currentMatchScore: number;
+	mapPicker: boolean;
 }
 
-const VersusPlayer: FC<IProps> = ({ direction = Direction.Left, nickname, avatarUrl, leader, currentScore, bestOf, currentMatchScore }) => {
+const VersusPlayer: FC<IProps> = ({
+	direction = Direction.Left,
+	nickname,
+	avatarUrl,
+	leader,
+	currentScore,
+	bestOf,
+	currentMatchScore,
+	mapPicker
+}) => {
 	const leaderClass = leader ? 'leader' : '';
 
 	return (
@@ -24,7 +34,10 @@ const VersusPlayer: FC<IProps> = ({ direction = Direction.Left, nickname, avatar
 					<img src={avatarUrl} alt="avatar" />
 				</div>
 				<div className="versus-play__info">
-					<div className="versus-play__nickname">{nickname}</div>
+					<div className="versus-play__nickwrap">
+						{mapPicker ? <div className="versus-play__mapPicker">MAP PICK</div> : null}
+						<div className="versus-play__nickname">{nickname}</div>
+					</div>
 					<MatchScore bestOf={bestOf} currentScore={currentMatchScore} direction={direction} />
 				</div>
 			</div>

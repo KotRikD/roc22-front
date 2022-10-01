@@ -7,6 +7,7 @@ import { Screen } from '@/components/Screen';
 import XpLogo from '@/components/XpLogo';
 import { graphqlClient } from '@/graphql/client';
 import { CurrentMatchQuery, getSdk } from '@/graphql/queries/CurrentMatch/CurrentMatch.sdk';
+import { getOrdering } from '@/pages/screens/MatchPoolVersus';
 import VersusPlayer from '@/pages/screens/versusPlay/VersusPlayer';
 import { Direction } from '@/utils/Direction';
 import { usePreviousNonNull } from '@/utils/usePreviousNonNull';
@@ -74,6 +75,9 @@ export const VersusPlay = () => {
 	const match = currentMatch.matches.data.at(0)!;
 	const stage = match.attributes?.stage!;
 	const bestOf = state.tourney.manager.bestOF;
+	const players = match.attributes?.players!;
+	const reversePicks = players[0]?.roll! < players[1]?.roll!;
+	const ordering = getOrdering(reversePicks);
 
 	const playerArray = Object.values(state.tourney.ipcClients).filter((ipcClient) => Boolean((ipcClient as any).spectating.name));
 	const player0 = playerArray.length > 0 ? (playerArray[0] as any) : undefined;
@@ -85,10 +89,12 @@ export const VersusPlay = () => {
 		leader: false,
 		bestOf: bestOf,
 		currentScore: 0,
-		currentMatchScore: 0
+		currentMatchScore: 0,
+		mapPicker: false
 	};
 
 	const isLeaderFirst = player0 && player1 ? player0.gameplay.score > player1.gameplay.score : true;
+	const isPickedByFirst = match.attributes!.picks!.length > 0 && ordering[match.attributes!.picks!.length - 1] === 0;
 
 	return (
 		<Screen
@@ -97,8 +103,8 @@ export const VersusPlay = () => {
 				flexDirection: 'column'
 			}}
 		>
-			<Header customTextStart={stage} />
-			<div className="transparent-screen"></div>
+			<Header customTextStart={stage.toLowerCase()} />
+			<div className="transparent-screen" />
 			<div className="versus-footer">
 				{player0 ? (
 					<VersusPlayer
@@ -109,6 +115,7 @@ export const VersusPlay = () => {
 						bestOf={bestOf}
 						currentScore={player0.gameplay.score}
 						currentMatchScore={state.tourney.manager.stars.left}
+						mapPicker={isPickedByFirst}
 					/>
 				) : (
 					<VersusPlayer direction={Direction.Left} {...dumbPlayerProps} />
@@ -127,6 +134,7 @@ export const VersusPlay = () => {
 						bestOf={bestOf}
 						currentScore={player1.gameplay.score}
 						currentMatchScore={state.tourney.manager.stars.right}
+						mapPicker={!isPickedByFirst}
 					/>
 				) : (
 					<VersusPlayer direction={Direction.Right} {...dumbPlayerProps} />

@@ -4,10 +4,12 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	letter-spacing: 0.03em;
 }
 
 .mapInfo {
 	position: relative;
+	max-width: 720px;
 	padding: 5px 17px 5px 55px;
 	flex: 1 1 auto;
 	display: flex;
@@ -109,6 +111,7 @@
 }
 
 .statText {
+	max-width: 391px;
 	font-weight: 600;
 	font-size: 18px;
 	color: #ffffff;
@@ -126,6 +129,7 @@
 
 .mapStats {
 	display: flex;
+	gap: 15px;
 
 	.stat {
 		margin-right: 10px;
@@ -134,6 +138,9 @@
 			margin-right: 0px;
 		}
 	}
+}
+
+.NOT_DEFINED_MODS {
 }
 
 .NM {
