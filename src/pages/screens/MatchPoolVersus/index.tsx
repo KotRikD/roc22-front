@@ -264,7 +264,7 @@ export const MatchPoolVersus: React.FC = () => {
 
 	return (
 		<Screen>
-			<Header customTextStart="p/b/p" />
+			<Header customTextStart={`Lobby ${match.attributes?.stage}`} />
 			<div className={styles.boxes}>
 				{playersSorted[0]}
 
