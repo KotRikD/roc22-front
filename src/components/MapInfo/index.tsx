@@ -80,7 +80,7 @@ export const MapInfo: FC<IProps> = (props) => {
 
 	if (error) return <>Не удалось загрузить пул!</>;
 
-	// const match = currentMatch.matches.data.at(0)!;
+	const match = currentMatch.matches.data.at(0)!;
 
 	const backendVariable = getQueryVariable('backend');
 	const hostBackend = new URL(backendVariable || '').host;
@@ -98,9 +98,10 @@ export const MapInfo: FC<IProps> = (props) => {
 	const mapSR = `${state.menu.bm.stats.SR}*`;
 	const mapID = `${state.menu.bm.id}`;
 
-	// const map = poolData[state.menu.bm.id] || { id: 0 };
-	// const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
-	// const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
+	const map = poolData[state.menu.bm.id] || { id: 0 };
+	const poolMap = match.attributes?.match_pool?.data?.attributes?.maps?.find((mapd) => mapd?.map_id === map.id);
+	console.log(match, 'match');
+	const modeCombination = poolMap?.mode_combination.slice(0, 2) || 'NOT_DEFINED_MODS';
 
 	return (
 		<div
@@ -114,6 +115,25 @@ export const MapInfo: FC<IProps> = (props) => {
 				...style
 			}}
 		>
+			<div className={styles.mapInfoMod}>
+				{/*<>*/}
+				{/*	<div className={`${modeCombination} ${styles.mapInfoModText}`}>*/}
+				{/*		DT*/}
+				{/*	</div>*/}
+				{/*	<div className={`${modeCombination} ${styles.mapInfoModNumber}`}>*/}
+				{/*		1*/}
+				{/*	</div>*/}
+				{/*</>*/}
+				{poolMap ? (
+					<>
+						<div className={`${modeCombination} ${styles.mapInfoModText}`}>{poolMap?.mode_combination.slice(0, 2)}</div>
+						<div className={`${modeCombination} ${styles.mapInfoModNumber}`}>{poolMap?.mode_combination.slice(2, 3)}</div>
+					</>
+				) : (
+					<></>
+				)}
+			</div>
+
 			<div className={styles.mapInfoItem}>
 				<span className={styles.mapInfoTitle}>{mapTitle}</span>
 				<span className={styles.mapInfoArtist}>{mapArtist}</span>
@@ -122,39 +142,39 @@ export const MapInfo: FC<IProps> = (props) => {
 			<div className={styles.mapInfoFooter}>
 				<div className={styles.mapInfoItemRow}>
 					<div className={styles.stat}>
-						<span className={styles.statTitle}>Difficulty</span>
+						<span className={`${modeCombination} ${styles.statTitle}`}>Difficulty</span>
 						<span className={styles.statText}>{mapDifficulty}</span>
 					</div>
 					<div className={styles.stat}>
-						<span className={styles.statTitle}>Mapper</span>
+						<span className={`${modeCombination} ${styles.statTitle}`}>Mapper</span>
 						<span className={styles.statText}>{mapMapper}</span>
 					</div>
 				</div>
 				<div className={styles.mapInfoItemRow}>
 					<div className={styles.mapStats}>
 						<div className={styles.stat}>
-							<span className={styles.statTitle}>CS</span>
+							<span className={`${modeCombination} ${styles.statTitle}`}>CS</span>
 							<span className={styles.statText}>{mapCS}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={styles.statTitle}>AR</span>
+							<span className={`${modeCombination} ${styles.statTitle}`}>AR</span>
 							<span className={styles.statText}>{mapAR}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={styles.statTitle}>OD</span>
+							<span className={`${modeCombination} ${styles.statTitle}`}>OD</span>
 							<span className={styles.statText}>{mapOD}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={styles.statTitle}>BPM</span>
+							<span className={`${modeCombination} ${styles.statTitle}`}>BPM</span>
 							<span className={styles.statText}>{mapBPM}</span>
 						</div>
 						<div className={styles.stat}>
-							<span className={styles.statTitle}>SR</span>
+							<span className={`${modeCombination} ${styles.statTitle}`}>SR</span>
 							<span className={styles.statText}>{mapSR}</span>
 						</div>
 					</div>
 					<div className={styles.stat}>
-						<span className={`${styles.statTitle}`}>Beatmap ID</span>
+						<span className={`${modeCombination} ${styles.statTitle}`}>Beatmap ID</span>
 						<span className={styles.statText}>{mapID}</span>
 					</div>
 				</div>

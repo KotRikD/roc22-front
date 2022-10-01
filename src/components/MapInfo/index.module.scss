@@ -7,7 +7,8 @@
 }
 
 .mapInfo {
-	padding: 5px 17px;
+	position: relative;
+	padding: 5px 17px 5px 55px;
 	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
@@ -30,6 +31,35 @@
 	& > * {
 		z-index: 2;
 	}
+}
+
+.mapInfoMod {
+	width: 40px;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: white;
+}
+
+.mapInfoModText {
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 36px;
+	margin-top: 20px;
+	@extend .popins;
+}
+
+.mapInfoModNumber {
+	font-weight: 600;
+	font-size: 64px;
+	line-height: 96px;
+	margin-top: -25px;
+	@extend .popins;
 }
 
 .mapInfoItem {
@@ -87,7 +117,7 @@
 
 .statTitle {
 	margin-top: 5px;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 14px;
 	color: #f55e8c;
 	margin-right: 5px;
