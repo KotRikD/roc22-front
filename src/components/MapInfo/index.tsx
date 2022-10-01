@@ -86,6 +86,7 @@ export const MapInfo: FC<IProps> = (props) => {
 	const hostBackend = new URL(backendVariable || '').host;
 
 	const pathToImage = state.menu.bm.path.full.replace(/#/g, '%23').replace(/%/g, '%25').replace(/\\/g, '/');
+	console.log(`http://${hostBackend}/Songs/${pathToImage}`);
 
 	const mapTitle = `${state.menu.bm.metadata.title}`;
 	const mapArtist = `${state.menu.bm.metadata.artist}`;

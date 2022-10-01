@@ -54,7 +54,8 @@ export const Schedule: React.FC = () => {
 		<div className={styles.card} key={match.attributes?.lobby_id}>
 			<div className={styles.card_info}>
 				<div className={styles.card_name}>
-					Group <span className={styles.card_lightName}>{match.attributes?.lobby_id}</span>
+					{match.attributes?.matchType === 'VERSUS' ? 'Lobby' : 'Group'}{' '}
+					<span className={styles.card_lightName}>{match.attributes?.lobby_id}</span>
 				</div>
 				<div className={styles.card_time}>
 					<span className={styles.card_lightName}>

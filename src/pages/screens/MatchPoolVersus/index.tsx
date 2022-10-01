@@ -255,11 +255,12 @@ export const MatchPoolVersus: React.FC = () => {
 			);
 		});
 
-	const totalPicksFactor = Math.round(match.attributes?.picks?.length! / 2) > 0 ? Math.round(match.attributes?.picks?.length! / 2) : 0;
-	const emptyCount = Array.from(Array(Math.round(bestOf / 2) - totalPicksFactor).keys());
-	const renderEmpty = () =>
-		Math.round(bestOf / 2) - totalPicksFactor > 0
-			? emptyCount.map((_, index) => <div key={index} className={styles.pick_empty} />)
+	const firstPlayerFeed = renderMapFeed(0);
+	const secondPlayerFeed = renderMapFeed(1);
+
+	const renderEmpty = (count: number) =>
+		Math.round(bestOf / 2) - count > 0
+			? Array.from(Array(Math.round(bestOf / 2) - count).keys()).map((_, index) => <div key={index} className={styles.pick_empty} />)
 			: null;
 
 	return (
@@ -272,11 +273,11 @@ export const MatchPoolVersus: React.FC = () => {
 					<div className={styles.picks_holder}>
 						<div className={styles.picks}>
 							{renderMapFeed(0)}
-							{renderEmpty()}
+							{renderEmpty(firstPlayerFeed!.filter((val) => val !== null).length)}
 						</div>
 						<div className={styles.picks}>
 							{renderMapFeed(1)}
-							{renderEmpty()}
+							{renderEmpty(secondPlayerFeed!.filter((val) => val !== null).length)}
 						</div>
 					</div>
 					<div>
